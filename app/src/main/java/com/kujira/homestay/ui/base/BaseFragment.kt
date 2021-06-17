@@ -44,7 +44,7 @@ abstract class BaseFragment<VM : BaseViewModel, DB : ViewDataBinding> :
     lateinit var activity: Activity
     lateinit var navigators: Navigators
     lateinit var viewModel: VM
-    private var dataBinding: DB? = null
+    lateinit var dataBinding: DB
 
 
     private val mProgressDialog: ProgressDialog by lazy {

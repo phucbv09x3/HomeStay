@@ -32,7 +32,7 @@ class ProvinceModel {
     }
 }
 
-data class Pro(
+data class Provinces(
     var imageUrl: String,
     var name : String
 )

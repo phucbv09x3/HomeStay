@@ -4,11 +4,13 @@
 <data>
     <variable
         name="model"
-        type="com.kujira.homestay.data.model.ProvinceModel" />
+        type="com.kujira.homestay.data.model.Provinces" />
 </data>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/_8sdp"
+    android:layout_marginRight="@dimen/_8sdp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <de.hdodenhof.circleimageview.CircleImageView
         android:layout_width="@dimen/_50sdp"
@@ -17,9 +19,9 @@
         android:id="@+id/circle_image_province"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:src="@{model.imageUrl}"
         android:layout_height="@dimen/_50sdp"/>
     <TextView
+        android:id="@+id/tv_name_province"
         android:layout_marginTop="@dimen/_4sdp"
         android:text="@{model.name}"
         android:maxLines="1"
