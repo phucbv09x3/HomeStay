@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "67625960896",
+    "project_id": "homestay-f504b",
+    "storage_bucket": "homestay-f504b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:67625960896:android:5e080e58e3761f55d0f425",
+        "android_client_info": {
+          "package_name": "com.kujira.homestay"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "67625960896-6hh94k0oe23ios7trqr9raosiv0m2n3q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCK36dr7ZIYrCaD2u-9LO8EJVHmRts0_48"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "67625960896-6hh94k0oe23ios7trqr9raosiv0m2n3q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
