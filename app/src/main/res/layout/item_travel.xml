@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="model"
+            type="com.kujira.homestay.data.model.TravelModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="@dimen/_4sdp"
+        android:background="@drawable/custom_bg_edt_search"
+        android:layout_marginTop="@dimen/_4sdp"
+        android:layout_margin="@dimen/_6sdp">
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView"
+            app:cardCornerRadius="@dimen/_6sdp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_130sdp">
+            <ImageView
+                android:id="@+id/img_travel"
+                android:layout_width="match_parent"
+                android:src="@drawable/dulich"
+                android:scaleType="fitXY"
+                android:layout_height="match_parent"/>
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:text="Ha noi"
+            android:id="@+id/tv_name_province_travel"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_20sdp"
+            android:gravity="center"
+            app:layout_constraintTop_toBottomOf="@id/cardView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/tv_detail_travel"
+            android:text="Ha noi"
+            android:layout_marginStart="@dimen/_4sdp"
+            android:layout_marginRight="@dimen/_4sdp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:textColor="@color/black"
+            android:paddingStart="@dimen/_4sdp"
+            android:paddingEnd="@dimen/_4sdp"
+            android:textSize="@dimen/_12sdp"
+            app:layout_constraintTop_toBottomOf="@id/tv_name_province_travel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -31,8 +31,16 @@ class ProvinceModel {
         this.name = name
     }
 }
-
+@Parcelize
 data class Provinces(
+    var id: String,
     var imageUrl: String,
-    var name : String
+    var name: String
+) : Parcelable
+
+data class TravelModel(
+    var img: String,
+    var id: String,
+    var address: String,
+    var detail: String
 )

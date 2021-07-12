@@ -26,6 +26,7 @@
             app:navGraph="@navigation/nav_graph" />
 
         <LinearLayout
+            android:id="@+id/linear_on_main"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_47sdp"
             android:orientation="horizontal"
@@ -44,6 +45,7 @@
                 android:drawableTop="@drawable/ic_baseline_home_24"
                 android:textSize="@dimen/_6sdp"
                 android:text="Trang chủ"
+                android:onClick="@{(view)->viewModel.click(view)}"
                 android:textAllCaps="false"
                 style="?android:attr/buttonBarButtonStyle" />
 
@@ -55,6 +57,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:textSize="@dimen/_6sdp"
+                android:onClick="@{(view)->viewModel.click(view)}"
                 android:drawableTop="@drawable/ic_baseline_favorite_24"
                 style="?android:attr/buttonBarButtonStyle"
                 android:text="Yêu thích" />
@@ -62,6 +65,7 @@
             <Button
                 android:textAllCaps="false"
                 android:textSize="@dimen/_6sdp"
+                android:onClick="@{(view)->viewModel.click(view)}"
                 android:drawableTop="@drawable/ic_baseline_badge_24"
                 style="?android:attr/buttonBarButtonStyle"
                 android:id="@+id/btn_datcho"
@@ -72,6 +76,7 @@
 
             <Button
                 android:textAllCaps="false"
+                android:onClick="@{(view)->viewModel.click(view)}"
                 android:textSize="@dimen/_6sdp"
                 android:drawableTop="@drawable/ic_baseline_message_24"
                 style="?android:attr/buttonBarButtonStyle"
@@ -84,6 +89,7 @@
             <Button
                 android:textAllCaps="false"
                 android:textSize="@dimen/_6sdp"
+                android:onClick="@{(view)->viewModel.click(view)}"
                 android:drawableTop="@drawable/ic_baseline_account_circle_24"
                 style="?android:attr/buttonBarButtonStyle"
                 android:id="@+id/btn_account"

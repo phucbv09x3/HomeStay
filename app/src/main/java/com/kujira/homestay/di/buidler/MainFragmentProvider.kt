@@ -3,10 +3,13 @@ package com.kujira.homestay.di.buidler
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 import com.kujira.homestay.ui.about.AboutFragment
+import com.kujira.homestay.ui.account.AccountFragment
+import com.kujira.homestay.ui.detail.ListRoomFragment
 import com.kujira.homestay.ui.home.HomeFragment
 import com.kujira.homestay.ui.list.ListFragment
 import com.kujira.homestay.ui.login.LoginFragment
 import com.kujira.homestay.ui.register.RegisterFragment
+import com.kujira.homestay.ui.travel.ListTravelFragment
 
 @Module
 abstract class MainFragmentProvider {
@@ -24,4 +27,13 @@ abstract class MainFragmentProvider {
 
     @ContributesAndroidInjector
     internal abstract fun bindHomeFragment(): HomeFragment
+
+    @ContributesAndroidInjector
+    internal abstract fun bindListRoomFragment(): ListRoomFragment
+
+    @ContributesAndroidInjector
+    internal abstract fun bindAccountFragment(): AccountFragment
+
+    @ContributesAndroidInjector
+    internal abstract fun bindListTravelFragment(): ListTravelFragment
 }

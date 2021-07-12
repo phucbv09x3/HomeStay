@@ -42,12 +42,36 @@ open class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(),
     }
 
     override fun initData() {
-        window.statusBarColor = ContextCompat.getColor(this,R.color.white)
+        listenerAction()
+        window.statusBarColor = ContextCompat.getColor(this, R.color.white)
         navController = navHostFragment.navController
 //        setSupportActionBar(toolbar)
         navController.addOnDestinationChangedListener(this)
         //NavigationUI.setupActionBarWithNavController(this, navController)
     }
+
+    private fun listenerAction(){
+        mViewModel.btnClick.observe(this,{
+            when(it){
+                MainViewModel.BTN_HOME -> {
+                    navigate(R.id.home_fragment)
+                }
+                MainViewModel.BTN_HEART -> {
+
+                }
+                MainViewModel.BTN_DATCHO -> {
+
+                }
+                MainViewModel.BTN_MESSAGE -> {
+
+                }
+                MainViewModel.BTN_ACCOUNT -> {
+
+                }
+            }
+        })
+    }
+
 
     override fun navigateUp() {
         val isFinish = !navController.popBackStack()

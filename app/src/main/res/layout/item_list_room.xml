@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:elevation="@dimen/_8sdp"
+        android:layout_marginStart="@dimen/_12sdp"
+        android:layout_marginEnd="@dimen/_12sdp"
+        android:layout_height="match_parent">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView_listRoom"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_100sdp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"
+                android:src="@drawable/dulich" />
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/title_room"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_6sdp"
+            android:text="Ha Noi Home 3 , Beautiful  "
+            android:textColor="@color/black"
+            android:textSize="@dimen/_16sdp"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="@id/cardView_listRoom"
+            app:layout_constraintRight_toRightOf="@id/cardView_listRoom"
+            app:layout_constraintTop_toBottomOf="@id/cardView_listRoom" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_6sdp"
+            android:layout_marginEnd="@dimen/_12sdp"
+            android:background="#DDDDDD"
+            android:id="@+id/constrain_room"
+            app:layout_constraintLeft_toLeftOf="@id/cardView_listRoom"
+            app:layout_constraintRight_toRightOf="@id/cardView_listRoom"
+            app:layout_constraintTop_toBottomOf="@id/title_room">
+
+            <TextView
+                android:id="@+id/address_room"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_4sdp"
+                android:text="ha noi pho"
+                android:textSize="@dimen/_12sdp"
+                android:textColor="@color/black"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/detail_room"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_4sdp"
+                android:textSize="@dimen/_12sdp"
+                android:text="ha noi pho"
+                android:layout_marginBottom="@dimen/_4sdp"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/address_room" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/price_room"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_4sdp"
+            android:text="ha noi pho"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:textSize="@dimen/_12sdp"
+            app:layout_constraintRight_toRightOf="parent"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toBottomOf="@id/constrain_room"
+            app:layout_constraintLeft_toLeftOf="parent"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

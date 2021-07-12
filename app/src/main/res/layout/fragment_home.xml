@@ -52,7 +52,7 @@
                 android:layout_marginEnd="@dimen/_10sdp"
                 android:background="@drawable/custom_bg_edt_search"
                 android:drawableLeft="@drawable/ic_baseline_search_24"
-                android:elevation="@dimen/_10sdp"
+                android:elevation="@dimen/_6sdp"
                 android:hint="\t Tìm kiếm địa điểm ở đây ..."
                 android:paddingLeft="@dimen/_12sdp"
                 android:textColor="@color/black"
@@ -62,38 +62,43 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:id="@+id/rcy_list_province"
+                android:background="@color/white"
+                android:padding="@dimen/_2sdp"
                 android:layout_marginTop="@dimen/_16sdp"
                 app:layout_constraintTop_toBottomOf="@id/edt_search_home"
                 app:layout_constraintLeft_toLeftOf="parent"
-                android:layout_height="@dimen/_80sdp"/>
+                android:layout_height="wrap_content"/>
 
             <LinearLayout
                 android:id="@+id/linear_home"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/rcy_list_province"
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_16sdp"
+                android:background="@color/white"
+
                 android:orientation="horizontal"
                 android:weightSum="2"
-                android:background="@color/white"
-                android:layout_height="wrap_content">
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rcy_list_province">
+
                 <LinearLayout
-                    android:layout_marginBottom="@dimen/_14sdp"
-                    android:background="@drawable/custom_bg_edt_search"
-                    android:layout_weight="1"
+                    android:onClick="@{view -> viewModel.onClick(view)}"
                     android:layout_width="0dp"
+                    android:id="@+id/linear_homestay"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_6sdp"
+                    android:layout_marginRight="@dimen/_6sdp"
                     android:layout_marginTop="@dimen/_12sdp"
+                    android:layout_marginBottom="@dimen/_14sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/custom_bg_edt_search"
                     android:elevation="@dimen/_8sdp"
-                    android:layout_marginStart="@dimen/_12sdp"
-                    android:layout_marginRight="@dimen/_12sdp"
-                    android:orientation="vertical"
-                    android:layout_height="wrap_content">
+                    android:orientation="vertical">
 
                     <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
-                        app:cardCornerRadius="@dimen/_6sdp"
                         android:layout_height="@dimen/_80sdp"
-                        >
+                        app:cardCornerRadius="@dimen/_6sdp">
 
                         <ImageView
                             android:layout_width="match_parent"
@@ -102,31 +107,82 @@
                             android:scaleType="center"
                             android:src="@drawable/unnamed" />
                     </androidx.cardview.widget.CardView>
+
                     <TextView
                         android:layout_width="wrap_content"
-                        android:text="HomeStay"
-                        android:textStyle="bold"
-                        android:layout_marginTop="@dimen/_6sdp"
+                        android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_6sdp"
+                        android:layout_marginTop="@dimen/_6sdp"
+                        android:text="HomeStay"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_14sdp"
-                        android:layout_height="wrap_content"/>
+                        android:textStyle="bold" />
+
                     <TextView
                         android:layout_width="wrap_content"
-                        android:text="Can ho dich vu va biet thu"
-                        android:layout_marginTop="@dimen/_6sdp"
+                        android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_6sdp"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/_11sdp"
+                        android:layout_marginTop="@dimen/_6sdp"
                         android:layout_marginBottom="@dimen/_8sdp"
-                        android:layout_height="wrap_content"/>
+                        android:text="Can ho dich vu va biet thu"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_11sdp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:onClick="@{view -> viewModel.onClick(view)}"
+                    android:layout_width="0dp"
+                    android:id="@+id/linear_dulich"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_6sdp"
+                    android:layout_marginEnd="@dimen/_6sdp"
+                    android:layout_marginTop="@dimen/_12sdp"
+                    android:layout_marginRight="@dimen/_6sdp"
+                    android:layout_marginBottom="@dimen/_14sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/custom_bg_edt_search"
+                    android:elevation="@dimen/_8sdp"
+                    android:orientation="vertical">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_80sdp"
+                        app:cardCornerRadius="@dimen/_6sdp">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_80sdp"
+                            android:background="@drawable/custom_bg_edt_search"
+                            android:scaleType="center"
+                            android:src="@drawable/dulich" />
+                    </androidx.cardview.widget.CardView>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_6sdp"
+                        android:layout_marginTop="@dimen/_6sdp"
+                        android:text="Du lich"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14sdp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_6sdp"
+                        android:layout_marginTop="@dimen/_6sdp"
+                        android:layout_marginBottom="@dimen/_8sdp"
+                        android:text="Du lịch trong tầm tay"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_11sdp" />
                 </LinearLayout>
 
-<!--                <ImageButton-->
-<!--                    android:layout_weight="1"-->
-<!--                    android:layout_width="0dp"-->
-<!--                    android:layout_height="@dimen/_100sdp"/>-->
+                <!--                <ImageButton-->
+                <!--                    android:layout_weight="1"-->
+                <!--                    android:layout_width="0dp"-->
+                <!--                    android:layout_height="@dimen/_100sdp"/>-->
             </LinearLayout>
+
             <TextView
                 android:id="@+id/tv_next"
                 android:text="Ha Noi"
@@ -143,13 +199,15 @@
                 android:drawableRight="@drawable/ic_baseline_navigate_next_24"
                 android:layout_height="@dimen/_40sdp"/>
             <LinearLayout
+                android:id="@+id/linear_login"
                 app:layout_constraintTop_toBottomOf="@id/tv_next"
                 app:layout_constraintLeft_toLeftOf="parent"
-                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_18sdp"
                 android:layout_width="match_parent"
                 android:orientation="horizontal"
                 android:weightSum="3"
-                android:elevation="@dimen/_8sdp"
+                android:background="@color/white"
+                android:elevation="@dimen/_4sdp"
                 android:layout_marginStart="@dimen/_12sdp"
                 android:layout_marginBottom="@dimen/_18sdp"
                 android:layout_marginEnd="@dimen/_12sdp"
@@ -174,6 +232,12 @@
                     android:layout_height="match_parent"/>
             </LinearLayout>
 
+            <TextView
+                android:background="@color/white"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/linear_login"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_10sdp"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.core.widget.NestedScrollView>
