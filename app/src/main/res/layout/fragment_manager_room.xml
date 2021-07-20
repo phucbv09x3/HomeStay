@@ -5,15 +5,14 @@
 
         <variable
             name="viewModel"
-            type="com.kujira.homestay.ui.account.AccountViewModel" />
+            type="com.kujira.homestay.ui.manager.ManagerRoomViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.account.AccountFragment">
+        tools:context=".ui.manager.ManagerRoomFragment">
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </layout>

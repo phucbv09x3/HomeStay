@@ -7,13 +7,15 @@ import androidx.navigation.NavDestination
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.FragmentNavigator
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.NavigationUI
-import kotlinx.android.synthetic.main.activity_main.*
 import com.kujira.homestay.R
 import com.kujira.homestay.databinding.ActivityMainBinding
+import com.kujira.homestay.ui.account.AccountFragment
 import com.kujira.homestay.ui.base.BaseActivity
 import com.kujira.homestay.ui.base.BaseFragment
+import com.kujira.homestay.ui.home.HomeFragment
+import com.kujira.homestay.ui.manager.ManagerRoomFragment
 import com.kujira.homestay.utils.printLog
+import kotlinx.android.synthetic.main.activity_main.*
 
 
 open class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(),
@@ -50,26 +52,36 @@ open class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(),
         //NavigationUI.setupActionBarWithNavController(this, navController)
     }
 
-    private fun listenerAction(){
-        mViewModel.btnClick.observe(this,{
-            when(it){
+    private fun listenerAction() {
+
+
+        mViewModel.btnClick.observe(this, {
+            when (it) {
                 MainViewModel.BTN_HOME -> {
-                    navigate(R.id.home_fragment)
-                }
-                MainViewModel.BTN_HEART -> {
+                    if (currentFragment is HomeFragment){
+
+                    }else{
+                        navigate(R.id.home_fragment)
+                    }
 
                 }
+
                 MainViewModel.BTN_DATCHO -> {
-
+                    if (currentFragment is ManagerRoomFragment){
+                    }else{
+                        navigate(R.id.manager_Room_fragment)
+                    }
                 }
-                MainViewModel.BTN_MESSAGE -> {
 
-                }
                 MainViewModel.BTN_ACCOUNT -> {
-
+                    if (currentFragment is AccountFragment){
+                    }else{
+                        navigate(R.id.account_fragment)
+                    }
                 }
             }
         })
+
     }
 
 

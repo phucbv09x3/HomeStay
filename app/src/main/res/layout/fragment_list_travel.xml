@@ -16,8 +16,8 @@
         tools:context=".ui.travel.ListTravelFragment">
 
         <TextView
-
             android:id="@+id/tv_previus"
+            android:onClick="@{(view)->viewModel.onClick(view)}"
             android:background="@drawable/ic_baseline_arrow_back_ios_24"
             app:layout_constraintTop_toTopOf="@id/tv_name_province_list"
             app:layout_constraintLeft_toLeftOf="parent"

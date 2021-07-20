@@ -8,18 +8,21 @@
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:elevation="@dimen/_8sdp"
+        android:background="@drawable/custom_bg_edt_search"
+        android:layout_marginTop="@dimen/_6sdp"
         android:layout_marginStart="@dimen/_12sdp"
         android:layout_marginEnd="@dimen/_12sdp"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView_listRoom"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_100sdp"
+            android:layout_height="@dimen/_160sdp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
+                android:id="@+id/img_room"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="fitXY"
@@ -77,16 +80,69 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
         <TextView
             android:id="@+id/price_room"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/_4sdp"
             android:text="ha noi pho"
             android:layout_marginStart="@dimen/_12sdp"
-            android:textSize="@dimen/_12sdp"
-            app:layout_constraintRight_toRightOf="parent"
+            android:textSize="@dimen/_14sdp"
+            app:layout_constraintRight_toRightOf="@id/constrain_room"
             android:textColor="@color/black"
             app:layout_constraintTop_toBottomOf="@id/constrain_room"
-            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintLeft_toLeftOf="@id/constrain_room"
+            />
+        <TextView
+            android:id="@+id/detail_host_room"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_4sdp"
+            android:text="ha noi pho"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:textSize="@dimen/_14sdp"
+            android:textColor="@color/black"
+            android:layout_marginBottom="@dimen/_2sdp"
+            app:layout_constraintTop_toBottomOf="@id/price_room"
+            app:layout_constraintLeft_toLeftOf="@id/constrain_room"
+            />
+
+        <TextView
+            android:id="@+id/title_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_4sdp"
+            android:text="Tình Trạng"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:textSize="@dimen/_12sdp"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toBottomOf="@id/detail_host_room"
+            app:layout_constraintLeft_toLeftOf="@id/constrain_room"
+            />
+        <TextView
+            android:id="@+id/tv_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_4sdp"
+            android:text="hello"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:textSize="@dimen/_12sdp"
+            android:textColor="@color/black"
+            app:layout_constraintRight_toRightOf="@id/constrain_room"
+            app:layout_constraintTop_toBottomOf="@id/detail_host_room"
+            />
+        <TextView
+            android:id="@+id/choose_room"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_4sdp"
+            android:text="Đặt Phòng"
+            android:background="#FF9900"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:textSize="@dimen/_13sdp"
+            android:padding="@dimen/_2sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:textColor="@color/black"
+            app:layout_constraintRight_toRightOf="@id/constrain_room"
+            app:layout_constraintTop_toBottomOf="@id/tv_status"
             />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

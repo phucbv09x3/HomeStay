@@ -39,14 +39,14 @@ class HomeViewModel : BaseViewModel() {
         })
     }
 
-
+    var listener = MutableLiveData<Int>()
     fun onClick(view: View) {
         when (view.id) {
             R.id.linear_homestay -> {
-
+                navigation.navigate(R.id.listRoom)
             }
             R.id.linear_dulich -> {
-
+                listener.value=1
             }
         }
     }

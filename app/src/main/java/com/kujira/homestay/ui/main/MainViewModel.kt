@@ -24,15 +24,11 @@ class MainViewModel : BaseViewModel() {
             R.id.btn_home -> {
               btnClick.value = BTN_HOME
             }
-            R.id.btn_heart -> {
-                btnClick.value = BTN_HEART
-            }
-            R.id.btn_datcho -> {
+
+            R.id.btn_manager -> {
                 btnClick.value = BTN_DATCHO
             }
-            R.id.btn_message -> {
-                btnClick.value = BTN_MESSAGE
-            }
+
             R.id.btn_account -> {
                 btnClick.value = BTN_ACCOUNT
             }

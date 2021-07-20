@@ -5,18 +5,19 @@
 
         <variable
             name="viewModel"
-            type="com.kujira.homestay.ui.detail.ListRoomViewModel" />
+            type="com.kujira.homestay.ui.listRoom.ListRoomViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.detail.ListRoomFragment">
+        tools:context=".ui.listRoom.ListRoomFragment">
         <TextView
             android:id="@+id/tv_back_list_room"
             app:layout_constraintTop_toTopOf="@id/tv_name_province_list_room"
             android:layout_marginTop="@dimen/_6sdp"
+            android:onClick="@{()->viewModel.click()}"
             app:layout_constraintLeft_toLeftOf="parent"
             android:background="@drawable/ic_baseline_arrow_back_ios_24"
             android:layout_marginStart="@dimen/_10sdp"
@@ -25,7 +26,7 @@
         <TextView
             android:id="@+id/tv_name_province_list_room"
             android:layout_width="0dp"
-            android:text="Ha noi"
+            android:text="HomeStay"
             app:layout_constraintLeft_toRightOf="@id/tv_back_list_room"
             android:textSize="@dimen/_20sdp"
             android:textColor="@color/black"

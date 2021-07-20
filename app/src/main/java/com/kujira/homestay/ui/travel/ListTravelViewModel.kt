@@ -1,13 +1,13 @@
 package com.kujira.homestay.ui.travel
 
 import android.util.Log
+import android.view.View
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import com.kujira.homestay.data.model.ProvinceModel
-import com.kujira.homestay.data.model.Provinces
+import com.kujira.homestay.R
 import com.kujira.homestay.data.model.TravelModel
 import com.kujira.homestay.ui.base.BaseViewModel
 
@@ -41,5 +41,13 @@ class ListTravelViewModel : BaseViewModel() {
             override fun onCancelled(error: DatabaseError) {
             }
         })
+    }
+
+    fun onClick(view: View) {
+        when(view.id){
+            R.id.tv_previus -> {
+                navigation.navigateUp()
+            }
+        }
     }
 }

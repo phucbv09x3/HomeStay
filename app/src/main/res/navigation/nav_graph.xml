@@ -3,16 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/home_fragment">
+    app:startDestination="@id/loginFragment">
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.kujira.homestay.ui.login.LoginFragment"
-        android:label="Login Screen" />
+        />
 
     <fragment
         android:id="@+id/registerFragment"
         android:name="com.kujira.homestay.ui.register.RegisterFragment"
-        android:label="Register Screen" />
+        />
 
     <fragment
         android:id="@+id/listFragment"
@@ -27,23 +27,21 @@
 
     <fragment
         android:id="@+id/aboutFragment"
-        android:name="com.kujira.homestay.ui.about.AboutFragment"
-        android:label="Detail Screen" />
+        android:name="com.kujira.homestay.ui.about.AboutFragment" />
     <fragment
         android:id="@+id/home_fragment"
-        android:name="com.kujira.homestay.ui.home.HomeFragment"
-        android:label="Detail Screen" />
+        android:name="com.kujira.homestay.ui.home.HomeFragment" />
 
     <fragment
-        android:id="@+id/detail_room_fragment"
-        android:name="com.kujira.homestay.ui.detail.ListRoomFragment"
-        android:label="Detail Screen" />
+        android:id="@+id/listRoom"
+        android:name="com.kujira.homestay.ui.listRoom.ListRoomFragment" />
     <fragment
         android:id="@+id/listTravel_fragment"
-        android:name="com.kujira.homestay.ui.travel.ListTravelFragment"
-        android:label="Detail Screen" />
+        android:name="com.kujira.homestay.ui.travel.ListTravelFragment" />
     <fragment
         android:id="@+id/account_fragment"
-        android:name="com.kujira.homestay.ui.account.AccountFragment"
-        android:label="Detail Screen" />
+        android:name="com.kujira.homestay.ui.account.AccountFragment" />
+    <fragment
+        android:id="@+id/manager_Room_fragment"
+        android:name="com.kujira.homestay.ui.manager.ManagerRoomFragment" />
 </navigation>
