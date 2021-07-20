@@ -1,6 +1,8 @@
 package com.kujira.homestay.ui.main
 
+import android.content.pm.PackageManager
 import android.os.Bundle
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
@@ -15,7 +17,6 @@ import com.kujira.homestay.ui.base.BaseFragment
 import com.kujira.homestay.ui.home.HomeFragment
 import com.kujira.homestay.ui.manager.ManagerRoomFragment
 import com.kujira.homestay.utils.printLog
-import kotlinx.android.synthetic.main.activity_main.*
 
 
 open class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(),
@@ -50,6 +51,51 @@ open class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(),
 //        setSupportActionBar(toolbar)
         navController.addOnDestinationChangedListener(this)
         //NavigationUI.setupActionBarWithNavController(this, navController)
+        requestPermission()
+    }
+
+    private fun requestPermission() = if (
+        ContextCompat.checkSelfPermission(
+            this, android.Manifest.permission.CAMERA
+        ) != PackageManager.PERMISSION_GRANTED
+        && ContextCompat.checkSelfPermission(
+            this,
+            android.Manifest.permission.RECORD_AUDIO
+        )
+        != PackageManager.PERMISSION_GRANTED
+        && ContextCompat.checkSelfPermission(
+            this,
+            android.Manifest.permission.ACCESS_FINE_LOCATION
+        )
+        != PackageManager.PERMISSION_GRANTED
+    ) {
+
+        ActivityCompat.requestPermissions(
+            this,
+            arrayOf(
+                android.Manifest.permission.CAMERA,
+                android.Manifest.permission.RECORD_AUDIO,
+                android.Manifest.permission.ACCESS_FINE_LOCATION,
+            ), 1
+        )
+    } else {
+
+    }
+
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        if (requestCode == 1) {
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+            } else {
+                requestPermission()
+            }
+        }
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
     }
 
     private fun listenerAction() {
@@ -58,24 +104,24 @@ open class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(),
         mViewModel.btnClick.observe(this, {
             when (it) {
                 MainViewModel.BTN_HOME -> {
-                    if (currentFragment is HomeFragment){
+                    if (currentFragment is HomeFragment) {
 
-                    }else{
+                    } else {
                         navigate(R.id.home_fragment)
                     }
 
                 }
 
                 MainViewModel.BTN_DATCHO -> {
-                    if (currentFragment is ManagerRoomFragment){
-                    }else{
+                    if (currentFragment is ManagerRoomFragment) {
+                    } else {
                         navigate(R.id.manager_Room_fragment)
                     }
                 }
 
                 MainViewModel.BTN_ACCOUNT -> {
-                    if (currentFragment is AccountFragment){
-                    }else{
+                    if (currentFragment is AccountFragment) {
+                    } else {
                         navigate(R.id.account_fragment)
                     }
                 }

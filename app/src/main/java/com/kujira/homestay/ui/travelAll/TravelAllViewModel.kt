@@ -1,4 +1,4 @@
-package com.kujira.homestay.ui.travel
+package com.kujira.homestay.ui.travelAll
 
 import android.util.Log
 import android.view.View
@@ -11,16 +11,14 @@ import com.kujira.homestay.R
 import com.kujira.homestay.data.model.TravelModel
 import com.kujira.homestay.ui.base.BaseViewModel
 
-class ListTravelViewModel : BaseViewModel() {
-
+class TravelAllViewModel : BaseViewModel() {
     var listTravels = MutableLiveData<MutableList<TravelModel>>()
     private var listTravel = mutableListOf<TravelModel>()
-    fun getListTravelId(id: String) {
+    var listenerBack = MutableLiveData<Int>()
+    fun getListTravelAll() {
         val firebaseRef = FirebaseDatabase.getInstance().getReference("Client")
             .child("TravelList")
-            .orderByChild("id")
-            .equalTo(id)
-        firebaseRef.addListenerForSingleValueEvent(object : ValueEventListener {
+        firebaseRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 listTravel.clear()
                 for (pos in snapshot.children) {
@@ -43,9 +41,9 @@ class ListTravelViewModel : BaseViewModel() {
     }
 
     fun onClick(view: View) {
-        when(view.id){
-            R.id.tv_previus -> {
-                navigation.navigateUp()
+        when (view.id) {
+            R.id.tv_previus_travel_all -> {
+                listenerBack.value = 1
             }
         }
     }

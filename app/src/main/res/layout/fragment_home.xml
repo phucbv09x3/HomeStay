@@ -39,34 +39,32 @@
                 android:text="Bạn muốn đi du lịch ở đâu ?"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_12sdp"
                 android:textStyle="bold"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/img_homestay" />
 
-            <EditText
-                android:id="@+id/edt_search_home"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_30sdp"
-                android:layout_marginStart="@dimen/_10sdp"
-                android:layout_marginTop="@dimen/_12sdp"
-                android:layout_marginEnd="@dimen/_10sdp"
-                android:background="@drawable/custom_bg_edt_search"
-                android:drawableLeft="@drawable/ic_baseline_search_24"
-                android:elevation="@dimen/_6sdp"
-                android:hint="\t Tìm kiếm địa điểm ở đây ..."
-                android:paddingLeft="@dimen/_12sdp"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_14sdp"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_title_home" />
+
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:id="@+id/rcy_list_province"
                 android:background="@color/white"
                 android:padding="@dimen/_2sdp"
                 android:layout_marginTop="@dimen/_16sdp"
-                app:layout_constraintTop_toBottomOf="@id/edt_search_home"
+                app:layout_constraintTop_toBottomOf="@id/tv_title_home"
                 app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/tv_title_gt"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:textColor="@color/black"
+                android:drawableRight="@drawable/ic_baseline_flight_land_24"
+                android:textSize="@dimen/_13sdp"
+                android:textStyle="bold"
+                android:text="Trải Nghiệm Du Lịch và HomeStay  "
+                app:layout_constraintTop_toBottomOf="@id/rcy_list_province"
+                app:layout_constraintLeft_toLeftOf="@id/tv_title_home"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
             <LinearLayout
@@ -79,7 +77,7 @@
                 android:orientation="horizontal"
                 android:weightSum="2"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/rcy_list_province">
+                app:layout_constraintTop_toBottomOf="@id/tv_title_gt">
 
                 <LinearLayout
                     android:onClick="@{view -> viewModel.onClick(view)}"
@@ -213,7 +211,7 @@
                 android:layout_marginEnd="@dimen/_12sdp"
                 android:layout_height="@dimen/_40sdp">
                 <TextView
-                    android:text="Đăng nhập để nhận ưu đãi và tận hưởng"
+                    android:text="Chúc bạn có trải ngiệm thú vị cùng chúng tôi"
                     android:gravity="center"
                     android:maxLines="2"
                     android:textColor="@color/black"
@@ -222,12 +220,15 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"/>
                 <TextView
+                    android:id="@+id/tv_search_map"
                     android:layout_weight="1.3"
                     android:background="#FF9900"
                     android:textColor="@color/white"
-                    android:text="Dang nhap"
+                    android:text="Tìm kiếm Bản đồ"
                     android:gravity="center"
-                    android:textSize="@dimen/_18sdp"
+                    android:maxLines="1"
+                    android:onClick="@{(view)->viewModel.onClick(view)}"
+                    android:textSize="@dimen/_12sdp"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"/>
             </LinearLayout>

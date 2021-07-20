@@ -8,8 +8,8 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.kujira.homestay.R
-import com.kujira.homestay.data.model.Provinces
 import com.kujira.homestay.data.model.ProvinceModel
+import com.kujira.homestay.data.model.Provinces
 import com.kujira.homestay.ui.base.BaseViewModel
 
 class HomeViewModel : BaseViewModel() {
@@ -28,8 +28,6 @@ class HomeViewModel : BaseViewModel() {
                         name = pos.child("name").value.toString()
                     )
                     lisProvincesVMD.add(objectsPr)
-
-                    Log.d("lisProvincesVMD", "$lisProvincesVMD")
                 }
                 listProvince.value = lisProvincesVMD
             }
@@ -46,7 +44,10 @@ class HomeViewModel : BaseViewModel() {
                 navigation.navigate(R.id.listRoom)
             }
             R.id.linear_dulich -> {
-                listener.value=1
+                listener.value = 1
+            }
+            R.id.tv_search_map -> {
+                listener.value =2
             }
         }
     }

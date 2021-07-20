@@ -22,9 +22,11 @@ class AccountFragment : BaseFragment<AccountViewModel,FragmentAccountBinding>() 
         activity.btn_home.setTextColor(context.getColor(R.color.black))
         activity.btn_manager.setTextColor(context.getColor(R.color.black))
         activity. btn_account.setTextColor(context.getColor(R.color.rdc))
+        viewModel.updateUI()
     }
 
     override fun bindViewModel() {
+
 
     }
 }

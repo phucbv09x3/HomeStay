@@ -1,6 +1,7 @@
 package com.kujira.homestay.ui.home
 
 import android.content.Context
+import android.content.Intent
 import android.net.ConnectivityManager
 import android.os.Bundle
 import android.util.Log
@@ -12,6 +13,7 @@ import com.kujira.homestay.R
 import com.kujira.homestay.data.model.Provinces
 import com.kujira.homestay.databinding.FragmentHomeBinding
 import com.kujira.homestay.ui.base.BaseFragment
+import com.kujira.homestay.ui.map.MapActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_home.*
 
@@ -48,8 +50,15 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>(), IClickO
 
 
         viewModel.listener.observe(this, {
-            //checkNetWork()
-//            checK()
+            when(it){
+                2->{
+                    context.startActivity(Intent(context,MapActivity::class.java))
+                }
+                1->{
+
+                    navigators.navigate(R.id.travelAll_fragment)
+                }
+            }
         })
     }
 

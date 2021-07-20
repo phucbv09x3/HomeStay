@@ -44,4 +44,10 @@
     <fragment
         android:id="@+id/manager_Room_fragment"
         android:name="com.kujira.homestay.ui.manager.ManagerRoomFragment" />
+
+    <fragment
+        android:id="@+id/travelAll_fragment"
+        android:name="com.kujira.homestay.ui.travelAll.TravelAllFragment" />
+
+
 </navigation>

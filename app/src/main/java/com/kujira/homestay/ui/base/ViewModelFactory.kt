@@ -7,14 +7,16 @@ import com.kujira.homestay.data.api.IApiService
 import com.kujira.homestay.data.scheduler.ISchedulerProvider
 import com.kujira.homestay.ui.about.AboutViewModel
 import com.kujira.homestay.ui.account.AccountViewModel
-import com.kujira.homestay.ui.listRoom.ListRoomViewModel
 import com.kujira.homestay.ui.home.HomeViewModel
 import com.kujira.homestay.ui.list.ListViewModel
+import com.kujira.homestay.ui.listRoom.ListRoomViewModel
 import com.kujira.homestay.ui.login.LoginViewModel
 import com.kujira.homestay.ui.main.MainViewModel
 import com.kujira.homestay.ui.manager.ManagerRoomViewModel
+import com.kujira.homestay.ui.map.MapViewModel
 import com.kujira.homestay.ui.register.RegisterViewModel
 import com.kujira.homestay.ui.travel.ListTravelViewModel
+import com.kujira.homestay.ui.travelAll.TravelAllViewModel
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -36,6 +38,8 @@ class ViewModelFactory @Inject constructor(
             modelClass.isAssignableFrom(AccountViewModel::class.java) -> AccountViewModel() as T
             modelClass.isAssignableFrom(ListTravelViewModel::class.java) -> ListTravelViewModel() as T
             modelClass.isAssignableFrom(ManagerRoomViewModel::class.java) -> ManagerRoomViewModel() as T
+            modelClass.isAssignableFrom(TravelAllViewModel::class.java) -> TravelAllViewModel() as T
+
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }
         if (viewModel is BaseViewModel) {

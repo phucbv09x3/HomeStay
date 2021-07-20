@@ -9,9 +9,9 @@ import com.kujira.homestay.ui.home.HomeFragment
 import com.kujira.homestay.ui.list.ListFragment
 import com.kujira.homestay.ui.login.LoginFragment
 import com.kujira.homestay.ui.manager.ManagerRoomFragment
-import com.kujira.homestay.ui.manager.ManagerRoomViewModel
 import com.kujira.homestay.ui.register.RegisterFragment
 import com.kujira.homestay.ui.travel.ListTravelFragment
+import com.kujira.homestay.ui.travelAll.TravelAllFragment
 
 @Module
 abstract class MainFragmentProvider {
@@ -38,6 +38,12 @@ abstract class MainFragmentProvider {
 
     @ContributesAndroidInjector
     internal abstract fun bindListTravelFragment(): ListTravelFragment
+
     @ContributesAndroidInjector
     internal abstract fun bindManagerRoomFragment(): ManagerRoomFragment
+
+    @ContributesAndroidInjector
+    internal abstract fun bindTravelAllFragment(): TravelAllFragment
+
+
 }
