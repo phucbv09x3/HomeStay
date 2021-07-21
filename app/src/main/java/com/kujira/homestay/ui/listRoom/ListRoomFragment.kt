@@ -1,10 +1,13 @@
 package com.kujira.homestay.ui.listRoom
 
+import android.text.TextUtils
+import android.util.Log
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.kujira.homestay.R
 import com.kujira.homestay.databinding.FragmentListRoomBinding
 import com.kujira.homestay.ui.base.BaseFragment
+import com.kujira.homestay.ui.travel.TravelAdapter
 import kotlinx.android.synthetic.main.fragment_list_room.*
 
 
@@ -22,6 +25,7 @@ class ListRoomFragment : BaseFragment<ListRoomViewModel, FragmentListRoomBinding
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
             adapter = ListRoomAdapter(mutableListOf(), this@ListRoomFragment)
         }
+        search()
     }
 
     override fun bindViewModel() {
@@ -43,4 +47,38 @@ class ListRoomFragment : BaseFragment<ListRoomViewModel, FragmentListRoomBinding
         alertDialog.show()
 
     }
+    private fun search() {
+        dataBinding.svNameProvinceListRoom.setOnQueryTextListener(object :
+            androidx.appcompat.widget.SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                if (!TextUtils.isEmpty(query?.trim())) {
+                    viewModel.searchHomeStay(query)
+                    viewModel.listRoomLiveData.observe(this@ListRoomFragment, {
+                        Log.d("list", "$it")
+                        (dataBinding.rcyListRoom.adapter as ListRoomAdapter).setList(it)
+                    })
+
+
+                } else {
+                    viewModel.getListRoom()
+                }
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                if (!TextUtils.isEmpty(newText?.trim())) {
+                    viewModel.searchHomeStay(newText)
+                    viewModel.listRoomLiveData.observe(this@ListRoomFragment, {
+                        Log.d("list", "$it")
+                        (dataBinding.rcyListRoom.adapter as ListRoomAdapter).setList(it)
+                    })
+                } else {
+                    viewModel.getListRoom()
+                }
+                return false
+            }
+
+        })
+    }
+
 }

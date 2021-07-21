@@ -1,10 +1,12 @@
 package com.kujira.homestay.ui.listRoom
 
 import androidx.lifecycle.MutableLiveData
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.kujira.homestay.data.model.TravelModel
 import com.kujira.homestay.data.model.response.AddRoomModel
 import com.kujira.homestay.ui.base.BaseViewModel
 
@@ -17,7 +19,8 @@ class ListRoomViewModel : BaseViewModel() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 listRoom.clear()
                 for (snap in snapshot.children) {
-                    val obStatus = AddRoomModel(
+                    //val model = snap.getValue(AddRoomModel::class.java)
+                    val addModel = AddRoomModel(
                         snap.child("id").value.toString(),
                         snap.child("address").value.toString(),
                         snap.child("typeRoom").value.toString(),
@@ -32,7 +35,7 @@ class ListRoomViewModel : BaseViewModel() {
                         snap.child("price").value.toString(),
                         snap.child("uid").value.toString(),
                     )
-                    listRoom.add(obStatus)
+                    listRoom.add(addModel)
                 }
                 listRoomLiveData.value = listRoom
 
@@ -49,6 +52,7 @@ class ListRoomViewModel : BaseViewModel() {
                override fun onDataChange(snapshot: DataSnapshot) {
                    val hash = HashMap<String,Any>()
                    hash["status"] = "Đã Đặt"
+                   hash["idClient"]= FirebaseAuth.getInstance().currentUser!!.uid
                    dataReferences.child(id).updateChildren(hash)
                }
 
@@ -59,5 +63,28 @@ class ListRoomViewModel : BaseViewModel() {
     }
     fun click(){
         navigation.navigateUp()
+    }
+
+    fun searchHomeStay(newText: String?) {
+        val firebaseRef = FirebaseDatabase.getInstance().getReference("Host")
+            .child("ListRoom")
+        firebaseRef.addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(error: DatabaseError) {
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                listRoom.clear()
+                for (pos in snapshot.children) {
+                    val model = pos.getValue(AddRoomModel::class.java)
+                    if (model?.address?.toLowerCase()!!.contains(newText!!.toLowerCase())) {
+                        listRoom.add(model)
+                        listRoomLiveData.value =listRoom
+
+                    }
+
+                }
+            }
+
+        })
     }
 }

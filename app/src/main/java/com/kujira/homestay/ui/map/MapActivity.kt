@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.FragmentNavigator
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -22,9 +23,12 @@ import com.google.android.gms.maps.model.*
 import com.google.android.libraries.places.compat.GeoDataClient
 import com.google.android.libraries.places.compat.PlaceDetectionClient
 import com.kujira.homestay.R
+import com.kujira.homestay.databinding.ActivityMapBinding
+import com.kujira.homestay.ui.base.BaseActivity
+import com.kujira.homestay.ui.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_map.*
 
-class MapActivity : AppCompatActivity(), OnMapReadyCallback {
+class MapActivity : BaseActivity<MapViewModel,ActivityMapBinding>(), OnMapReadyCallback {
     private lateinit var mMap: GoogleMap
     private var mListLocation: MutableList<String>? = null
     private var checkMapType = false
@@ -37,9 +41,18 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
     private var mMarker: Marker? = null
     private var mMarker2: Marker? = null
     private var polyline: Polyline? = null
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_map)
+
+    override fun createViewModel(): Class<MapViewModel> {
+        return  MapViewModel::class.java
+    }
+
+    override fun getContentView(): Int =R.layout.activity_map
+
+    override fun initAction() {
+
+    }
+
+    override fun initData() {
         val supportMapFragment =
             supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
         supportMapFragment?.getMapAsync(this)
@@ -52,7 +65,8 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
             mMapViewModel?.getDirection(origin, destination)
         }
         mListLocation = mutableListOf()
-        mMapViewModel?.direction?.observe(this, androidx.lifecycle.Observer {
+        mMapViewModel?.direction?.observe(this,  {
+            Log.d("listPoitAPi","${it}")
             if (it != null) {
                 mMarker?.remove()
                 mMarker2?.remove()
@@ -82,11 +96,33 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
                 }
             }
         })
-//        btn_reset.setOnClickListener {
-//            mMarker?.remove()
-//            mMarker2?.remove()
-//        }
     }
+
+    override fun onFragmentResumed(fragment: BaseFragment<*, *>) {
+
+    }
+
+    override fun navigate(fragmentId: Int, bundle: Bundle?, addToBackStack: Boolean) {
+
+    }
+
+    override fun navigateWithSharedElement(
+        fragmentId: Int,
+        bundle: Bundle?,
+        sharedElements: FragmentNavigator.Extras?,
+        addToBackStack: Boolean
+    ) {
+
+    }
+
+    override fun navigateUp() {
+
+    }
+
+    override fun present(fragmentId: Int, bundle: Bundle?) {
+
+    }
+
 
     private fun searchLocationOnEdt() {
         edt_go.addTextChangedListener(object : TextWatcher {
@@ -122,6 +158,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
 
         mMapViewModel?.searchLocation?.observe(this, Observer {
             if (it != null) {
+                Log.d("listPOit","${it}")
                 mListLocation?.removeAll(mListLocation!!)
                 for (item in it.predictions) {
                     mListLocation?.add(item.description)
@@ -132,6 +169,13 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
                     android.R.layout.simple_list_item_1,
                     mListLocation!!
                 )
+//                val polyline1 = mMap.addPolyline(PolylineOptions()
+//                    .clickable(true)
+//                    .add(
+//                        mListLocation
+//                    )
+//                )
+//                polyline1.tag='A'
                 edt_go.setAdapter(adapter)
                 edt_to.setAdapter(adapter)
 
@@ -161,21 +205,9 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
 
     }
 
-
-    fun updateUI() {
-        try {
-            if (locationPermissionGranted) {
-                mMap.isMyLocationEnabled = true
-                mMap?.uiSettings?.isMyLocationButtonEnabled = true
-            } else {
-                mMap.isMyLocationEnabled = false
-                mMap?.uiSettings?.isMyLocationButtonEnabled = false
-                lastKnownLocation = null
-
-            }
-        } catch (e: SecurityException) {
-            Log.e("Exception: %s", e.message, e)
-        }
+    override fun onBackPressed() {
+        super.onBackPressed()
+        navigateUp()
     }
 
     private fun decodePolyLine(poly: String): List<LatLng>? {

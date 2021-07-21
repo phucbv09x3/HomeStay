@@ -15,7 +15,7 @@
         tools:context=".ui.listRoom.ListRoomFragment">
         <TextView
             android:id="@+id/tv_back_list_room"
-            app:layout_constraintTop_toTopOf="@id/tv_name_province_list_room"
+            app:layout_constraintTop_toTopOf="@id/sv_name_province_list_room"
             android:layout_marginTop="@dimen/_6sdp"
             android:onClick="@{()->viewModel.click()}"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -23,10 +23,11 @@
             android:layout_marginStart="@dimen/_10sdp"
             android:layout_width="@dimen/_20sdp"
             android:layout_height="@dimen/_16sdp"/>
-        <TextView
-            android:id="@+id/tv_name_province_list_room"
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/sv_name_province_list_room"
             android:layout_width="0dp"
             android:text="HomeStay"
+            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintLeft_toRightOf="@id/tv_back_list_room"
             android:textSize="@dimen/_20sdp"
             android:textColor="@color/black"
@@ -44,7 +45,7 @@
             android:background="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_name_province_list_room" />
+            app:layout_constraintTop_toBottomOf="@id/sv_name_province_list_room" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

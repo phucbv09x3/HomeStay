@@ -39,6 +39,7 @@ class ViewModelFactory @Inject constructor(
             modelClass.isAssignableFrom(ListTravelViewModel::class.java) -> ListTravelViewModel() as T
             modelClass.isAssignableFrom(ManagerRoomViewModel::class.java) -> ManagerRoomViewModel() as T
             modelClass.isAssignableFrom(TravelAllViewModel::class.java) -> TravelAllViewModel() as T
+            modelClass.isAssignableFrom(MapViewModel::class.java) -> MapViewModel() as T
 
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }

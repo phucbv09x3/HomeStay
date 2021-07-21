@@ -62,7 +62,7 @@ class ListRoomAdapter(var listRoom: MutableList<AddRoomModel>, var onChoose: ICh
                 itemView.tv_status.setTextColor(
                     ContextCompat.getColor(
                         itemView.context,
-                        R.color.white
+                        R.color.black
                     )
                 )
                 itemView.choose_room.visibility = View.VISIBLE

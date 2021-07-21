@@ -11,7 +11,7 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class MapViewModel : ViewModel() {
+class MapViewModel : BaseViewModel() {
     var direction= MutableLiveData<DirectionObject>()
     var searchLocation= MutableLiveData<SearchCompleteObject>()
     private val apiRepository:ApiRepository= Retrofit.Builder()

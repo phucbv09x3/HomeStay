@@ -55,8 +55,7 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>(), IClickO
                     context.startActivity(Intent(context,MapActivity::class.java))
                 }
                 1->{
-
-                    navigators.navigate(R.id.travelAll_fragment)
+//                    navigators.navigate(R.id.travelAll_fragment)
                 }
             }
         })

@@ -38,9 +38,18 @@ data class Provinces(
     var name: String
 ) : Parcelable
 
-data class TravelModel(
-    var img: String,
-    var id: String,
-    var address: String,
-    var detail: String
-)
+ class TravelModel{
+     var img: String=""
+     var id: String=""
+     var address: String=""
+     var detail: String=""
+     constructor() {
+     }
+
+     constructor(img: String, id: String, address: String, detail: String) {
+         this.img = img
+         this.id = id
+         this.address = address
+         this.detail = detail
+     }
+ }

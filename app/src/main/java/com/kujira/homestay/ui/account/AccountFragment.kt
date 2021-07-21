@@ -27,6 +27,9 @@ class AccountFragment : BaseFragment<AccountViewModel,FragmentAccountBinding>() 
 
     override fun bindViewModel() {
 
+        viewModel.listener.observe(this,{
+
+        })
 
     }
 }

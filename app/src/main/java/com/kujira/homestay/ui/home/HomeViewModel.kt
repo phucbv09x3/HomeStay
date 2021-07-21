@@ -44,10 +44,10 @@ class HomeViewModel : BaseViewModel() {
                 navigation.navigate(R.id.listRoom)
             }
             R.id.linear_dulich -> {
-                listener.value = 1
+                navigation.navigate(R.id.travelAll_fragment)
             }
             R.id.tv_search_map -> {
-                listener.value =2
+               listener.value = 2
             }
         }
     }

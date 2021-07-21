@@ -3,6 +3,7 @@ package com.kujira.homestay.ui.travelAll
 import android.util.Log
 import android.view.View
 import androidx.lifecycle.MutableLiveData
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -43,8 +44,34 @@ class TravelAllViewModel : BaseViewModel() {
     fun onClick(view: View) {
         when (view.id) {
             R.id.tv_previus_travel_all -> {
-                listenerBack.value = 1
+                navigation.navigateUp()
+                //listenerBack.value = 1
             }
         }
     }
+
+     fun searchUser(newText: String?) {
+        val firebaseRef = FirebaseDatabase.getInstance().getReference("Client")
+            .child("TravelList")
+        firebaseRef.addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(error: DatabaseError) {
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                listTravel.clear()
+                for (pos in snapshot.children) {
+                    val mesData = pos.getValue(TravelModel::class.java)
+
+                        if (mesData?.id?.toLowerCase()!!.contains(newText!!.toLowerCase())) {
+                            listTravel.add(mesData)
+                            listTravels.value =listTravel
+
+                        }
+
+                }
+            }
+
+        })
+    }
+
 }
