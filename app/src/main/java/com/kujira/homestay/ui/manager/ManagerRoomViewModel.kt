@@ -51,13 +51,13 @@ class ManagerRoomViewModel : BaseViewModel() {
     }
 
     fun cancelRoom(id: String) {
-        dataReferences.child(id).child("idClient").removeValue()
-        dataReferences.child(id)
-            .addListenerForSingleValueEvent(object : ValueEventListener {
+        dataReferences.child("ListRoom").child(id).child("idClient").removeValue()
+       val query= dataReferences.child("ListRoom")
+        query.addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     val hash = HashMap<String, Any>()
                     hash["status"] = "Còn Trống"
-                    dataReferences.child(id).updateChildren(hash)
+                    query.child(id).updateChildren(hash)
                 }
 
                 override fun onCancelled(error: DatabaseError) {
