@@ -19,7 +19,6 @@ class ListRoomViewModel : BaseViewModel() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 listRoom.clear()
                 for (snap in snapshot.children) {
-                    //val model = snap.getValue(AddRoomModel::class.java)
                     val addModel = AddRoomModel(
                         snap.child("id").value.toString(),
                         snap.child("address").value.toString(),

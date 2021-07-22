@@ -1,17 +1,17 @@
 package com.kujira.homestay.di.buidler
 
-import dagger.Module
-import dagger.android.ContributesAndroidInjector
 import com.kujira.homestay.ui.about.AboutFragment
 import com.kujira.homestay.ui.account.AccountFragment
-import com.kujira.homestay.ui.listRoom.ListRoomFragment
 import com.kujira.homestay.ui.home.HomeFragment
 import com.kujira.homestay.ui.list.ListFragment
+import com.kujira.homestay.ui.listRoom.ListRoomFragment
 import com.kujira.homestay.ui.login.LoginFragment
 import com.kujira.homestay.ui.manager.ManagerRoomFragment
 import com.kujira.homestay.ui.register.RegisterFragment
 import com.kujira.homestay.ui.travel.ListTravelFragment
 import com.kujira.homestay.ui.travelAll.TravelAllFragment
+import dagger.Module
+import dagger.android.ContributesAndroidInjector
 
 @Module
 abstract class MainFragmentProvider {

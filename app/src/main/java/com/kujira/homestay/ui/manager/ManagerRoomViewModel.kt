@@ -12,11 +12,12 @@ import com.kujira.homestay.ui.base.BaseViewModel
 class ManagerRoomViewModel : BaseViewModel() {
     private var auth = FirebaseAuth.getInstance()
     private var dataReferences = FirebaseDatabase.getInstance().getReference("Host")
-        .child("ListRoom")
+
     private var listRoom = mutableListOf<AddRoomModel>()
     var listRoomLiveData = MutableLiveData<MutableList<AddRoomModel>>()
     fun managerMyRoom() {
-        val query = dataReferences.orderByChild("idClient").equalTo(auth.currentUser?.uid)
+        val query =
+            dataReferences.child("ListRoom").orderByChild("idClient").equalTo(auth.currentUser?.uid)
         query.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 listRoom.clear()
@@ -49,12 +50,12 @@ class ManagerRoomViewModel : BaseViewModel() {
         })
     }
 
-    fun cancelRoom(id:String){
-       dataReferences.child(id).child("idClient").removeValue()
+    fun cancelRoom(id: String) {
+        dataReferences.child(id).child("idClient").removeValue()
         dataReferences.child(id)
-            .addListenerForSingleValueEvent(object : ValueEventListener{
+            .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
-                    val hash = HashMap<String,Any>()
+                    val hash = HashMap<String, Any>()
                     hash["status"] = "Còn Trống"
                     dataReferences.child(id).updateChildren(hash)
                 }
@@ -64,4 +65,31 @@ class ManagerRoomViewModel : BaseViewModel() {
                 }
             })
     }
+
+    var modelShowHost = MutableLiveData<DetailHost>()
+    fun getDetail(addRoomModel: AddRoomModel) {
+
+        dataReferences.child("Account").orderByChild("uid").equalTo(addRoomModel.uid)
+            .limitToFirst(1)
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    for (snap in snapshot.children) {
+                        val model = DetailHost(
+                            snap.child("userName").value.toString(),
+                            snap.child("phone").value.toString()
+                        )
+                        modelShowHost.value = model
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+
+                }
+            })
+    }
 }
+
+data class DetailHost(
+    val userName: String,
+    val phone: String
+)

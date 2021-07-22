@@ -28,6 +28,9 @@
             android:layout_height="wrap_content"/>
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rcy_my_room"
+            android:layout_marginLeft="@dimen/_4sdp"
+            android:layout_marginBottom="@dimen/_4sdp"
+            android:layout_marginRight="@dimen/_4sdp"
             android:layout_width="match_parent"
             android:layout_marginTop="@dimen/_4sdp"
             app:layout_constraintBottom_toBottomOf="parent"

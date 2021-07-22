@@ -28,6 +28,7 @@ class ManagerRoomAdapter(var listRoom: MutableList<AddRoomModel>,var click : ICl
     override fun onBindViewHolder(holder: ManagerRoomAdapter.ManagerHolder, position: Int) {
         holder.setUp(listRoom[position])
         holder.click(listRoom[position].id)
+        holder.longClick(listRoom[position])
     }
 
     override fun getItemCount(): Int = listRoom.size
@@ -47,10 +48,17 @@ class ManagerRoomAdapter(var listRoom: MutableList<AddRoomModel>,var click : ICl
                 click.clickCancel(id)
             }
         }
+        fun longClick(addRoomModel: AddRoomModel){
+            itemView.setOnLongClickListener {
+                click.longClick(addRoomModel)
+                return@setOnLongClickListener true
+            }
+        }
     }
 
 }
 
 interface IClick{
     fun clickCancel(id:String)
+    fun longClick(addRoomModel: AddRoomModel)
 }

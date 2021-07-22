@@ -7,9 +7,9 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:elevation="@dimen/_8sdp"
+        android:elevation="@dimen/_4sdp"
         android:background="@drawable/custom_bg_edt_search"
-        android:layout_marginTop="@dimen/_6sdp"
+        android:layout_marginTop="@dimen/_16sdp"
         android:layout_marginStart="@dimen/_12sdp"
         android:layout_marginEnd="@dimen/_12sdp"
         android:layout_height="wrap_content">
