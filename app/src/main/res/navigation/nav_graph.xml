@@ -49,5 +49,7 @@
         android:id="@+id/travelAll_fragment"
         android:name="com.kujira.homestay.ui.travelAll.TravelAllFragment" />
 
-
+    <fragment
+        android:id="@+id/weather_fragment"
+        android:name="com.kujira.homestay.ui.weather.WeatherFragment" />
 </navigation>

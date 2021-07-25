@@ -17,6 +17,7 @@ import com.kujira.homestay.ui.map.MapViewModel
 import com.kujira.homestay.ui.register.RegisterViewModel
 import com.kujira.homestay.ui.travel.ListTravelViewModel
 import com.kujira.homestay.ui.travelAll.TravelAllViewModel
+import com.kujira.homestay.ui.weather.WeatherViewModel
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -40,6 +41,7 @@ class ViewModelFactory @Inject constructor(
             modelClass.isAssignableFrom(ManagerRoomViewModel::class.java) -> ManagerRoomViewModel() as T
             modelClass.isAssignableFrom(TravelAllViewModel::class.java) -> TravelAllViewModel() as T
             modelClass.isAssignableFrom(MapViewModel::class.java) -> MapViewModel() as T
+            modelClass.isAssignableFrom(WeatherViewModel::class.java) -> WeatherViewModel() as T
 
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }

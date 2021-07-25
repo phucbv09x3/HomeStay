@@ -10,6 +10,7 @@ import com.kujira.homestay.ui.manager.ManagerRoomFragment
 import com.kujira.homestay.ui.register.RegisterFragment
 import com.kujira.homestay.ui.travel.ListTravelFragment
 import com.kujira.homestay.ui.travelAll.TravelAllFragment
+import com.kujira.homestay.ui.weather.WeatherFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -45,5 +46,7 @@ abstract class MainFragmentProvider {
     @ContributesAndroidInjector
     internal abstract fun bindTravelAllFragment(): TravelAllFragment
 
+    @ContributesAndroidInjector
+    internal abstract fun bindWeatherFragment(): WeatherFragment
 
 }

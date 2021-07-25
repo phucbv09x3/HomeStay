@@ -182,8 +182,9 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/tv_next"
-                android:text="Ha Noi"
+                android:id="@+id/tv_next_weather"
+                android:text="Thời Tiết"
+                android:onClick="@{(view)->viewModel.onClick(view)}"
                 app:layout_constraintTop_toBottomOf="@id/linear_home"
                 app:layout_constraintLeft_toLeftOf="parent"
                 android:gravity="start|center"
@@ -198,7 +199,7 @@
                 android:layout_height="@dimen/_40sdp"/>
             <LinearLayout
                 android:id="@+id/linear_login"
-                app:layout_constraintTop_toBottomOf="@id/tv_next"
+                app:layout_constraintTop_toBottomOf="@id/tv_next_weather"
                 app:layout_constraintLeft_toLeftOf="parent"
                 android:layout_marginTop="@dimen/_18sdp"
                 android:layout_width="match_parent"

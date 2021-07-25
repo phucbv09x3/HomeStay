@@ -12,16 +12,16 @@ class ListViewModel : BaseViewModel() {
     val listRepo = ListLiveData<RepoModel>()
     private val _listRepo = listRepo
 
-    fun listRepoHasValue(): Boolean {
-        return _listRepo.hasValue()
-    }
-
-    fun getListRepo() {
-        executeRequestTest(request = {
-            getRepoGit()
-        }, response = {
-            _listRepo.postValue(it.items)
-        })
-    }
+//    fun listRepoHasValue(): Boolean {
+//        return _listRepo.hasValue()
+//    }
+//
+//    fun getListRepo() {
+//        executeRequestTest(request = {
+//            getRepoGit()
+//        }, response = {
+//            _listRepo.postValue(it.items)
+//        })
+//    }
 
 }

@@ -37,18 +37,18 @@ class ListFragment : BaseFragment<ListViewModel, ListFragmentBinding>(),
     }
 
     override fun bindViewModel() {
-        viewModel.listRepo.observe(viewLifecycleOwner, {
-            val adapter = recyclerView.adapter as BaseAdapter<RepoModel>
-            adapter.updateList(it)
-        })
-        if (!viewModel.listRepoHasValue()) {
-            viewModel.getListRepo()
-        }
+//        viewModel.listRepo.observe(viewLifecycleOwner, {
+//            val adapter = recyclerView.adapter as BaseAdapter<RepoModel>
+//            adapter.updateList(it)
+//        })
+//        if (!viewModel.listRepoHasValue()) {
+//            viewModel.getListRepo()
+//        }
 
     }
 
     override fun onRefresh() {
         swipeRefreshLayout.isRefreshing = false
-        viewModel.getListRepo()
+       // viewModel.getListRepo()
     }
 }

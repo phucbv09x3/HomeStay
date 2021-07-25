@@ -1,6 +1,5 @@
 package com.kujira.homestay.ui.home
 
-import android.util.Log
 import android.view.View
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.database.DataSnapshot
@@ -47,7 +46,10 @@ class HomeViewModel : BaseViewModel() {
                 navigation.navigate(R.id.travelAll_fragment)
             }
             R.id.tv_search_map -> {
-               listener.value = 2
+                listener.value = 2
+            }
+            R.id.tv_next_weather -> {
+                navigation.navigate(R.id.weather_fragment)
             }
         }
     }
