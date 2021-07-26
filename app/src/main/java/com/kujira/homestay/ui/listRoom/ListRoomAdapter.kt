@@ -11,6 +11,7 @@ import com.bumptech.glide.Glide
 import com.kujira.homestay.R
 import com.kujira.homestay.data.model.response.AddRoomModel
 import com.kujira.homestay.databinding.ItemListRoomBinding
+import com.kujira.homestay.utils.Constants
 import kotlinx.android.synthetic.main.item_list_room.view.*
 
 class ListRoomAdapter(var listRoom: MutableList<AddRoomModel>, var onChoose: IChooseRoom) :
@@ -50,7 +51,7 @@ class ListRoomAdapter(var listRoom: MutableList<AddRoomModel>, var onChoose: ICh
             itemView.detail_room.text =
                 itemData.s_room + " (m2) - " + itemData.numberSleepRoom + "Phòng ngủ"
             itemView.tv_status.text = itemData.status
-            if (itemData.status=="Đã Đặt"){
+            if (itemData.status== Constants.BOOKED_ROOM){
                 itemView.tv_status.setTextColor(
                     ContextCompat.getColor(
                         itemView.context,

@@ -8,6 +8,7 @@ import com.kujira.homestay.R
 import com.kujira.homestay.databinding.FragmentListRoomBinding
 import com.kujira.homestay.ui.base.BaseFragment
 import com.kujira.homestay.ui.travel.TravelAdapter
+import com.kujira.homestay.utils.Constants
 import kotlinx.android.synthetic.main.fragment_list_room.*
 
 
@@ -37,9 +38,9 @@ class ListRoomFragment : BaseFragment<ListRoomViewModel, FragmentListRoomBinding
 
     override fun onChoose(id: String) {
         val alertDialog = android.app.AlertDialog.Builder(context).create()
-        alertDialog.setTitle("Chọn Phòng")
-        alertDialog.setMessage("Bạn xác nhận đặt phòng này")
-        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK"
+        alertDialog.setTitle(Constants.CHOOSE_ROOM)
+        alertDialog.setMessage(Constants.ACCESS_CHOOSE_ROOM)
+        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, Constants.OK_DIALOG
         ) { dialog, _ ->
             viewModel.chooseRoom(id)
             dialog.dismiss()

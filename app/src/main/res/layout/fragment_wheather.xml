@@ -15,21 +15,36 @@
         tools:context=".ui.weather.WheatherFragment">
 
         <TextView
+            android:id="@+id/title_weather"
+            android:text="Cập nhật thời tiết "
+            android:textColor="@color/black"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:textSize="@dimen/_20sdp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
             android:id="@+id/show_weather"
             android:layout_marginRight="@dimen/_4sdp"
             android:layout_marginTop="@dimen/_4sdp"
-            android:textSize="@dimen/_20sdp"
+            android:textSize="@dimen/_16sdp"
             android:text="Xem"
+            android:onClick="@{()->viewModel.showWeather()}"
             android:padding="@dimen/_4sdp"
+            android:gravity="center"
             android:background="@drawable/custom_edt_login"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_width="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/title_weather"
+            android:layout_width="@dimen/_70sdp"
             android:layout_height="wrap_content"/>
 
 
         <EditText
+            android:text="@={viewModel.textSearchWeather}"
             android:id="@+id/edt_city"
+            android:hint="Nhập tên thành phố/tỉnh"
             android:layout_marginRight="@dimen/_4sdp"
             android:layout_marginLeft="@dimen/_2sdp"
             app:layout_constraintRight_toLeftOf="@id/show_weather"
@@ -37,5 +52,110 @@
             app:layout_constraintLeft_toLeftOf="parent"
             android:layout_width="0dp"
             android:layout_height="wrap_content"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+
+            android:layout_marginTop="@dimen/_4sdp"
+            app:layout_constraintTop_toBottomOf="@id/edt_city"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_height="0dp">
+            <ImageView
+                android:id="@+id/img_weather"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_width="@dimen/_150sdp"
+                android:layout_height="@dimen/_150sdp"/>
+            <TextView
+                android:id="@+id/tv_C"
+                android:layout_marginTop="@dimen/_11sdp"
+                app:layout_constraintTop_toBottomOf="@id/img_weather"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:textSize="@dimen/_22sdp"
+                android:textColor="@color/red"
+                android:text="°C"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/tv_cloud"
+                android:layout_marginTop="@dimen/_11sdp"
+                app:layout_constraintTop_toBottomOf="@id/tv_C"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:textSize="@dimen/_22sdp"
+                android:textColor="@color/black"
+                android:text=""
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_marginLeft="@dimen/_11sdp"
+                android:id="@+id/tv_humidity"
+                android:layout_marginTop="@dimen/_11sdp"
+                app:layout_constraintTop_toBottomOf="@id/tv_cloud"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:textSize="@dimen/_22sdp"
+                android:textColor="@color/black"
+                android:text="Độ ẩm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/tv_show_humidity"
+                android:layout_marginTop="@dimen/_11sdp"
+                app:layout_constraintTop_toBottomOf="@id/tv_cloud"
+                android:layout_marginLeft="@dimen/_11sdp"
+                app:layout_constraintLeft_toRightOf="@id/tv_humidity"
+                android:textSize="@dimen/_22sdp"
+                android:textColor="@color/black"
+                android:text="%"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_marginLeft="@dimen/_11sdp"
+                android:id="@+id/tv_wind"
+                android:layout_marginTop="@dimen/_11sdp"
+                app:layout_constraintTop_toBottomOf="@id/tv_humidity"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:textSize="@dimen/_22sdp"
+                android:textColor="@color/black"
+                android:text="Tốc độ gió"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/tv_show_wind"
+                android:layout_marginTop="@dimen/_11sdp"
+                app:layout_constraintTop_toBottomOf="@id/tv_humidity"
+                android:layout_marginLeft="@dimen/_11sdp"
+                app:layout_constraintLeft_toRightOf="@id/tv_wind"
+                android:textSize="@dimen/_22sdp"
+                android:textColor="@color/black"
+                android:text="km/h "
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_marginLeft="@dimen/_11sdp"
+                android:id="@+id/tv_day"
+                android:layout_marginTop="@dimen/_11sdp"
+                app:layout_constraintTop_toBottomOf="@id/tv_wind"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:textSize="@dimen/_22sdp"
+                android:textColor="@color/black"
+                android:text="Ngày Cập Nhật"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_marginLeft="@dimen/_11sdp"
+                android:id="@+id/tv_address"
+                android:layout_marginTop="@dimen/_11sdp"
+                app:layout_constraintTop_toBottomOf="@id/tv_day"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:textSize="@dimen/_22sdp"
+                android:textColor="@color/black"
+                android:text="Thành Phố / Tỉnh"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

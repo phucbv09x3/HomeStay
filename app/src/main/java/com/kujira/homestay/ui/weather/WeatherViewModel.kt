@@ -1,6 +1,6 @@
 package com.kujira.homestay.ui.weather
 
-import android.util.Log
+import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
 import com.kujira.homestay.data.api.ApiCoroutines
 import com.kujira.homestay.data.api.api_key
@@ -13,6 +13,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class WeatherViewModel : BaseViewModel() {
+    val textSearchWeather = ObservableField<String>()
     var rootResponseWeather = MutableLiveData<Root>()
 
 
@@ -27,7 +28,7 @@ class WeatherViewModel : BaseViewModel() {
         val call = retrofit.getResponseWeather(city_name, api_key)
         call.enqueue(object : Callback<Root> {
             override fun onResponse(call: Call<Root>, response: Response<Root>) {
-                if (response.isSuccessful){
+                if (response.isSuccessful) {
                     rootResponseWeather.value = response.body()
                 }
 
@@ -35,9 +36,16 @@ class WeatherViewModel : BaseViewModel() {
 
             override fun onFailure(call: Call<Root>, t: Throwable) {
 
-                Log.d("onFailure","$t")
             }
         }
         )
+    }
+
+    fun showWeather() {
+        val city = textSearchWeather.get().toString()
+        if (city.isEmpty()) {
+        } else {
+            getResponseWeather(city)
+        }
     }
 }

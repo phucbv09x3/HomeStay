@@ -2,16 +2,16 @@ package com.kujira.homestay.ui.login
 
 import android.util.Log
 import android.view.View
-import androidx.core.os.bundleOf
 import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
 import com.google.firebase.auth.FirebaseAuth
-import kotlinx.coroutines.launch
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.kujira.homestay.R
-import com.kujira.homestay.data.api.ApiCoroutines
 import com.kujira.homestay.ui.base.BaseViewModel
-import java.util.*
+import com.kujira.homestay.utils.Constants
 
 /**
  * Created by OpenYourEyes on 10/22/2020
@@ -21,44 +21,82 @@ class LoginViewModel : BaseViewModel() {
     val email = ObservableField<String>()
     val password = ObservableField<String>()
     private var auth = FirebaseAuth.getInstance()
-    val authFail = MutableLiveData<Int>()
+    val listener = MutableLiveData<Int>()
 
-    fun login(view: View){
-        when(view.id){
+    companion object {
+        const val EmailVerified = 10
+    }
+
+    fun login(view: View) {
+        when (view.id) {
             R.id.btn_login -> {
                 checkSignIn()
             }
-            R.id.tv_register ->{
+            R.id.tv_register -> {
                 navigation.navigate(R.id.registerFragment)
             }
         }
     }
+
+    private var listEmail = mutableListOf<String>()
+    private fun getListAcc(): MutableList<String> {
+        val dataRef =
+            FirebaseDatabase.getInstance().getReference(Constants.CLIENT).child(Constants.ACCOUNT)
+        dataRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                listEmail.clear()
+                for (snap in snapshot.children) {
+                    val objectMail = ObjectMail(
+                        snap.child(Constants.MAIL).toString(),
+                        snap.child(Constants.PHONE).toString(),
+                        snap.child(Constants.PASSWORD).toString(),
+                        snap.child(Constants.UID).toString(),
+                        snap.child(Constants.USER_NAME).toString()
+                    )
+                    listEmail.add(objectMail.mail)
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+            }
+        })
+        return listEmail
+    }
+
     private fun checkSignIn() {
         val email = email.get() ?: ""
         val password = password.get() ?: ""
         if (email.isNotEmpty() && password.isNotEmpty()) {
             auth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener {
-                    if (it.isSuccessful) {
+                    if (it.isSuccessful ) {
                         val user = auth.currentUser
                         if (user!!.isEmailVerified) {
-                            navigation.navigate(R.id.home_fragment)
+                            listener.value = EmailVerified
                         } else {
-                            authFail.value = R.string.error_auth
+                            listener.value = R.string.error_auth
                         }
                     }
                 }
         } else {
-            authFail.value = 1
+            listener.value = R.string.error_isEmpty
         }
     }
 
     fun checkCurrentUser() {
-        Log.d("currentUSer", "${auth.currentUser?.isEmailVerified}")
         if (auth.currentUser?.isEmailVerified == false || auth.currentUser == null) {
 
         } else {
+
             navigation.navigate(R.id.home_fragment)
         }
     }
 }
+
+data class ObjectMail(
+    val mail: String,
+    val phone: String,
+    val password: String,
+    val uid: String,
+    val userName: String,
+)

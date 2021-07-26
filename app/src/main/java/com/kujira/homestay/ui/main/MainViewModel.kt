@@ -6,7 +6,7 @@ import com.kujira.homestay.R
 import com.kujira.homestay.ui.base.BaseViewModel
 
 /**
- * Created by OpenYourEyes on 10/24/2020
+ * Created by Phucbv on 5/2021
  */
 class MainViewModel : BaseViewModel() {
 

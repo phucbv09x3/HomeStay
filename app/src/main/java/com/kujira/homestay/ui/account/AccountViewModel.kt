@@ -10,6 +10,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.kujira.homestay.R
 import com.kujira.homestay.ui.base.BaseViewModel
+import com.kujira.homestay.utils.Constants
 
 class AccountViewModel : BaseViewModel() {
     val myName = ObservableField<String>()
@@ -17,15 +18,23 @@ class AccountViewModel : BaseViewModel() {
     val myPhone = ObservableField<String>()
     val listener = MutableLiveData<Int>()
     private var auth = FirebaseAuth.getInstance()
-    private var dataReference = FirebaseDatabase.getInstance().getReference("Client")
-    fun updateUI(){
+    private var dataReference = FirebaseDatabase.getInstance().getReference(Constants.CLIENT)
 
-        dataReference.child("Account").child(auth.currentUser!!.uid)
+    companion object {
+        const val CHANGE_ACC = 1
+        const val LOG_OUT = 2
+        const val SUCCESS_CHANGE = 3
+        const val ERROR_CHANGE = 4
+    }
+
+    fun updateUI() {
+
+        dataReference.child(Constants.ACCOUNT).child(auth.currentUser!!.uid)
             .addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
-                    val name = snapshot.child("userName").value.toString()
-                    val email = snapshot.child("mail").value.toString()
-                    val phone = snapshot.child("phone").value.toString()
+                    val name = snapshot.child(Constants.USER_NAME).value.toString()
+                    val email = snapshot.child(Constants.MAIL).value.toString()
+                    val phone = snapshot.child(Constants.PHONE).value.toString()
                     myName.set(name)
                     myMail.set(email)
                     myPhone.set(phone)
@@ -37,14 +46,43 @@ class AccountViewModel : BaseViewModel() {
             })
     }
 
-    fun click(view : View){
-        when(view.id){
+    fun click(view: View) {
+        when (view.id) {
             R.id.tv_edit -> {
-                listener.value=1
+                listener.value = CHANGE_ACC
             }
             R.id.tv_logout -> {
-
+                listener.value = LOG_OUT
             }
         }
+    }
+
+    fun changeAcc(name: String, phone: String) {
+        val dataReference =
+            FirebaseDatabase.getInstance().getReference(Constants.CLIENT).child(Constants.ACCOUNT)
+        dataReference.orderByChild(Constants.UID)
+            .equalTo(auth.currentUser!!.uid).limitToFirst(1)
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val hash = HashMap<String, Any>()
+                    hash[Constants.USER_NAME] = name
+                    hash[Constants.PHONE] = phone
+                    dataReference.child(auth.currentUser!!.uid).updateChildren(hash)
+                        .addOnSuccessListener {
+                            listener.value = SUCCESS_CHANGE
+                        }
+                        .addOnFailureListener {
+                            listener.value = ERROR_CHANGE
+                        }
+
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+
+                }
+            })
+    }
+    fun logOut(){
+        auth.signOut()
     }
 }

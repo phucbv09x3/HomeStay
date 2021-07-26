@@ -10,13 +10,14 @@ import com.google.firebase.database.ValueEventListener
 import com.kujira.homestay.R
 import com.kujira.homestay.data.model.TravelModel
 import com.kujira.homestay.ui.base.BaseViewModel
+import com.kujira.homestay.utils.Constants
 
 class ListTravelViewModel : BaseViewModel() {
 
     var listTravels = MutableLiveData<MutableList<TravelModel>>()
     private var listTravel = mutableListOf<TravelModel>()
     fun getListTravelId(id: String) {
-        val firebaseRef = FirebaseDatabase.getInstance().getReference("Client")
+        val firebaseRef = FirebaseDatabase.getInstance().getReference(Constants.CLIENT)
             .child("TravelList")
             .orderByChild("id")
             .equalTo(id)
@@ -33,7 +34,6 @@ class ListTravelViewModel : BaseViewModel() {
                     listTravel.add(objectsTravel)
 
                 }
-                Log.d("list1", "$listTravel")
                 listTravels.value = listTravel
             }
 

@@ -5,12 +5,14 @@ import android.widget.Toast
 import com.kujira.homestay.R
 import com.kujira.homestay.databinding.LoginFragmentBinding
 import com.kujira.homestay.ui.base.BaseFragment
+import com.kujira.homestay.utils.Constants
 import kotlinx.android.synthetic.main.activity_main.*
 
 /**
- * Created by OpenYourEyes on 10/24/2020
+ * Created by Phucbv on 5/2021
  */
 class LoginFragment : BaseFragment<LoginViewModel, LoginFragmentBinding>() {
+
     override fun createViewModel(): Class<LoginViewModel> {
         return LoginViewModel::class.java
     }
@@ -24,8 +26,8 @@ class LoginFragment : BaseFragment<LoginViewModel, LoginFragmentBinding>() {
         activity.linear_on_main.visibility = View.GONE
         viewModel.checkCurrentUser()
         val arg = arguments
-        val email = arg?.getString("email") ?: ""
-        val passWord = arg?.getString("pass") ?: ""
+        val email = arg?.getString(Constants.EMAIL) ?: ""
+        val passWord = arg?.getString(Constants.PASS) ?: ""
         viewModel.email.set(email)
         viewModel.password.set(passWord)
         viewModel.login(requireView())
@@ -33,13 +35,16 @@ class LoginFragment : BaseFragment<LoginViewModel, LoginFragmentBinding>() {
     }
 
     override fun bindViewModel() {
-        viewModel.authFail.observe(this,{
+        viewModel.listener.observe(this,{
             when(it){
-                R.string.error_auth -> {
-                    Toast.makeText(context,getString(it), Toast.LENGTH_LONG).show()
+                LoginViewModel.EmailVerified->{
+                    replaceFragment(R.id.home_fragment)
                 }
-                1 -> {
-                    Toast.makeText(context,"isEmpty", Toast.LENGTH_LONG).show()
+                R.string.error_auth -> {
+                    Toast.makeText(context,getString(R.string.error_auth), Toast.LENGTH_LONG).show()
+                }
+                R.string.error_isEmpty -> {
+                    Toast.makeText(context,getString(R.string.error_isEmpty), Toast.LENGTH_LONG).show()
                 }
             }
         })

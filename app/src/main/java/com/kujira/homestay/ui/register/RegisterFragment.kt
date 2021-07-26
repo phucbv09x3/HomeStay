@@ -9,7 +9,7 @@ import com.kujira.homestay.ui.base.BaseFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 /**
- * Created by OpenYourEyes on 10/24/2020
+ * Created by Phucbv on 5/2021
  */
 class RegisterFragment : BaseFragment<RegisterViewModel, RegisterFragmentBinding>() {
     override fun createViewModel(): Class<RegisterViewModel> {
@@ -27,7 +27,7 @@ class RegisterFragment : BaseFragment<RegisterViewModel, RegisterFragmentBinding
         activity.linear_on_main.visibility = View.GONE
         viewModel.notifyRegister.observe(this, {
             when (it) {
-                R.string.error_register -> {
+                R.string.error_isEmpty -> {
                     Toast.makeText(context, getString(it), Toast.LENGTH_LONG).show()
                 }
                 RegisterViewModel.NOTIFY_AUTH_FAIL -> {

@@ -8,6 +8,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.kujira.homestay.data.model.response.AddRoomModel
 import com.kujira.homestay.ui.base.BaseViewModel
+import com.kujira.homestay.utils.Constants
 
 class ManagerRoomViewModel : BaseViewModel() {
     private var auth = FirebaseAuth.getInstance()
@@ -51,12 +52,12 @@ class ManagerRoomViewModel : BaseViewModel() {
     }
 
     fun cancelRoom(id: String) {
-        dataReferences.child("ListRoom").child(id).child("idClient").removeValue()
-       val query= dataReferences.child("ListRoom")
+        dataReferences.child(Constants.LIST_ROOM).child(id).child(Constants.ID_CLIENT).removeValue()
+       val query= dataReferences.child(Constants.LIST_ROOM)
         query.addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     val hash = HashMap<String, Any>()
-                    hash["status"] = "Còn Trống"
+                    hash[Constants.STATUS] = Constants.EMPTY_ROOM
                     query.child(id).updateChildren(hash)
                 }
 
@@ -69,14 +70,14 @@ class ManagerRoomViewModel : BaseViewModel() {
     var modelShowHost = MutableLiveData<DetailHost>()
     fun getDetail(addRoomModel: AddRoomModel) {
 
-        dataReferences.child("Account").orderByChild("uid").equalTo(addRoomModel.uid)
+        dataReferences.child(Constants.ACCOUNT).orderByChild(Constants.UID).equalTo(addRoomModel.uid)
             .limitToFirst(1)
             .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     for (snap in snapshot.children) {
                         val model = DetailHost(
-                            snap.child("userName").value.toString(),
-                            snap.child("phone").value.toString()
+                            snap.child(Constants.USER_NAME).value.toString(),
+                            snap.child(Constants.PHONE).value.toString()
                         )
                         modelShowHost.value = model
                     }

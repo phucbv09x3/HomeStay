@@ -8,9 +8,10 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.kujira.homestay.R
 import com.kujira.homestay.ui.base.BaseViewModel
+import com.kujira.homestay.utils.Constants
 
 /**
- * Created by OpenYourEyes on 10/24/2020
+ * Created by Phucbv on 5/2021
  */
 class RegisterViewModel : BaseViewModel() {
     var userName = ObservableField<String>()
@@ -54,8 +55,8 @@ class RegisterViewModel : BaseViewModel() {
                                 user.sendEmailVerification()
                                     .addOnCompleteListener {
                                         val bundle = Bundle()
-                                        bundle.putString("email", mail)
-                                        bundle.putString("pass", passWord)
+                                        bundle.putString(Constants.EMAIL, mail)
+                                        bundle.putString(Constants.PASS, passWord)
                                         navigation.navigate(R.id.loginFragment, bundle)
                                     }
                             } else {
@@ -63,7 +64,7 @@ class RegisterViewModel : BaseViewModel() {
                             }
                         }
                 } else {
-                    notifyRegister.value = R.string.error_register
+                    notifyRegister.value = R.string.error_isEmpty
                 }
 
             }

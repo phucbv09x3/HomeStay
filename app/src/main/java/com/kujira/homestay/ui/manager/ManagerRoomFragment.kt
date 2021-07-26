@@ -9,6 +9,7 @@ import com.kujira.homestay.R
 import com.kujira.homestay.data.model.response.AddRoomModel
 import com.kujira.homestay.databinding.FragmentManagerRoomBinding
 import com.kujira.homestay.ui.base.BaseFragment
+import com.kujira.homestay.utils.Constants
 import kotlinx.android.synthetic.main.activity_main.*
 
 class ManagerRoomFragment : BaseFragment<ManagerRoomViewModel, FragmentManagerRoomBinding>(),
@@ -39,10 +40,10 @@ class ManagerRoomFragment : BaseFragment<ManagerRoomViewModel, FragmentManagerRo
 
     override fun clickCancel(id: String) {
         val alertDialog = android.app.AlertDialog.Builder(context).create()
-        alertDialog.setTitle("Hủy Phòng")
-        alertDialog.setMessage("Bạn xác nhận hủy đặt phòng này!")
+        alertDialog.setTitle(Constants.TITLE_CANCEL_ROOM)
+        alertDialog.setMessage(Constants.ACCESS_CANCEL_ROOM)
         alertDialog.setButton(
-            AlertDialog.BUTTON_NEUTRAL, "OK"
+            AlertDialog.BUTTON_NEUTRAL, Constants.OK_DIALOG
         ) { dialog, _ ->
             viewModel.cancelRoom(id)
             dialog.dismiss()

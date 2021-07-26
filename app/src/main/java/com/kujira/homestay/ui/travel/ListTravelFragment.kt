@@ -6,6 +6,7 @@ import com.kujira.homestay.R
 import com.kujira.homestay.data.model.Provinces
 import com.kujira.homestay.databinding.FragmentListTravelBinding
 import com.kujira.homestay.ui.base.BaseFragment
+import com.kujira.homestay.utils.Constants
 
 class ListTravelFragment : BaseFragment<ListTravelViewModel, FragmentListTravelBinding>() {
     override fun createViewModel(): Class<ListTravelViewModel> {
@@ -23,12 +24,11 @@ class ListTravelFragment : BaseFragment<ListTravelViewModel, FragmentListTravelB
             adapter = TravelAdapter(mutableListOf())
         }
         val bundle = arguments
-        val data = bundle?.getParcelable<Provinces>("keyId") as Provinces
+        val data = bundle?.getParcelable<Provinces>(Constants.KEY_ID) as Provinces
         data?.let { data ->
             dataBinding.tvNameProvinceList.text = data.name
             viewModel.getListTravelId(data.name)
             viewModel.listTravels.observe(this, {
-                Log.d("list", "$it")
                 (dataBinding.rcyListTravel.adapter as TravelAdapter).setList(it)
             })
         }

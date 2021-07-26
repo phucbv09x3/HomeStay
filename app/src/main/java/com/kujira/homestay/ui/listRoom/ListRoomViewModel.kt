@@ -9,9 +9,10 @@ import com.google.firebase.database.ValueEventListener
 import com.kujira.homestay.data.model.TravelModel
 import com.kujira.homestay.data.model.response.AddRoomModel
 import com.kujira.homestay.ui.base.BaseViewModel
+import com.kujira.homestay.utils.Constants
 
 class ListRoomViewModel : BaseViewModel() {
-    private var dataReferences = FirebaseDatabase.getInstance().getReference("Host").child("ListRoom")
+    private var dataReferences = FirebaseDatabase.getInstance().getReference(Constants.HOST).child(Constants.LIST_ROOM)
     private var listRoom = mutableListOf<AddRoomModel>()
     var listRoomLiveData = MutableLiveData<MutableList<AddRoomModel>>()
     fun getListRoom() {
@@ -65,8 +66,8 @@ class ListRoomViewModel : BaseViewModel() {
     }
 
     fun searchHomeStay(newText: String?) {
-        val firebaseRef = FirebaseDatabase.getInstance().getReference("Host")
-            .child("ListRoom")
+        val firebaseRef = FirebaseDatabase.getInstance().getReference(Constants.HOST)
+            .child(Constants.LIST_ROOM)
         firebaseRef.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
             }
