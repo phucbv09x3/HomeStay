@@ -93,6 +93,7 @@ class MapActivity : BaseActivity<MapViewModel, ActivityMapBinding>(), OnMapReady
             }
         })
     }
+
     private val mLocationListener =
         android.location.LocationListener {
 //            mMap = GoogleMap()!!
@@ -105,6 +106,7 @@ class MapActivity : BaseActivity<MapViewModel, ActivityMapBinding>(), OnMapReady
 //                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.pushpin))
 //            )
         }
+
     override fun onFragmentResumed(fragment: BaseFragment<*, *>) {
 
     }
@@ -129,7 +131,6 @@ class MapActivity : BaseActivity<MapViewModel, ActivityMapBinding>(), OnMapReady
     override fun present(fragmentId: Int, bundle: Bundle?) {
 
     }
-
 
 
     private fun searchLocationOnEdt() {
@@ -177,17 +178,14 @@ class MapActivity : BaseActivity<MapViewModel, ActivityMapBinding>(), OnMapReady
                     android.R.layout.simple_list_item_1,
                     mListLocation!!
                 )
-//                val polyline1 = mMap.addPolyline(PolylineOptions()
-//                    .clickable(true)
-//                    .add(
-//                        mListLocation
-//                    )
+//                val polyline1 = mMap.addPolyline(
+//                    PolylineOptions()
+//                        .clickable(true)
 //                )
-//                polyline1.tag='A'
+                //polyline1.tag = "ABC"
+
                 edt_go.setAdapter(adapter)
                 edt_to.setAdapter(adapter)
-
-
             }
         })
     }

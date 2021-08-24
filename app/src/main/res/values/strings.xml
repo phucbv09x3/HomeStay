@@ -9,5 +9,6 @@
     <string name="success">Thành Công</string>
     <string name="error">Thất Bại !</string>
     <string name="error_mail_or_pass">Vui lòng kiểm tra lại thông tin !</string>
+    <string name="not_exit_account">Tài khoản không tồn tại !</string>
 
 </resources>

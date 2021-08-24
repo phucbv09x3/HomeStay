@@ -54,7 +54,6 @@ class ManagerRoomFragment : BaseFragment<ManagerRoomViewModel, FragmentManagerRo
     override fun longClick(addRoomModel: AddRoomModel) {
         viewModel.getDetail(addRoomModel)
         viewModel.modelShowHost.observe(this, {
-
             it?.let {
                 val alertDialog = AlertDialog.Builder(context).create()
                 val dialogView = layoutInflater.inflate(R.layout.custom_dialog_show, null)

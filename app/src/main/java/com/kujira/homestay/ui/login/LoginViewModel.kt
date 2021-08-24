@@ -1,5 +1,6 @@
 package com.kujira.homestay.ui.login
 
+import android.util.Log
 import android.view.View
 import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
@@ -41,21 +42,15 @@ class LoginViewModel : BaseViewModel() {
     }
 
     private var listEmail = mutableListOf<String>()
-     fun getListAcc(): MutableList<String> {
+    fun getListAcc(): MutableList<String> {
         val dataRef =
             FirebaseDatabase.getInstance().getReference(Constants.CLIENT).child(Constants.ACCOUNT)
         dataRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 listEmail.clear()
                 for (snap in snapshot.children) {
-                    val objectMail = ObjectMail(
-                        snap.child(Constants.MAIL).toString(),
-                        snap.child(Constants.PHONE).toString(),
-                        snap.child(Constants.PASSWORD).toString(),
-                        snap.child(Constants.UID).toString(),
-                        snap.child(Constants.USER_NAME).toString()
-                    )
-                    listEmail.add(objectMail.mail)
+
+                    listEmail.add(snap.child(Constants.MAIL).value.toString())
                 }
             }
 
@@ -68,17 +63,26 @@ class LoginViewModel : BaseViewModel() {
     private fun checkSignIn() {
         val email = email.get() ?: ""
         val password = password.get() ?: ""
+        val isCheck = listEmail.contains(email)
+        Log.d("isCheck", "${listEmail} : ${isCheck}")
         if (email.isNotEmpty() && password.isNotEmpty()) {
             auth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener {
                     if (it.isSuccessful) {
                         val user = auth.currentUser
                         if (user!!.isEmailVerified) {
-                            listener.value = EmailVerified
+                            if (isCheck) {
+                                listener.value = EmailVerified
+                            } else {
+                                listener.value = R.string.not_exit_account
+                            }
                         } else {
                             listener.value = R.string.error_auth
                         }
                     }
+                }
+                .addOnFailureListener {
+                    listener.value = R.string.not_exit_account
                 }
         } else {
             listener.value = R.string.error_isEmpty
@@ -89,16 +93,7 @@ class LoginViewModel : BaseViewModel() {
         if (auth.currentUser?.isEmailVerified == false || auth.currentUser == null) {
 
         } else {
-
             navigation.navigate(R.id.home_fragment)
         }
     }
 }
-
-data class ObjectMail(
-    val mail: String,
-    val phone: String,
-    val password: String,
-    val uid: String,
-    val userName: String,
-)
