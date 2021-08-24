@@ -31,6 +31,7 @@ class LoginFragment : BaseFragment<LoginViewModel, LoginFragmentBinding>() {
         viewModel.email.set(email)
         viewModel.password.set(passWord)
         viewModel.login(requireView())
+        viewModel.getListAcc()
 
     }
 

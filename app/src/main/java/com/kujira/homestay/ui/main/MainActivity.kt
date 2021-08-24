@@ -131,6 +131,12 @@ open class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(),
     }
 
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+        if(currentFragment is HomeFragment){
+            finish()
+        }
+    }
     override fun navigateUp() {
         val isFinish = !navController.popBackStack()
         if (isFinish) {

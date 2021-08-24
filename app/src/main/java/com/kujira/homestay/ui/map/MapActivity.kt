@@ -1,16 +1,11 @@
 package com.kujira.homestay.ui.map
 
-import android.Manifest
-import android.content.pm.PackageManager
 import android.graphics.Color
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.widget.ArrayAdapter
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.FragmentNavigator
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -28,7 +23,7 @@ import com.kujira.homestay.ui.base.BaseActivity
 import com.kujira.homestay.ui.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_map.*
 
-class MapActivity : BaseActivity<MapViewModel,ActivityMapBinding>(), OnMapReadyCallback {
+class MapActivity : BaseActivity<MapViewModel, ActivityMapBinding>(), OnMapReadyCallback {
     private lateinit var mMap: GoogleMap
     private var mListLocation: MutableList<String>? = null
     private var checkMapType = false
@@ -43,16 +38,17 @@ class MapActivity : BaseActivity<MapViewModel,ActivityMapBinding>(), OnMapReadyC
     private var polyline: Polyline? = null
 
     override fun createViewModel(): Class<MapViewModel> {
-        return  MapViewModel::class.java
+        return MapViewModel::class.java
     }
 
-    override fun getContentView(): Int =R.layout.activity_map
+    override fun getContentView(): Int = R.layout.activity_map
 
     override fun initAction() {
 
     }
 
     override fun initData() {
+
         val supportMapFragment =
             supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
         supportMapFragment?.getMapAsync(this)
@@ -65,8 +61,8 @@ class MapActivity : BaseActivity<MapViewModel,ActivityMapBinding>(), OnMapReadyC
             mMapViewModel?.getDirection(origin, destination)
         }
         mListLocation = mutableListOf()
-        mMapViewModel?.direction?.observe(this,  {
-            Log.d("listPoitAPi","${it}")
+        mMapViewModel?.direction?.observe(this, {
+            Log.d("listPoitAPi", "${it}")
             if (it != null) {
                 mMarker?.remove()
                 mMarker2?.remove()
@@ -97,7 +93,18 @@ class MapActivity : BaseActivity<MapViewModel,ActivityMapBinding>(), OnMapReadyC
             }
         })
     }
-
+    private val mLocationListener =
+        android.location.LocationListener {
+//            mMap = GoogleMap()!!
+//            val pos = LatLng(20.9788, 105.7973)
+//            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(pos, 16f))
+//            mMap.addMarker(
+//                MarkerOptions()
+//                    .position(pos)
+//                    .title("201 Đường Chiến Thắng-Tân Triều-Thanh Trì")
+//                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.pushpin))
+//            )
+        }
     override fun onFragmentResumed(fragment: BaseFragment<*, *>) {
 
     }
@@ -122,6 +129,7 @@ class MapActivity : BaseActivity<MapViewModel,ActivityMapBinding>(), OnMapReadyC
     override fun present(fragmentId: Int, bundle: Bundle?) {
 
     }
+
 
 
     private fun searchLocationOnEdt() {
@@ -158,7 +166,7 @@ class MapActivity : BaseActivity<MapViewModel,ActivityMapBinding>(), OnMapReadyC
 
         mMapViewModel?.searchLocation?.observe(this, Observer {
             if (it != null) {
-                Log.d("listPOit","${it}")
+                Log.d("listPOit", "${it}")
                 mListLocation?.removeAll(mListLocation!!)
                 for (item in it.predictions) {
                     mListLocation?.add(item.description)

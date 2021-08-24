@@ -1,6 +1,5 @@
 package com.kujira.homestay.ui.login
 
-import android.util.Log
 import android.view.View
 import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
@@ -35,11 +34,14 @@ class LoginViewModel : BaseViewModel() {
             R.id.tv_register -> {
                 navigation.navigate(R.id.registerFragment)
             }
+            R.id.tv_forgot_password -> {
+
+            }
         }
     }
 
     private var listEmail = mutableListOf<String>()
-    private fun getListAcc(): MutableList<String> {
+     fun getListAcc(): MutableList<String> {
         val dataRef =
             FirebaseDatabase.getInstance().getReference(Constants.CLIENT).child(Constants.ACCOUNT)
         dataRef.addValueEventListener(object : ValueEventListener {
@@ -69,7 +71,7 @@ class LoginViewModel : BaseViewModel() {
         if (email.isNotEmpty() && password.isNotEmpty()) {
             auth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener {
-                    if (it.isSuccessful ) {
+                    if (it.isSuccessful) {
                         val user = auth.currentUser
                         if (user!!.isEmailVerified) {
                             listener.value = EmailVerified
