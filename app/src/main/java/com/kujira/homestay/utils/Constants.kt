@@ -26,6 +26,7 @@ object Constants {
     const val STATUS = "status"
     const val EMPTY_ROOM = "Còn Trống"
     const val BOOKED_ROOM = "Đã Đặt"
+    const val DEVICE_ID = "device_id"
 
 
     //dialog

@@ -25,6 +25,7 @@ class AccountViewModel : BaseViewModel() {
         const val LOG_OUT = 2
         const val SUCCESS_CHANGE = 3
         const val ERROR_CHANGE = 4
+        const val RULE = 5
     }
 
     fun updateUI() {
@@ -53,6 +54,9 @@ class AccountViewModel : BaseViewModel() {
             }
             R.id.tv_logout -> {
                 listener.value = LOG_OUT
+            }
+            R.id.rule -> {
+                listener.value = RULE
             }
         }
     }

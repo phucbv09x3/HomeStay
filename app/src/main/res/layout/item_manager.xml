@@ -9,9 +9,10 @@
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:background="@drawable/custom_btn_login"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_2sdp"
         android:layout_marginTop="@dimen/_4sdp"
-        android:layout_height="wrap_content">
+        android:background="@drawable/custom_bg_item_manager">
 
         <TextView
             android:id="@+id/name_room_title"
@@ -25,14 +26,15 @@
             android:textStyle="bold"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
         <Button
             android:id="@+id/btn_cancel_room"
-            app:layout_constraintTop_toTopOf="@id/name_room"
-            app:layout_constraintRight_toRightOf="@id/status"
-            android:background="@drawable/ic_baseline_clear_24"
             style="@style/Theme.AppCompat.Light.NoActionBar"
             android:layout_width="@dimen/_15sdp"
-            android:layout_height="@dimen/_15sdp"/>
+            android:layout_height="@dimen/_15sdp"
+            android:background="@drawable/ic_baseline_clear_24"
+            app:layout_constraintRight_toRightOf="@id/status"
+            app:layout_constraintTop_toTopOf="@id/name_room" />
 
         <TextView
             android:id="@+id/name_room"
@@ -66,10 +68,10 @@
             android:layout_marginLeft="@dimen/_8sdp"
             android:maxLines="2"
             android:text="Phong 101"
-            app:layout_constraintRight_toRightOf="@id/status"
             android:textColor="@color/black"
             android:textSize="@dimen/_14sdp"
             app:layout_constraintLeft_toRightOf="@id/address_room_title"
+            app:layout_constraintRight_toRightOf="@id/status"
             app:layout_constraintTop_toTopOf="@id/address_room_title" />
 
         <TextView
@@ -80,8 +82,8 @@
             android:layout_marginTop="@dimen/_4sdp"
             android:text="Tình Trạng Đặt Phòng"
             android:textColor="@color/black"
-            android:textStyle="bold"
             android:textSize="@dimen/_14sdp"
+            android:textStyle="bold"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/address_room" />
 
@@ -104,7 +106,7 @@
             android:layout_marginLeft="@dimen/_18sdp"
             android:layout_marginTop="@dimen/_4sdp"
             android:layout_marginRight="@dimen/_18sdp"
-            android:background="@color/black"
+            android:background="#B7B7B7"
             android:textSize="@dimen/_1sdp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"

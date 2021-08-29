@@ -98,7 +98,7 @@
             android:layout_marginTop="@dimen/_30sdp"
             android:layout_marginRight="@dimen/_16sdp"
             android:background="@drawable/custom_btn_login"
-            android:onClick="@{(view)->viewModel.register(view)}"
+            android:onClick="@{(view)->viewModel.onClickOnRegister(view)}"
             android:text="Register"
             android:textColor="#fff"
             android:textSize="@dimen/_15sdp"

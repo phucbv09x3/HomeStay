@@ -32,33 +32,7 @@ class AccountFragment : BaseFragment<AccountViewModel, FragmentAccountBinding>()
         viewModel.listener.observe(this, {
             when (it) {
                 AccountViewModel.CHANGE_ACC -> {
-                    val alertDialog = AlertDialog.Builder(context).create()
-                    val dialogView = layoutInflater.inflate(R.layout.custom_change_acc, null)
-                    alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-                    alertDialog.setView(dialogView)
-
-                    val nameNew = dialogView.findViewById<EditText>(R.id.edt_new_name).text
-                    val phoneNew = dialogView.findViewById<EditText>(R.id.edt_new_phone).text
-                    dialogView.findViewById<Button>(R.id.btn_change_acc).setOnClickListener {
-                        viewModel.changeAcc(nameNew.toString(), phoneNew.toString())
-                        viewModel.listener.observe(this, { listener ->
-                            if (listener == AccountViewModel.SUCCESS_CHANGE) {
-                                alertDialog.dismiss()
-                                Toast.makeText(
-                                    context,
-                                    getString(R.string.success),
-                                    Toast.LENGTH_LONG
-                                ).show()
-                            } else {
-                                Toast.makeText(
-                                    context,
-                                    getString(R.string.error),
-                                    Toast.LENGTH_LONG
-                                ).show()
-                            }
-                        })
-                    }
-                    alertDialog.show()
+                    showDialogChangeAcc()
                 }
                 AccountViewModel.LOG_OUT -> {
                     val alertDialog = android.app.AlertDialog.Builder(context).create()
@@ -66,7 +40,7 @@ class AccountFragment : BaseFragment<AccountViewModel, FragmentAccountBinding>()
                     alertDialog.setMessage(Constants.ACCESS_LOGOUT)
                     alertDialog.setButton(
                         AlertDialog.BUTTON_NEUTRAL, Constants.OK_DIALOG
-                    ) { dialog, _ ->
+                    ) { _, _ ->
                         viewModel.logOut()
                         replaceFragment(R.id.loginFragment)
                         alertDialog.dismiss()
@@ -74,9 +48,53 @@ class AccountFragment : BaseFragment<AccountViewModel, FragmentAccountBinding>()
                     alertDialog.show()
 
                 }
+                AccountViewModel.RULE -> {
+                    showDialogRule()
+                }
             }
 
         })
 
+    }
+
+    private fun showDialogChangeAcc() {
+        val alertDialog = AlertDialog.Builder(context).create()
+        val dialogView = layoutInflater.inflate(R.layout.custom_change_acc, null)
+        alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        alertDialog.setView(dialogView)
+
+        val nameNew = dialogView.findViewById<EditText>(R.id.edt_new_name).text
+        val phoneNew = dialogView.findViewById<EditText>(R.id.edt_new_phone).text
+        dialogView.findViewById<Button>(R.id.btn_change_acc).setOnClickListener {
+            viewModel.changeAcc(nameNew.toString(), phoneNew.toString())
+            viewModel.listener.observe(this, { listener ->
+                if (listener == AccountViewModel.SUCCESS_CHANGE) {
+                    alertDialog.dismiss()
+                    Toast.makeText(
+                        context,
+                        getString(R.string.success),
+                        Toast.LENGTH_LONG
+                    ).show()
+                } else {
+                    Toast.makeText(
+                        context,
+                        getString(R.string.error),
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+            })
+        }
+        alertDialog.show()
+    }
+
+    private fun showDialogRule() {
+        val alertDialog = AlertDialog.Builder(context).create()
+        val dialogView = layoutInflater.inflate(R.layout.custom_rule, null)
+        alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        alertDialog.setView(dialogView)
+        dialogView.findViewById<Button>(R.id.btn_showed).setOnClickListener {
+            alertDialog.dismiss()
+        }
+        alertDialog.show()
     }
 }

@@ -2,13 +2,6 @@ package com.kujira.homestay.ui.base
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.disposables.Disposable
-import io.reactivex.subjects.PublishSubject
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.flow.*
-import kotlinx.coroutines.launch
 import com.kujira.homestay.data.DataManager
 import com.kujira.homestay.data.api.ApiCoroutines
 import com.kujira.homestay.data.api.IApiService
@@ -16,7 +9,13 @@ import com.kujira.homestay.data.model.response.BaseResponse
 import com.kujira.homestay.data.model.response.ErrorResponse
 import com.kujira.homestay.data.scheduler.ISchedulerProvider
 import com.kujira.homestay.utils.printLog
-import com.kujira.homestay.utils.trackingProgress
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.disposables.Disposable
+import io.reactivex.subjects.PublishSubject
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.launch
 
 /**
  * Created by OpenYourEyes on 11/26/2019

@@ -12,74 +12,75 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-       <androidx.constraintlayout.widget.ConstraintLayout
-           android:layout_width="match_parent"
-           android:id="@+id/constr"
-           android:background="#FAFAD2"
-           app:layout_constraintTop_toTopOf="parent"
-           app:layout_constraintLeft_toLeftOf="parent"
-           android:layout_height="wrap_content">
-           <de.hdodenhof.circleimageview.CircleImageView
-               android:id="@+id/circle_my_acc"
-               android:layout_width="@dimen/_48sdp"
-               android:layout_height="@dimen/_48sdp"
-               android:layout_marginLeft="@dimen/_20sdp"
-               android:layout_marginTop="@dimen/_20sdp"
-               android:src="@drawable/smile"
-               app:layout_constraintLeft_toLeftOf="parent"
-               app:layout_constraintTop_toTopOf="parent" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constr"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-           <TextView
-               android:id="@+id/name_acc"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:layout_marginLeft="@dimen/_18sdp"
-               android:text="@={viewModel.myName}"
-               android:textColor="@color/black"
-               android:textSize="@dimen/_16sdp"
-               android:textStyle="bold"
-               app:layout_constraintLeft_toRightOf="@id/circle_my_acc"
-               app:layout_constraintTop_toTopOf="@id/circle_my_acc" />
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/circle_my_acc"
+                android:layout_width="@dimen/_58sdp"
+                android:layout_height="@dimen/_58sdp"
+                android:layout_marginLeft="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:src="@drawable/img_bg"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-           <TextView
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:layout_marginLeft="@dimen/_18sdp"
-               android:layout_marginTop="@dimen/_8sdp"
-               android:text="@={viewModel.myMail}"
-               android:textColor="@color/black"
-               android:textSize="@dimen/_12sdp"
-               android:textStyle="bold"
-               app:layout_constraintLeft_toRightOf="@id/circle_my_acc"
-               app:layout_constraintTop_toBottomOf="@id/name_acc" />
+            <TextView
+                android:id="@+id/name_acc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_18sdp"
+                android:text="@={viewModel.myName}"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_16sdp"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toRightOf="@id/circle_my_acc"
+                app:layout_constraintTop_toTopOf="@id/circle_my_acc" />
 
-           <TextView
-               android:id="@+id/phone"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:layout_marginLeft="@dimen/_18sdp"
-               android:layout_marginTop="@dimen/_20sdp"
-               android:layout_marginRight="@dimen/_18sdp"
-               android:text="@={viewModel.myPhone}"
-               android:textColor="@color/black"
-               android:textSize="@dimen/_12sdp"
-               app:layout_constraintLeft_toLeftOf="parent"
-               app:layout_constraintRight_toRightOf="parent"
-               app:layout_constraintTop_toBottomOf="@id/circle_my_acc" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_18sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:text="@={viewModel.myMail}"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_12sdp"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toRightOf="@id/circle_my_acc"
+                app:layout_constraintTop_toBottomOf="@id/name_acc" />
 
-           <TextView
-               android:id="@+id/line"
-               android:layout_width="match_parent"
-               android:layout_height="1dp"
-               android:layout_marginLeft="@dimen/_18sdp"
-               android:layout_marginTop="@dimen/_20sdp"
-               android:layout_marginRight="@dimen/_18sdp"
-               android:background="@color/black"
-               android:textSize="@dimen/_1sdp"
-               app:layout_constraintLeft_toLeftOf="parent"
-               app:layout_constraintRight_toRightOf="parent"
-               app:layout_constraintTop_toBottomOf="@id/phone" />
-       </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_18sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginRight="@dimen/_18sdp"
+                android:text="@={viewModel.myPhone}"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_12sdp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/circle_my_acc" />
+
+            <TextView
+                android:id="@+id/line"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="@dimen/_18sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginRight="@dimen/_18sdp"
+                android:background="@color/black"
+                android:textSize="@dimen/_1sdp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/phone" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
             android:id="@+id/tv_edit"
@@ -89,46 +90,30 @@
             android:layout_marginTop="@dimen/_16sdp"
             android:layout_marginRight="@dimen/_18sdp"
             android:drawableRight="@drawable/ic_baseline_edit_24"
+            android:onClick="@{(view)->viewModel.click(view)}"
             android:text="Chỉnh sửa thông tin"
             android:textColor="@color/black"
-            android:textSize="@dimen/_17sdp"
-            android:onClick="@{(view)->viewModel.click(view)}"
+            android:textSize="@dimen/_16sdp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/constr" />
 
         <TextView
-            android:id="@+id/tv_logout"
-            android:layout_width="wrap_content"
+            android:id="@+id/rule"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/_18sdp"
             android:layout_marginTop="@dimen/_16sdp"
             android:layout_marginRight="@dimen/_18sdp"
-            android:text="Đăng xuất"
+            android:drawableRight="@drawable/ic_baseline_remove_red_eye_24"
             android:onClick="@{(view)->viewModel.click(view)}"
-            android:textAllCaps="false"
-            android:padding="@dimen/_4sdp"
-            android:textStyle="bold"
-            android:layout_marginBottom="@dimen/_16sdp"
-            android:background="@color/rdc"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:text="Quy định và Pháp lý"
             android:textColor="@color/black"
-            android:textSize="@dimen/_17sdp"
-             />
-
-        <TextView
-            android:id="@+id/line2"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginLeft="@dimen/_18sdp"
-            android:layout_marginTop="@dimen/_20sdp"
-            android:layout_marginRight="@dimen/_18sdp"
-            android:background="@color/black"
-            android:textSize="@dimen/_1sdp"
+            android:textSize="@dimen/_16sdp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_edit" />
+
 
         <TextView
             android:id="@+id/tv_version"
@@ -140,9 +125,28 @@
             android:gravity="center"
             android:text="Version 1.0.0"
             android:textColor="@color/black"
-            android:textSize="@dimen/_17sdp"
+            android:textSize="@dimen/_14sdp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/line2" />
+            app:layout_constraintTop_toBottomOf="@id/rule" />
+
+        <TextView
+            android:id="@+id/tv_logout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_18sdp"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:layout_marginRight="@dimen/_18sdp"
+            android:layout_marginBottom="@dimen/_16sdp"
+            android:background="@color/rdc"
+            android:onClick="@{(view)->viewModel.click(view)}"
+            android:padding="@dimen/_4sdp"
+            android:text="Đăng xuất"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_17sdp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
