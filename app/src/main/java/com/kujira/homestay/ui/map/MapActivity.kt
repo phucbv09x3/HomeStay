@@ -1,11 +1,14 @@
 package com.kujira.homestay.ui.map
 
+import android.Manifest
+import android.content.pm.PackageManager
 import android.graphics.Color
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.widget.ArrayAdapter
+import androidx.core.app.ActivityCompat
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.FragmentNavigator
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -22,6 +25,7 @@ import com.kujira.homestay.databinding.ActivityMapBinding
 import com.kujira.homestay.ui.base.BaseActivity
 import com.kujira.homestay.ui.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_map.*
+
 
 class MapActivity : BaseActivity<MapViewModel, ActivityMapBinding>(), OnMapReadyCallback {
     private lateinit var mMap: GoogleMap
@@ -57,55 +61,48 @@ class MapActivity : BaseActivity<MapViewModel, ActivityMapBinding>(), OnMapReady
         searchLocationOnEdt()
         btn_goLine.setOnClickListener {
             val origin = edt_go.text.toString().trim()
-            val destination = edt_go.text.toString().trim()
+            val destination = edt_to.text.toString().trim()
             mMapViewModel?.getDirection(origin, destination)
         }
         mListLocation = mutableListOf()
         mMapViewModel?.direction?.observe(this, {
-            Log.d("listPoitAPi", "${it}")
+
             if (it != null) {
                 mMarker?.remove()
                 mMarker2?.remove()
                 polyline?.remove()
-                val point = decodePolyLine(it.routes[0].overview_polyline.points)
+
+                val point = decodePolylines(it.routes[0].overview_polyline.points)
                 val origin = it.routes[0].legs[0].start_location
                 val locationStart = LatLng(origin.lat, origin.lng)
                 val destination = it.routes[0].legs[0].end_location
                 val locationEnd = LatLng(destination.lat, destination.lng)
-                val markerStart = MarkerOptions().position(locationStart)
+
+                val markerStart = MarkerOptions()
+                    .position(locationStart)
                     .title(it.routes[0].legs[0].start_address)
                     .icon(BitmapDescriptorFactory.fromResource(R.drawable.start_blue))
 
-                val markerEnd = MarkerOptions().position(locationEnd)
+                Log.d("Phuc data 1: ", "${it.routes[0].legs[0].start_address}")
+                val markerEnd = MarkerOptions()
+                    .position(locationEnd)
                     .title(it.routes[0].legs[0].end_address)
                     .icon(BitmapDescriptorFactory.fromResource(R.drawable.end_green))
+
+                Log.d("Phuc data 2: ", "${it.routes[0].legs[0].end_address}")
                 mMarker = mMap.addMarker(markerStart)
                 mMarker2 = mMap.addMarker(markerEnd)
                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(locationStart, 9f))
-                if (point != null) {
-                    var pOption = PolylineOptions()
-                    pOption.addAll(point)
-                    pOption.color(Color.BLUE)
-                    pOption.width(6f)
-                    pOption.geodesic(true)
-                    polyline = mMap.addPolyline(pOption)
-                }
+
+                val pOption = PolylineOptions()
+                pOption.addAll((point))
+                pOption.color(Color.BLUE)
+                pOption.width(6f)
+                polyline = mMap.addPolyline(pOption)
             }
+
         })
     }
-
-    private val mLocationListener =
-        android.location.LocationListener {
-//            mMap = GoogleMap()!!
-//            val pos = LatLng(20.9788, 105.7973)
-//            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(pos, 16f))
-//            mMap.addMarker(
-//                MarkerOptions()
-//                    .position(pos)
-//                    .title("201 Đường Chiến Thắng-Tân Triều-Thanh Trì")
-//                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.pushpin))
-//            )
-        }
 
     override fun onFragmentResumed(fragment: BaseFragment<*, *>) {
 
@@ -167,27 +164,22 @@ class MapActivity : BaseActivity<MapViewModel, ActivityMapBinding>(), OnMapReady
 
         mMapViewModel?.searchLocation?.observe(this, Observer {
             if (it != null) {
-                Log.d("listPOit", "${it}")
                 mListLocation?.removeAll(mListLocation!!)
                 for (item in it.predictions) {
                     mListLocation?.add(item.description)
                 }
 
-                val adapter = ArrayAdapter<String>(
+                val adapter = ArrayAdapter(
                     this,
                     android.R.layout.simple_list_item_1,
                     mListLocation!!
                 )
-//                val polyline1 = mMap.addPolyline(
-//                    PolylineOptions()
-//                        .clickable(true)
-//                )
-                //polyline1.tag = "ABC"
-
                 edt_go.setAdapter(adapter)
                 edt_to.setAdapter(adapter)
+
             }
         })
+
     }
 
     private fun init() {
@@ -207,47 +199,66 @@ class MapActivity : BaseActivity<MapViewModel, ActivityMapBinding>(), OnMapReady
                 .title("201 Đường Chiến Thắng-Tân Triều-Thanh Trì")
                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.pushpin))
         )
-
+        if (ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return
+        }
+        mMap.isMyLocationEnabled = true
 
     }
 
     override fun onBackPressed() {
         super.onBackPressed()
-        navigateUp()
+        finish()
     }
 
-    private fun decodePolyLine(poly: String): List<LatLng>? {
-        val len = poly.length
+    private fun decodePolylines(encoded: String): List<LatLng> {
+
+        val poly = ArrayList<LatLng>()
         var index = 0
-        val decoded: MutableList<LatLng> = ArrayList()
+        val len = encoded.length
         var lat = 0
         var lng = 0
+
         while (index < len) {
             var b: Int
             var shift = 0
             var result = 0
             do {
-                b = poly[index++].toInt() - 63
+                b = encoded[index++].toInt() - 63
                 result = result or (b and 0x1f shl shift)
                 shift += 5
             } while (b >= 0x20)
-            val dlatlg = if (result and 1 != 0) (result shr 1).inv() else result shr 1
-            lat += dlatlg
+            val dlat = if (result and 1 != 0) (result shr 1).inv() else result shr 1
+            lat += dlat
+
             shift = 0
             result = 0
             do {
-                b = poly[index++].toInt() - 63
+                b = encoded[index++].toInt() - 63
                 result = result or (b and 0x1f shl shift)
                 shift += 5
             } while (b >= 0x20)
             val dlng = if (result and 1 != 0) (result shr 1).inv() else result shr 1
             lng += dlng
-            decoded.add(
-                LatLng(
-                    lat / 100000.0, lng / 100000.0
-                )
-            )
+
+            val latLng = LatLng((lat.toDouble() / 1E5), (lng.toDouble() / 1E5))
+            poly.add(latLng)
         }
-        return decoded
+
+        return poly
     }
 }

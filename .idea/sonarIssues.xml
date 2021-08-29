@@ -8,6 +8,31 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../GoogleMapRouteExample/app/build.gradle">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../GoogleMapRouteExample/app/src/main/java/in/blogspot/kmvignesh/googlemapexample/MainActivity.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../GoogleMapRouteExample/build.gradle">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../GoogleMapRouteExample/gradle.properties">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../GoogleMapRouteExample/gradle/wrapper/gradle-wrapper.properties">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
           <value>
             <set />
@@ -23,12 +48,22 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/kujira/homestay/ui/base/BaseFragment.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/kujira/homestay/ui/base/BaseViewModel.kt">
           <value>
             <set />
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/kujira/homestay/ui/home/HomeFragment.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/kujira/homestay/ui/home/HomeViewModel.kt">
           <value>
             <set />
           </value>
@@ -64,6 +99,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/kujira/homestay/ui/register/RegisterViewModel.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/kujira/homestay/ui/weather/WeatherFragment.kt">
           <value>
             <set />
           </value>

@@ -46,6 +46,7 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>(), IClickO
         viewModel.listener.observe(this, {
             when (it) {
                 HomeViewModel.SEARCH_MAP -> {
+                    dataBinding.tvSearchMap.isEnabled = false
                     activity.startActivity(Intent(context, MapActivity::class.java))
                 }
             }

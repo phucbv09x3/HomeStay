@@ -4,7 +4,10 @@ import android.app.Activity
 import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.view.Window
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.Toast
@@ -13,14 +16,14 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.FragmentNavigator
-import dagger.android.support.DaggerFragment
-import com.kujira.homestay.data.scheduler.ISchedulerProvider
-import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.disposables.Disposable
 import com.kujira.homestay.BR
 import com.kujira.homestay.R
 import com.kujira.homestay.data.DataManager
+import com.kujira.homestay.data.scheduler.ISchedulerProvider
 import com.kujira.homestay.utils.printLog
+import dagger.android.support.DaggerFragment
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.disposables.Disposable
 import javax.inject.Inject
 
 
@@ -125,7 +128,7 @@ abstract class BaseFragment<VM : BaseViewModel, DB : ViewDataBinding> :
         viewModel.trackingError
             .observeOn(schedule.ui)
             .subscribe {
-                Toast.makeText(requireContext(), it.errorMessage,Toast.LENGTH_LONG).show()
+                Toast.makeText(requireContext(), it.errorMessage, Toast.LENGTH_LONG).show()
             }.addDisposable()
     }
 

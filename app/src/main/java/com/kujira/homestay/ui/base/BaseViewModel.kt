@@ -15,7 +15,6 @@ import io.reactivex.subjects.PublishSubject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.*
-import kotlinx.coroutines.launch
 
 /**
  * Created by OpenYourEyes on 11/26/2019
@@ -47,75 +46,75 @@ open abstract class BaseViewModel : ViewModel() {
     /**
      * this is sample test
      */
-    fun <T> executeRequestTest(
-        request: suspend (ApiCoroutines.() -> T),
-        response: (T) -> Unit
-    ): Job {
-        return viewModelScope.launch {
-            flow {
-                printLog("make request")
-                val result = request(apiService.apiWithoutAuthenticator())
-                emit(result)
-            }.trackingProgress(progressBar = showLoading)
-                .catch { error ->
-                    //TODO handle error here
-                    val messageError = error.message ?: "error"
-                    trackingError.onNext(ErrorResponse.defaultError(messageError))
-                }.flowOn(Dispatchers.IO)
-                .collect {
-                    response(it)
-                }
-        }
-    }
+//    fun <T> executeRequestTest(
+//        request: suspend (ApiCoroutines.() -> T),
+//        response: (T) -> Unit
+//    ): Job {
+//        return viewModelScope.launch {
+//            flow {
+//                printLog("make request")
+//                val result = request(apiService.apiWithoutAuthenticator())
+//                emit(result)
+//            }.trackingProgress(progressBar = showLoading)
+//                .catch { error ->
+//                    //TODO handle error here
+//                    val messageError = error.message ?: "error"
+//                    trackingError.onNext(ErrorResponse.defaultError(messageError))
+//                }.flowOn(Dispatchers.IO)
+//                .collect {
+//                    response(it)
+//                }
+//        }
+//    }
 
     /**
      * Execute api inside scope Coroutine
      * data is not allowed to be null, if null should be used
      * @see executeRequestFlow
      */
-    fun <T> executeRequest(
-        request: suspend (ApiCoroutines.() -> BaseResponse<T>),
-        response: (T) -> Unit
-    ): Job {
-        return viewModelScope.launch {
-            flow {
-                val result = request(apiWithAuthenticator)
-                if (!result.isSuccess) {
-                    throw result.error ?: ErrorResponse("Unknow")
-                }
-                val data = result.data
-                    ?: throw NullPointerException("Data must be not null, please using executeRequestFlow")
-                showLoading.onNext(true)
-                emit(data)
-            }.trackingProgress(progressBar = showLoading)
-                .catch { error ->
-                    handleErrorResponse(error)
-                }.flowOn(Dispatchers.IO)
-                .collect {
-                    response(it)
-                }
-        }
-    }
+//    fun <T> executeRequest(
+//        request: suspend (ApiCoroutines.() -> BaseResponse<T>),
+//        response: (T) -> Unit
+//    ): Job {
+//        return viewModelScope.launch {
+//            flow {
+//                val result = request(apiWithAuthenticator)
+//                if (!result.isSuccess) {
+//                    throw result.error ?: ErrorResponse("Unknow")
+//                }
+//                val data = result.data
+//                    ?: throw NullPointerException("Data must be not null, please using executeRequestFlow")
+//                showLoading.onNext(true)
+//                emit(data)
+//            }.trackingProgress(progressBar = showLoading)
+//                .catch { error ->
+//                    handleErrorResponse(error)
+//                }.flowOn(Dispatchers.IO)
+//                .collect {
+//                    response(it)
+//                }
+//        }
+//    }
 
     /**
      * Using when data can be null or transform data before update ui
      */
-    suspend fun <T> executeRequestFlow(
-        request: suspend (ApiCoroutines.() -> BaseResponse<T>),
-    ): Flow<T?> {
-        return flow {
-            val result = request(apiWithAuthenticator)
-            if (!result.isSuccess) {
-                throw result.error ?: ErrorResponse("UnKnow")
-            }
-            val data = result.data
-            emit(data)
-        }.trackingProgress(progressBar = showLoading)
-            .catch { error ->
-                handleErrorResponse(error)
-            }.flowOn(Dispatchers.IO)
-
-    }
+//    suspend fun <T> executeRequestFlow(
+//        request: suspend (ApiCoroutines.() -> BaseResponse<T>),
+//    ): Flow<T?> {
+//        return flow {
+//            val result = request(apiWithAuthenticator)
+//            if (!result.isSuccess) {
+//                throw result.error ?: ErrorResponse("UnKnow")
+//            }
+//            val data = result.data
+//            emit(data)
+//        }.trackingProgress(progressBar = showLoading)
+//            .catch { error ->
+//                handleErrorResponse(error)
+//            }.flowOn(Dispatchers.IO)
+//
+//    }
 
     private fun handleErrorResponse(error: Throwable) {
         //TODO handle error here

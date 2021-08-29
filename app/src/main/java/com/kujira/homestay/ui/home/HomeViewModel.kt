@@ -17,6 +17,7 @@ class HomeViewModel : BaseViewModel() {
     private var lisProvincesVMD = mutableListOf<Provinces>()
     companion object{
         const val SEARCH_MAP = 2
+        const val WEATHER = 3
     }
     fun getListProvince() {
         lisProvincesVMD.clear()
@@ -53,6 +54,7 @@ class HomeViewModel : BaseViewModel() {
                 listener.value = SEARCH_MAP
             }
             R.id.tv_next_weather -> {
+                //listener.value = WEATHER
                 navigation.navigate(R.id.weather_fragment)
             }
         }
