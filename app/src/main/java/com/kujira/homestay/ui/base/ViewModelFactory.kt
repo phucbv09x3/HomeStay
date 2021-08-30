@@ -7,6 +7,8 @@ import com.kujira.homestay.data.api.IApiService
 import com.kujira.homestay.data.scheduler.ISchedulerProvider
 import com.kujira.homestay.ui.about.AboutViewModel
 import com.kujira.homestay.ui.account.AccountViewModel
+import com.kujira.homestay.ui.all_login.login_new.LoginAccViewModel
+import com.kujira.homestay.ui.all_login.register_new.RegisterAccViewModel
 import com.kujira.homestay.ui.home.HomeViewModel
 import com.kujira.homestay.ui.list.ListViewModel
 import com.kujira.homestay.ui.listRoom.ListRoomViewModel
@@ -42,6 +44,8 @@ class ViewModelFactory @Inject constructor(
             modelClass.isAssignableFrom(TravelAllViewModel::class.java) -> TravelAllViewModel() as T
             modelClass.isAssignableFrom(MapViewModel::class.java) -> MapViewModel() as T
             modelClass.isAssignableFrom(WeatherViewModel::class.java) -> WeatherViewModel() as T
+            modelClass.isAssignableFrom(LoginAccViewModel::class.java) -> LoginAccViewModel() as T
+            modelClass.isAssignableFrom(RegisterAccViewModel::class.java) -> RegisterAccViewModel() as T
 
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }

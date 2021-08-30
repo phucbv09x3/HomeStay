@@ -11,4 +11,5 @@
     <color name="rdc">#FF6600</color>
     <color name="bg_login">#FFFF99</color>
     <color name="color_status_acc">#8F8F8F</color>
+    <color name="bg_login_new">#272A32</color>
 </resources>

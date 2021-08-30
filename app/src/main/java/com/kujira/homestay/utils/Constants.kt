@@ -19,6 +19,7 @@ object Constants {
     const val UID = "uid"
     const val USER_NAME = "userName"
     const val PHONE = "phone"
+    const val PERMISSION = "permission"
     const val MAIL = "mail"
     const val PASSWORD = "password"
     const val LIST_ROOM = "ListRoom"

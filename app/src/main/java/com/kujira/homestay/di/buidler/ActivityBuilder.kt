@@ -1,5 +1,7 @@
 package com.kujira.homestay.di.buidler
 
+import com.kujira.homestay.ui.all_login.login_new.LoginActivity
+import com.kujira.homestay.ui.all_login.register_new.RegisterActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 import com.kujira.homestay.ui.main.MainActivity
@@ -12,5 +14,11 @@ abstract class ActivityBuilder {
 
     @ContributesAndroidInjector(modules = [MainFragmentProvider::class])
     internal abstract fun bindMapActivity(): MapActivity
+
+    @ContributesAndroidInjector(modules = [MainFragmentProvider::class])
+    internal abstract fun bindLoginActivity(): LoginActivity
+
+    @ContributesAndroidInjector(modules = [MainFragmentProvider::class])
+    internal abstract fun bindRegisterActivity(): RegisterActivity
 
 }
