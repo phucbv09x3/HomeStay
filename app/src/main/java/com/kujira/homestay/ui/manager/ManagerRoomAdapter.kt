@@ -9,7 +9,7 @@ import com.kujira.homestay.data.model.response.AddRoomModel
 import com.kujira.homestay.databinding.ItemManagerBinding
 import kotlinx.android.synthetic.main.item_manager.view.*
 
-class ManagerRoomAdapter(var listRoom: MutableList<AddRoomModel>,var click : IClick) :
+class ManagerRoomAdapter(var listRoom: MutableList<AddRoomModel>, var click: IClick) :
     RecyclerView.Adapter<ManagerRoomAdapter.ManagerHolder>() {
     fun setList(mutableList: MutableList<AddRoomModel>) {
         listRoom = mutableList
@@ -41,14 +41,16 @@ class ManagerRoomAdapter(var listRoom: MutableList<AddRoomModel>,var click : ICl
             itemView.name_room.text = itemData.nameRoom
             itemView.status.text = itemData.status
             itemView.address_room.text = itemData.address
+            itemView.tv_show_price.text = itemData.price
         }
 
-        fun click(id:String){
+        fun click(id: String) {
             itemView.btn_cancel_room.setOnClickListener {
                 click.clickCancel(id)
             }
         }
-        fun longClick(addRoomModel: AddRoomModel){
+
+        fun longClick(addRoomModel: AddRoomModel) {
             itemView.setOnLongClickListener {
                 click.longClick(addRoomModel)
                 return@setOnLongClickListener true
@@ -58,7 +60,7 @@ class ManagerRoomAdapter(var listRoom: MutableList<AddRoomModel>,var click : ICl
 
 }
 
-interface IClick{
-    fun clickCancel(id:String)
+interface IClick {
+    fun clickCancel(id: String)
     fun longClick(addRoomModel: AddRoomModel)
 }
