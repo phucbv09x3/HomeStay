@@ -19,16 +19,32 @@
         android:theme="@style/Theme.HomeStay">
         <activity
             android:name=".ui.all_login.login_new.LoginActivity"
-            android:exported="true" >
+            android:exported="true"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.map.MapActivity" />
-        <activity android:name=".ui.all_login.register_new.RegisterActivity" />
-        <activity android:name=".ui.main.MainActivity">
+        <activity
+            android:name="com.kujira.homestay.ui.client.map.MapActivity"
+            android:screenOrientation="portrait">
+
+        </activity>
+        <activity
+            android:name=".ui.host.main.MainHostActivity"
+            android:screenOrientation="portrait">
+
+        </activity>
+        <activity
+            android:name=".ui.all_login.register_new.RegisterActivity"
+            android:screenOrientation="portrait">
+
+        </activity>
+        <activity
+            android:name="com.kujira.homestay.ui.client.main.MainActivity"
+            android:screenOrientation="portrait">
 
         </activity>
 

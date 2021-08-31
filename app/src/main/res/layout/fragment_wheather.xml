@@ -5,14 +5,14 @@
 
         <variable
             name="viewModel"
-            type="com.kujira.homestay.ui.weather.WeatherViewModel" />
+            type="com.kujira.homestay.ui.client.weather.WeatherViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.weather.WheatherFragment">
+        tools:context=".ui.client.weather.WheatherFragment">
 
         <TextView
             android:id="@+id/title_weather"

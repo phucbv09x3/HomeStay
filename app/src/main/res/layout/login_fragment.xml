@@ -3,9 +3,9 @@
 
     <data>
 
-        <variable
-            name="viewModel"
-            type="com.kujira.homestay.ui.login.LoginViewModel" />
+<!--        <variable-->
+<!--            name="viewModel"-->
+<!--            type="com.kujira.homestay.ui.login.LoginViewModel" />-->
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -38,7 +38,7 @@
             android:drawableLeft="@drawable/ic_baseline_email_24"
             android:hint=" Email"
             android:paddingStart="@dimen/_16sdp"
-            android:text="@={viewModel.email}"
+
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_below_title" />
@@ -55,7 +55,7 @@
             android:hint=" Password"
             android:inputType="textPassword"
             android:paddingStart="@dimen/_16sdp"
-            android:text="@={viewModel.password}"
+
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/edt_email" />
@@ -68,7 +68,7 @@
             android:layout_marginTop="@dimen/_30sdp"
             android:layout_marginRight="@dimen/_16sdp"
             android:background="@drawable/custom_btn_login"
-            android:onClick="@{(view)->viewModel.login(view)}"
+
             android:text="LOGIN"
             android:textColor="#fff"
             android:textSize="@dimen/_15sdp"
@@ -82,7 +82,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_30sdp"
             android:layout_marginRight="@dimen/_20sdp"
-            android:onClick="@{(view)->viewModel.login(view)}"
+
             android:text="Đăng kí tài khoản mới"
             android:textColor="#00CC00"
             android:textSize="@dimen/_12sdp"
@@ -94,7 +94,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_6sdp"
-            android:onClick="@{(view)->viewModel.login(view)}"
+
             android:text="Quên mật khẩu ?"
             android:textColor="#00CC00"
             android:textSize="@dimen/_12sdp"

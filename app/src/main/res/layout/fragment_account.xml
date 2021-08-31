@@ -5,7 +5,7 @@
 
         <variable
             name="viewModel"
-            type="com.kujira.homestay.ui.account.AccountViewModel" />
+            type="com.kujira.homestay.ui.client.account.AccountViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"

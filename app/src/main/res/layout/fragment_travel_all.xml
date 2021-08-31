@@ -6,7 +6,7 @@
 
         <variable
             name="viewModel"
-            type="com.kujira.homestay.ui.travelAll.TravelAllViewModel" />
+            type="com.kujira.homestay.ui.client.travelAll.TravelAllViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -17,25 +17,38 @@
 
         <TextView
             android:id="@+id/tv_previus_travel_all"
-            android:onClick="@{(view)->viewModel.onClick(view)}"
-            android:background="@drawable/ic_baseline_arrow_back_ios_24"
-            app:layout_constraintTop_toTopOf="@id/sv_name_province_list"
-            app:layout_constraintLeft_toLeftOf="parent"
-            android:layout_marginStart="@dimen/_10sdp"
-            app:layout_constraintBottom_toBottomOf="@id/sv_name_province_list"
             android:layout_width="@dimen/_20sdp"
-            android:layout_height="@dimen/_16sdp"/>
+            android:layout_height="@dimen/_16sdp"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:background="@drawable/ic_baseline_arrow_back_ios_24"
+            android:onClick="@{(view)->viewModel.onClick(view)}"
+            app:layout_constraintBottom_toBottomOf="@id/sv_name_province_list"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="@id/sv_name_province_list" />
+
+        <TextView
+            android:id="@+id/tv_show_provinces"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nghệ An"
+            android:visibility="gone"
+            android:layout_marginLeft="@dimen/_4sdp"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_16sdp"
+            app:layout_constraintLeft_toRightOf="@id/tv_previus_travel_all"
+            app:layout_constraintTop_toTopOf="@id/tv_previus_travel_all" />
+
         <androidx.appcompat.widget.SearchView
             android:id="@+id/sv_name_province_list"
             android:layout_width="0dp"
-            android:text="Địa điểm hot"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintLeft_toRightOf="@id/tv_previus_travel_all"
-            android:textSize="@dimen/_20sdp"
-            android:layout_marginRight="@dimen/_10sdp"
-            android:textColor="@color/black"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/_8sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:text="Địa điểm hot"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_20sdp"
+            app:layout_constraintLeft_toRightOf="@id/tv_show_provinces"
+            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
@@ -44,9 +57,9 @@
             android:layout_height="0dp"
             android:layout_margin="@dimen/_2sdp"
             android:layout_marginTop="@dimen/_2sdp"
-            android:paddingTop="@dimen/_2sdp"
             android:layout_marginBottom="@dimen/_47sdp"
             android:background="@color/white"
+            android:paddingTop="@dimen/_2sdp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/sv_name_province_list" />

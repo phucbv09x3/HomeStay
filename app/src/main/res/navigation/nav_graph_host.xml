@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph_host"
+    app:startDestination="@id/managerRoomHost">
+    <fragment
+        android:id="@+id/addRoomHost"
+        android:name="com.kujira.homestay.ui.host.add.AddRoomFragment"
+        />
+
+    <fragment
+        android:id="@+id/managerRoomHost"
+        android:name="com.kujira.homestay.ui.host.manager.ManagerRoomHostFragment"
+        />
+    <fragment
+        android:id="@+id/myAccHost"
+        android:name="com.kujira.homestay.ui.host.myacc.MyAccountHostFragment"
+        />
+</navigation>

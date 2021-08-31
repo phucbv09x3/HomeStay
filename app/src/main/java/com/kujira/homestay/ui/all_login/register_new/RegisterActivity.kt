@@ -1,13 +1,17 @@
 package com.kujira.homestay.ui.all_login.register_new
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.FragmentNavigator
 import com.kujira.homestay.R
 import com.kujira.homestay.databinding.ActivityRegisterBinding
+import com.kujira.homestay.ui.all_login.login_new.LoginActivity
 import com.kujira.homestay.ui.base.BaseActivity
 import com.kujira.homestay.ui.base.BaseFragment
+import kotlinx.android.synthetic.main.activity_register.*
 
 class RegisterActivity : BaseActivity<RegisterAccViewModel, ActivityRegisterBinding>() {
     override fun createViewModel(): Class<RegisterAccViewModel> {
@@ -23,9 +27,15 @@ class RegisterActivity : BaseActivity<RegisterAccViewModel, ActivityRegisterBind
     override fun initData() {
         window.statusBarColor = ContextCompat.getColor(this, R.color.bg_login_new)
         mViewModel.getListAcc()
-        mViewModel.listenerShowToast.observe(this,{
-            Toast.makeText(this,getString(it),Toast.LENGTH_LONG).show()
-            if (it == R.string.email_verify){
+        mViewModel.listenerShowToast.observe(this, {
+            Toast.makeText(this, getString(it), Toast.LENGTH_LONG).show()
+            if (it == R.string.email_verify) {
+                val intent = Intent(this, LoginActivity::class.java)
+                val email = edt_email_register.text.toString()
+                val password = edt_password_register.text.toString()
+                intent.putExtra("1",email)
+                intent.putExtra("2",password)
+                setResult(RESULT_OK, intent)
                 finish()
             }
         })

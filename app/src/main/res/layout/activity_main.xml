@@ -5,7 +5,7 @@
 
         <variable
             name="viewModel"
-            type="com.kujira.homestay.ui.main.MainViewModel" />
+            type="com.kujira.homestay.ui.client.main.MainViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -15,7 +15,7 @@
         android:layout_height="match_parent"
         android:background="@color/white"
         android:orientation="vertical"
-        tools:context=".ui.main.MainActivity">
+        tools:context=".ui.client.main.MainActivity">
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/main_nav_fragment"

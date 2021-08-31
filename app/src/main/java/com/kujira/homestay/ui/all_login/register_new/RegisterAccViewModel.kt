@@ -38,6 +38,7 @@ class RegisterAccViewModel : BaseViewModel() {
     private var listEmail = mutableListOf<String>()
 
     private fun registerAcc(permission: Int) {
+        showLoading.onNext(true)
         val userName = userNameRegister.get()
         val mail = emailRegister.get()
         val passWord = passwordRegister.get()
@@ -53,6 +54,7 @@ class RegisterAccViewModel : BaseViewModel() {
                 fireBaseAuth.createUserWithEmailAndPassword(mail, passWord)
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful) {
+                            showLoading.onNext(false)
                             val user = fireBaseAuth.currentUser
                             val mail = user?.email
                             val userUID = user?.uid

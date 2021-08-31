@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/loginFragment">
+    app:startDestination="@id/home_fragment">
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.kujira.homestay.ui.login.LoginFragment"
@@ -30,26 +30,26 @@
         android:name="com.kujira.homestay.ui.about.AboutFragment" />
     <fragment
         android:id="@+id/home_fragment"
-        android:name="com.kujira.homestay.ui.home.HomeFragment" />
+        android:name="com.kujira.homestay.ui.client.home.HomeFragment" />
 
     <fragment
         android:id="@+id/listRoom"
-        android:name="com.kujira.homestay.ui.listRoom.ListRoomFragment" />
+        android:name="com.kujira.homestay.ui.client.listRoom.ListRoomFragment" />
     <fragment
         android:id="@+id/listTravel_fragment"
         android:name="com.kujira.homestay.ui.travel.ListTravelFragment" />
     <fragment
         android:id="@+id/account_fragment"
-        android:name="com.kujira.homestay.ui.account.AccountFragment" />
+        android:name="com.kujira.homestay.ui.client.account.AccountFragment" />
     <fragment
         android:id="@+id/manager_Room_fragment"
-        android:name="com.kujira.homestay.ui.manager.ManagerRoomFragment" />
+        android:name="com.kujira.homestay.ui.client.manager.ManagerRoomFragment" />
 
     <fragment
         android:id="@+id/travelAll_fragment"
-        android:name="com.kujira.homestay.ui.travelAll.TravelAllFragment" />
+        android:name="com.kujira.homestay.ui.client.travelAll.TravelAllFragment" />
 
     <fragment
         android:id="@+id/weather_fragment"
-        android:name="com.kujira.homestay.ui.weather.WeatherFragment" />
+        android:name="com.kujira.homestay.ui.client.weather.WeatherFragment" />
 </navigation>

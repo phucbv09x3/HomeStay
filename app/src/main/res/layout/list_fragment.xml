@@ -4,9 +4,9 @@
 
     <data>
 
-        <variable
-            name="viewModel"
-            type="com.kujira.homestay.ui.list.ListViewModel" />
+<!--        <variable-->
+<!--            name="viewModel"-->
+<!--            type="com.kujira.homestay.ui.list.ListViewModel" />-->
     </data>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"

@@ -5,14 +5,14 @@
 
         <variable
             name="viewModel"
-            type="com.kujira.homestay.ui.listRoom.ListRoomViewModel" />
+            type="com.kujira.homestay.ui.client.listRoom.ListRoomViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.listRoom.ListRoomFragment">
+        tools:context=".ui.client.listRoom.ListRoomFragment">
         <TextView
             android:id="@+id/tv_back_list_room"
             app:layout_constraintTop_toTopOf="@id/sv_name_province_list_room"
