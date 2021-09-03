@@ -1,10 +1,12 @@
 package com.kujira.homestay.ui.client.listRoom
 
+import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.kujira.homestay.R
+import com.kujira.homestay.data.model.response.AddRoomModel
 import com.kujira.homestay.databinding.FragmentListRoomBinding
 import com.kujira.homestay.ui.base.BaseFragment
 import com.kujira.homestay.utils.Constants
@@ -81,4 +83,9 @@ class ListRoomFragment : BaseFragment<ListRoomViewModel, FragmentListRoomBinding
         })
     }
 
+    override fun clickRoom(addRoomModel: AddRoomModel) {
+        val bundle = Bundle()
+        bundle.putParcelable("bundle",addRoomModel)
+        navigators.navigate(R.id.comment_fragment,bundle)
+    }
 }

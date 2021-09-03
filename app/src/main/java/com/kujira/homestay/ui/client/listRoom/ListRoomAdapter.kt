@@ -14,7 +14,7 @@ import com.kujira.homestay.databinding.ItemListRoomBinding
 import com.kujira.homestay.utils.Constants
 import kotlinx.android.synthetic.main.item_list_room.view.*
 
-class ListRoomAdapter(var listRoom: MutableList<AddRoomModel>, var onChoose: IChooseRoom) :
+class ListRoomAdapter(var listRoom: MutableList<AddRoomModel>, var onChoose: IChooseRoom ) :
     RecyclerView.Adapter<ListRoomAdapter.ManagerHolder>() {
     fun setList(mutableList: MutableList<AddRoomModel>) {
         listRoom = mutableList
@@ -33,6 +33,7 @@ class ListRoomAdapter(var listRoom: MutableList<AddRoomModel>, var onChoose: ICh
     override fun onBindViewHolder(holder: ListRoomAdapter.ManagerHolder, position: Int) {
         holder.setUp(listRoom[position])
         holder.chooseRoom(listRoom[position].id)
+        holder.clickOnRoom(listRoom[position])
     }
 
     override fun getItemCount(): Int = listRoom.size
@@ -75,9 +76,15 @@ class ListRoomAdapter(var listRoom: MutableList<AddRoomModel>, var onChoose: ICh
                 onChoose.onChoose(id)
             }
         }
+        fun clickOnRoom(addRoomModel: AddRoomModel){
+            itemView.setOnClickListener {
+                onChoose.clickRoom(addRoomModel)
+            }
+        }
     }
 }
 
 interface IChooseRoom {
     fun onChoose(id: String)
+    fun clickRoom(addRoomModel: AddRoomModel)
 }

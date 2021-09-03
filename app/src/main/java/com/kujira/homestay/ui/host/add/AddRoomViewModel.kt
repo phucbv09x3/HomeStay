@@ -53,7 +53,9 @@ class AddRoomViewModel : BaseViewModel() {
     fun isCheck(): Boolean {
         return !(textWard.get().toString().isEmpty() || nameRoom.get().toString().isEmpty()
                 || sRoom.get().toString().isEmpty() || numberSleepRoom.get().toString().isEmpty()
-                || textDetailGT.get().toString().isEmpty() || price.get().toString().isEmpty())
+                || textDetailGT.get().toString().isEmpty() || price.get().toString()
+            .isEmpty() || linkImg1.isEmpty() || linkImg2.isEmpty() || introduce.get().toString()
+            .isEmpty())
     }
 
     fun getListProvincesFB() {
@@ -117,39 +119,42 @@ class AddRoomViewModel : BaseViewModel() {
         }
     }
 
-    fun putHomeStay(img1: Uri, img2: Uri) {
+    fun putHomeStay(img1: Uri?, img2: Uri?) {
         val imgRef = dataStoreRef.child(auth.currentUser!!.uid)
             .child("image")
         val imgName1 = imgRef.child(img1.toString())
-        imgName1.putFile(img1)
-            .addOnSuccessListener {
-                imgName1.downloadUrl.addOnCompleteListener { p0 ->
-                    if (p0.isSuccessful) {
-                        linkImg1 = p0.result.toString()
+        if (img1 != null && img2 != null) {
+            imgName1.putFile(img1)
+                .addOnSuccessListener {
+                    imgName1.downloadUrl.addOnCompleteListener { p0 ->
+                        if (p0.isSuccessful) {
+                            linkImg1 = p0.result.toString()
+
+                        }
+                    }.addOnFailureListener {
 
                     }
-                }.addOnFailureListener {
-
                 }
-            }
 
 
-        val imgName2 = imgRef.child(img2.toString())
-        imgName2.putFile(img2)
-            .addOnSuccessListener {
-                imgName2.downloadUrl.addOnCompleteListener { p0 ->
-                    if (p0.isSuccessful) {
-                        linkImg2 = p0.result.toString()
-                        listenerSuccess.value = 1
+            val imgName2 = imgRef.child(img2.toString())
+            imgName2.putFile(img2)
+                .addOnSuccessListener {
+                    imgName2.downloadUrl.addOnCompleteListener { p0 ->
+                        if (p0.isSuccessful) {
+                            linkImg2 = p0.result.toString()
+                            listenerSuccess.value = 1
+
+                        }
+                    }.addOnFailureListener {
 
                     }
-                }.addOnFailureListener {
-
                 }
-            }
+        }
+
     }
 
-    fun accAll(addRoom: AddRoomModel) {
+    fun startPutRoom(addRoom: AddRoomModel) {
         if (linkImg2.isNotEmpty() && linkImg1.isNotEmpty()) {
             dataReference.child("ListRoom").child(auth.currentUser!!.uid)
                 .addValueEventListener(object : ValueEventListener {

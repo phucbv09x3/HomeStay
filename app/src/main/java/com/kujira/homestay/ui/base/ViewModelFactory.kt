@@ -9,6 +9,7 @@ import com.kujira.homestay.ui.about.AboutViewModel
 import com.kujira.homestay.ui.all_login.login_new.LoginAccViewModel
 import com.kujira.homestay.ui.all_login.register_new.RegisterAccViewModel
 import com.kujira.homestay.ui.client.account.AccountViewModel
+import com.kujira.homestay.ui.client.comment.CommentViewModel
 import com.kujira.homestay.ui.client.home.HomeViewModel
 import com.kujira.homestay.ui.client.listRoom.ListRoomViewModel
 import com.kujira.homestay.ui.client.main.MainViewModel
@@ -51,6 +52,7 @@ class ViewModelFactory @Inject constructor(
             modelClass.isAssignableFrom(MyAccountHostViewModel::class.java) -> MyAccountHostViewModel() as T
 
             modelClass.isAssignableFrom(SplashViewModel::class.java) -> SplashViewModel() as T
+            modelClass.isAssignableFrom(CommentViewModel::class.java) -> CommentViewModel() as T
 
 
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)

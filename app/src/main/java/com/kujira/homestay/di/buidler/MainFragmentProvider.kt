@@ -2,6 +2,7 @@ package com.kujira.homestay.di.buidler
 
 import com.kujira.homestay.ui.about.AboutFragment
 import com.kujira.homestay.ui.client.account.AccountFragment
+import com.kujira.homestay.ui.client.comment.CommentRoomFragment
 import com.kujira.homestay.ui.client.home.HomeFragment
 import com.kujira.homestay.ui.client.listRoom.ListRoomFragment
 import com.kujira.homestay.ui.client.manager.ManagerRoomFragment
@@ -46,5 +47,8 @@ abstract class MainFragmentProvider {
 
     @ContributesAndroidInjector
     internal abstract fun bindManagerRoomHostFragment(): ManagerRoomHostFragment
+
+    @ContributesAndroidInjector
+    internal abstract fun bindManagerCommentFragment(): CommentRoomFragment
 
 }

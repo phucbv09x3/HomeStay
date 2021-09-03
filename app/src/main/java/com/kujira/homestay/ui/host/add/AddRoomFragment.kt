@@ -15,8 +15,6 @@ import com.kujira.homestay.ui.base.BaseFragment
 import kotlinx.android.synthetic.main.activity_host_main.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_add_room_host.*
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 
 
@@ -131,10 +129,10 @@ class AddRoomFragment : BaseFragment<AddRoomViewModel, FragmentAddRoomHostBindin
                 }
                 AddRoomViewModel.BTN_IMG_ACCESS -> {
                     if (!viewModel.isCheck()){
-
+                        Toast.makeText(context,getString(R.string.error_isEmpty),Toast.LENGTH_LONG).show()
                     }else{
                         Thread().run {
-                            viewModel.putHomeStay(uriImg1!!, uriImg2!!)
+                            viewModel.putHomeStay(uriImg1, uriImg2)
                         }
                         pr.show()
                         viewModel.listenerSuccess.observe(this, { listener ->
@@ -178,7 +176,7 @@ class AddRoomFragment : BaseFragment<AddRoomViewModel, FragmentAddRoomHostBindin
                             viewModel.auth.currentUser!!.uid
                         )
                         runBlocking {
-                            viewModel.accAll(model)
+                            viewModel.startPutRoom(model)
                         }
 //                        CoroutineScope(Dispatchers.Main).launch {
 //                            viewModel.accAll(model)
@@ -221,11 +219,13 @@ class AddRoomFragment : BaseFragment<AddRoomViewModel, FragmentAddRoomHostBindin
             img_1.setImageURI(imageUri)
 
             uriImg1 = imageUri
+            viewModel.linkImg1= imageUri.toString()
         }
         if (requestCode == 222 && resultCode == RESULT_OK) {
             val imageUri = data?.data
             img_2.setImageURI(imageUri)
             uriImg2 = imageUri
+            viewModel.linkImg2= imageUri.toString()
         }
     }
 

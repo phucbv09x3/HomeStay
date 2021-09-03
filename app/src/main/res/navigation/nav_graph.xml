@@ -4,26 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     app:startDestination="@id/home_fragment">
-    <fragment
-        android:id="@+id/loginFragment"
-        android:name="com.kujira.homestay.ui.login.LoginFragment"
-        />
+<!--    <fragment-->
+<!--        android:id="@+id/loginFragment"-->
+<!--        android:name="com.kujira.homestay.ui.login.LoginFragment" />-->
 
-    <fragment
-        android:id="@+id/registerFragment"
-        android:name="com.kujira.homestay.ui.register.RegisterFragment"
-        />
+<!--    <fragment-->
+<!--        android:id="@+id/registerFragment"-->
+<!--        android:name="com.kujira.homestay.ui.register.RegisterFragment" />-->
 
-    <fragment
-        android:id="@+id/listFragment"
-        android:name="com.kujira.homestay.ui.list.ListFragment"
-        android:label="List Screen"
-        tools:layout="@layout/list_fragment">
+<!--    <fragment-->
+<!--        android:id="@+id/listFragment"-->
+<!--        android:name="com.kujira.homestay.ui.list.ListFragment"-->
+<!--        android:label="List Screen"-->
+<!--        tools:layout="@layout/list_fragment">-->
 
-        <action
-            android:id="@+id/navToItemDetailFragment"
-            app:destination="@id/aboutFragment" />
-    </fragment>
+<!--        <action-->
+<!--            android:id="@+id/navToItemDetailFragment"-->
+<!--            app:destination="@id/aboutFragment" />-->
+<!--    </fragment>-->
 
     <fragment
         android:id="@+id/aboutFragment"
@@ -35,9 +33,9 @@
     <fragment
         android:id="@+id/listRoom"
         android:name="com.kujira.homestay.ui.client.listRoom.ListRoomFragment" />
-    <fragment
-        android:id="@+id/listTravel_fragment"
-        android:name="com.kujira.homestay.ui.travel.ListTravelFragment" />
+    <!--    <fragment-->
+    <!--        android:id="@+id/listTravel_fragment"-->
+    <!--        android:name="com.kujira.homestay.ui.client.travel.ListTravelFragment" />-->
     <fragment
         android:id="@+id/account_fragment"
         android:name="com.kujira.homestay.ui.client.account.AccountFragment" />
@@ -52,4 +50,8 @@
     <fragment
         android:id="@+id/weather_fragment"
         android:name="com.kujira.homestay.ui.client.weather.WeatherFragment" />
+    <fragment
+        android:id="@+id/comment_fragment"
+        android:name="com.kujira.homestay.ui.client.comment.CommentRoomFragment" />
+
 </navigation>
