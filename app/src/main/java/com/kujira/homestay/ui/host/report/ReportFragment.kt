@@ -35,6 +35,9 @@ class ReportFragment : BaseFragment<ReportViewModel, FragmentReportBinding>() {
             if (it == 1000) {
                 Toast.makeText(context, getString(R.string.error_isEmpty_report), Toast.LENGTH_LONG).show()
             }
+            if (it == 10) {
+                Toast.makeText(context, getString(R.string.report_after_10), Toast.LENGTH_LONG).show()
+            }
         })
     }
 }

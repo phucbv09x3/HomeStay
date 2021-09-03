@@ -2,6 +2,7 @@ package com.kujira.homestay.ui.splash
 
 import android.content.Intent
 import android.os.Bundle
+import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.FragmentNavigator
 import com.kujira.homestay.R
 import com.kujira.homestay.databinding.ActivitySplashBinding
@@ -46,7 +47,7 @@ class SplashActivity : BaseActivity<SplashViewModel, ActivitySplashBinding>() {
     }
 
     override fun initData() {
-
+        window.statusBarColor = ContextCompat.getColor(this, R.color.black)
     }
 
     override fun onFragmentResumed(fragment: BaseFragment<*, *>) {

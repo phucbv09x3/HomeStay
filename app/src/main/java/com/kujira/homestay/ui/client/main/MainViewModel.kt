@@ -48,6 +48,7 @@ class MainViewModel : BaseViewModel() {
         dataRef.orderByChild("idClient").equalTo(auth.currentUser?.uid.toString())
             .addValueEventListener(object : ValueEventListener{
                 override fun onDataChange(snapshot: DataSnapshot) {
+                    listReport.clear()
                     for (snap in snapshot.children){
                         listReport.add(snap.child("contentReport").value.toString())
                     }

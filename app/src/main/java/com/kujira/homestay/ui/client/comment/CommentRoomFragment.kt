@@ -8,6 +8,7 @@ import com.kujira.homestay.databinding.FragmentCommentRoomBinding
 import com.kujira.homestay.ui.base.BaseFragment
 import com.kujira.homestay.utils.widget.view.setImageViewResource
 import kotlinx.android.synthetic.main.fragment_comment_room.*
+import java.util.*
 
 class CommentRoomFragment : BaseFragment<CommentViewModel, FragmentCommentRoomBinding>() {
     override fun createViewModel(): Class<CommentViewModel> {
@@ -36,6 +37,7 @@ class CommentRoomFragment : BaseFragment<CommentViewModel, FragmentCommentRoomBi
 
     override fun bindViewModel() {
         viewModel.listCommentLiveData.observe(this, {
+             it.reverse()
             (dataBinding.recyclerViewComment.adapter as CommentAdapter).setList(it)
         })
 

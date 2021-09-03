@@ -32,6 +32,9 @@ class CommentViewModel : BaseViewModel() {
                     commentRoom()
                 }
             }
+            R.id.backOnComment ->{
+                navigation.navigateUp()
+            }
         }
     }
 

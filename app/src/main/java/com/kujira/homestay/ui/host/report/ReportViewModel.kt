@@ -21,12 +21,13 @@ class ReportViewModel : BaseViewModel() {
     private val auth = FirebaseAuth.getInstance()
     private var idClient = ""
     val listener = MutableLiveData(0)
+
     fun click(view: View) {
         when (view.id) {
             R.id.access_report -> {
-                if (edtReport.get().toString().isEmpty()){
+                if (edtReport.get().toString().isEmpty()) {
                     listener.value = 1000
-                }else{
+                } else {
                     showLoading.onNext(true)
                     reportAcc()
                 }
@@ -52,13 +53,14 @@ class ReportViewModel : BaseViewModel() {
     }
 
     private fun reportAcc() {
+        val timeCurrent = System.currentTimeMillis()
         val dataRefer =
             FirebaseDatabase.getInstance().getReference(Constants.CLIENT)
         val hashMap = HashMap<String, String>()
         hashMap["idHost"] = auth.currentUser?.uid.toString()
         hashMap["idClient"] = idClient
         hashMap["contentReport"] = edtReport.get().toString()
-        dataRefer.child("Report").child(System.currentTimeMillis().toString()).setValue(hashMap)
+        dataRefer.child("Report").child(timeCurrent.toString()).setValue(hashMap)
             .addOnSuccessListener {
                 edtReport.set("")
                 listener.value = 1
