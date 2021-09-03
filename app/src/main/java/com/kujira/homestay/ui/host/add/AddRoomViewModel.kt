@@ -15,6 +15,7 @@ import com.kujira.homestay.data.model.response.AddRoomModel
 import com.kujira.homestay.data.model.response.DistrictFB
 import com.kujira.homestay.data.model.response.ProvinceFB
 import com.kujira.homestay.ui.base.BaseViewModel
+import com.kujira.homestay.utils.Constants
 
 class AddRoomViewModel : BaseViewModel() {
 
@@ -47,6 +48,12 @@ class AddRoomViewModel : BaseViewModel() {
         const val BTN_IMG_2 = 1
         const val BTN_IMG_ACCESS = 2
         const val BTN_IMG_ACCESS_ALL = 3
+    }
+
+    fun isCheck(): Boolean {
+        return !(textWard.get().toString().isEmpty() || nameRoom.get().toString().isEmpty()
+                || sRoom.get().toString().isEmpty() || numberSleepRoom.get().toString().isEmpty()
+                || textDetailGT.get().toString().isEmpty() || price.get().toString().isEmpty())
     }
 
     fun getListProvincesFB() {
@@ -163,7 +170,7 @@ class AddRoomViewModel : BaseViewModel() {
                         hashMap["price"] = addRoom.price
                         hashMap["uid"] = addRoom.uid
 
-                        dataReference.child("ListRoom").child(key).setValue(hashMap)
+                        dataReference.child(Constants.LIST_ROOM).child(key).setValue(hashMap)
                             .addOnSuccessListener {
                                 notifyPut.value = 1
                             }

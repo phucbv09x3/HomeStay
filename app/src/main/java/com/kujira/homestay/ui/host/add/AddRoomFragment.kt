@@ -130,19 +130,21 @@ class AddRoomFragment : BaseFragment<AddRoomViewModel, FragmentAddRoomHostBindin
                     requestImage(222)
                 }
                 AddRoomViewModel.BTN_IMG_ACCESS -> {
-                    runBlocking {
-                        viewModel.putHomeStay(uriImg1!!, uriImg2!!)
-                    }
-//                    CoroutineScope(Dispatchers.Main).launch {
-//                        viewModel.putHomeStay(uriImg1!!, uriImg2!!)
-//                    }
-                    pr.show()
-                    viewModel.listenerSuccess.observe(this, {
-                        if (it == 1) {
-                            dataBinding.btnAccessAll.visibility = View.VISIBLE
-                            pr.dismiss()
+                    if (!viewModel.isCheck()){
+
+                    }else{
+                        Thread().run {
+                            viewModel.putHomeStay(uriImg1!!, uriImg2!!)
                         }
-                    })
+                        pr.show()
+                        viewModel.listenerSuccess.observe(this, { listener ->
+                            if (listener == 1) {
+                                dataBinding.btnAccessAll.visibility = View.VISIBLE
+                                pr.dismiss()
+                            }
+                        })
+                    }
+
 
                 }
                 AddRoomViewModel.BTN_IMG_ACCESS_ALL -> {

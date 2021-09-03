@@ -12,8 +12,8 @@ import com.kujira.homestay.databinding.ActivityLoginBinding
 import com.kujira.homestay.ui.all_login.register_new.RegisterActivity
 import com.kujira.homestay.ui.base.BaseActivity
 import com.kujira.homestay.ui.base.BaseFragment
-import com.kujira.homestay.ui.host.main.MainHostActivity
 import com.kujira.homestay.ui.client.main.MainActivity
+import com.kujira.homestay.ui.host.main.MainHostActivity
 
 class LoginActivity : BaseActivity<LoginAccViewModel, ActivityLoginBinding>() {
     override fun createViewModel(): Class<LoginAccViewModel> {
@@ -26,10 +26,15 @@ class LoginActivity : BaseActivity<LoginAccViewModel, ActivityLoginBinding>() {
 
     }
 
+    override fun onStart() {
+        super.onStart()
+
+    }
     override fun initData() {
         window.statusBarColor = ContextCompat.getColor(this, R.color.bg_login_new)
         listener()
         mViewModel.getListAcc()
+
     }
 
     private val startForResult = registerForActivityResult(
@@ -62,10 +67,10 @@ class LoginActivity : BaseActivity<LoginAccViewModel, ActivityLoginBinding>() {
                 val intent = Intent(this, MainHostActivity::class.java)
                 startActivity(intent)
             } else if (it == LoginAccViewModel.PERMISSION_2) {
-                val intent = Intent(this,MainActivity::class.java)
+                val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
             } else {
-                Toast.makeText(this,getString(it),Toast.LENGTH_LONG).show()
+                Toast.makeText(this, getString(it), Toast.LENGTH_LONG).show()
             }
         })
     }

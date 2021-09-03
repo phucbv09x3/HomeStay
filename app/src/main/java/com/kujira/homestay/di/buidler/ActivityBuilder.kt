@@ -7,6 +7,7 @@ import dagger.Module
 import dagger.android.ContributesAndroidInjector
 import com.kujira.homestay.ui.client.main.MainActivity
 import com.kujira.homestay.ui.client.map.MapActivity
+import com.kujira.homestay.ui.splash.SplashActivity
 
 @Module
 abstract class ActivityBuilder {
@@ -24,4 +25,7 @@ abstract class ActivityBuilder {
 
     @ContributesAndroidInjector(modules = [MainFragmentProvider::class])
     internal abstract fun bindMainHostActivity(): MainHostActivity
+
+    @ContributesAndroidInjector(modules = [MainFragmentProvider::class])
+    internal abstract fun bindSplashActivity(): SplashActivity
 }

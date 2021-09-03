@@ -107,13 +107,7 @@ class LoginAccViewModel : BaseViewModel() {
         }
     }
 
-    fun checkCurrentUser() {
-        if (auth.currentUser?.isEmailVerified == false || auth.currentUser == null) {
 
-        } else {
-            navigation.navigate(R.id.home_fragment)
-        }
-    }
 }
 
 data class Acc(
