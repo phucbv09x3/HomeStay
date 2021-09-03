@@ -10,8 +10,10 @@ import com.kujira.homestay.databinding.FragmentHomeBinding
 import com.kujira.homestay.ui.base.BaseFragment
 import com.kujira.homestay.ui.client.map.MapActivity
 import com.kujira.homestay.utils.Constants
+import com.kujira.homestay.utils.printLog
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_home.*
+import java.util.concurrent.TimeUnit
 
 
 class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>(), IClickOnList {
@@ -33,8 +35,29 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>(), IClickO
             adapter = HomeAdapter(mutableListOf(), this@HomeFragment)
         }
 
+        listenerCallBack()
     }
-
+    private fun listenerCallBack(){
+        dataManager.listenerHomeClientCallBack
+            .throttleFirst(3, TimeUnit.SECONDS)
+            .subscribe {
+                printLog("callFragmentCallback $it")
+                when(it){
+                    1->{
+                        navigators.navigate(R.id.listRoom)
+                    }
+                    2->{
+                        navigators.navigate(R.id.travelAll_fragment)
+                    }
+                    3->{
+                        activity.startActivity(Intent(context, MapActivity::class.java))
+                    }
+                    4->{
+                        navigators.navigate(R.id.weather_fragment)
+                    }
+                }
+            }.addDisposable()
+    }
     override fun bindViewModel() {
 
         viewModel.getListProvince()
@@ -42,30 +65,8 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>(), IClickO
             (rcy_list_province.adapter as HomeAdapter).setList(it)
         })
 
-
-        viewModel.listener.observe(this, {
-            when (it) {
-                HomeViewModel.SEARCH_MAP -> {
-                    dataBinding.tvSearchMap.isEnabled = false
-                    activity.startActivity(Intent(context, MapActivity::class.java))
-                }
-            }
-        })
     }
 
-//    private fun checkNetWork() {
-//        val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-//        val netInfo = cm.activeNetworkInfo
-//        //should check null because in airplane mode it will be null
-//        //should check null because in airplane mode it will be null
-//        val nc = cm.getNetworkCapabilities(cm.activeNetwork)
-//        val downSpeed = nc?.linkDownstreamBandwidthKbps
-//        Log.d("downSpeed", "$downSpeed")
-//        val upSpeed = nc?.linkUpstreamBandwidthKbps
-//        Log.d("upSpeed", "$upSpeed")
-//        Toast.makeText(context, upSpeed.toString() + "ok" + downSpeed.toString(), Toast.LENGTH_LONG)
-//            .show()
-//    }
 
 
     override fun clickItem(model: Provinces) {

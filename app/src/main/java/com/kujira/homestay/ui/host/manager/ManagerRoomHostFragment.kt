@@ -2,6 +2,7 @@ package com.kujira.homestay.ui.host.manager
 
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -18,7 +19,8 @@ import kotlinx.android.synthetic.main.fragment_manager_room.*
 import kotlinx.android.synthetic.main.fragment_manager_room_host.*
 
 
-class ManagerRoomHostFragment : BaseFragment<ManagerRoomHostViewModel, FragmentManagerRoomHostBinding>(),
+class ManagerRoomHostFragment :
+    BaseFragment<ManagerRoomHostViewModel, FragmentManagerRoomHostBinding>(),
     IClick {
     override fun createViewModel(): Class<ManagerRoomHostViewModel> {
         return ManagerRoomHostViewModel::class.java
@@ -95,9 +97,10 @@ class ManagerRoomHostFragment : BaseFragment<ManagerRoomHostViewModel, FragmentM
                 )
                 viewModel.editRoom(model)
                 viewModel.listener.observe(this, {
-                    if (it == 1) {
+                    if (it == 1 ) {
                         Toast.makeText(context, "Thành Công !", Toast.LENGTH_LONG).show()
                     }
+
                 })
             } else {
                 Toast.makeText(context, "Vui long nhập đủ thông tin !", Toast.LENGTH_LONG).show()
@@ -110,15 +113,55 @@ class ManagerRoomHostFragment : BaseFragment<ManagerRoomHostViewModel, FragmentM
     }
 
     override fun clickExitRoom(addRoomModel: AddRoomModel) {
-        val alertDialog = android.app.AlertDialog.Builder(context).create()
-        alertDialog.setTitle("Khách hàng trả phòng")
-        alertDialog.setMessage("Đã trả !")
-        alertDialog.setButton(
-            AlertDialog.BUTTON_NEUTRAL, "OK"
-        ) { dialog, _ ->
+//        val alertDialog = android.app.AlertDialog.Builder(context).create()
+//        alertDialog.setTitle("Khách hàng trả phòng")
+//        alertDialog.setMessage("Đã trả !")
+//        alertDialog.setButton(
+//            AlertDialog.BUTTON_NEUTRAL, "OK"
+//        ) { dialog, _ ->
+//            viewModel.cancelRoom(addRoomModel.id)
+//            dialog.dismiss()
+//        }
+//        alertDialog.show()
+        exitRoomOrReport(addRoomModel)
+    }
+
+    private fun exitRoomOrReport(addRoomModel: AddRoomModel) {
+        viewModel.getIdClient(addRoomModel.id)
+        val alertDialog = AlertDialog.Builder(context).create()
+        val dialogView = layoutInflater.inflate(R.layout.custom_exit_or_report, null)
+        alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        alertDialog.setView(dialogView)
+
+//        val exitRoom = dialogView.findViewById<Button>(R.id.btn_exit_Room)
+//        val report = dialogView.findViewById<Button>(R.id.btn_report)
+        dialogView.findViewById<Button>(R.id.btn_exit_Room).setOnClickListener {
             viewModel.cancelRoom(addRoomModel.id)
-            dialog.dismiss()
+            viewModel.listener.observe(this, {
+                if (it == 100 ) {
+                    Toast.makeText(context, "Thành Công !", Toast.LENGTH_LONG).show()
+                }
+
+            })
+            alertDialog.dismiss()
         }
+        viewModel.idClient.observe(this,{
+            it?.let { id->
+                dialogView.findViewById<Button>(R.id.btn_report).setOnClickListener {
+                    val bundle = Bundle()
+                    bundle.putString("bundle", id)
+                    navigators.navigate(R.id.reportFragment, bundle)
+                    alertDialog.dismiss()
+                }
+            }
+        })
+
         alertDialog.show()
+    }
+
+    override fun clickItem(addRoomModel: AddRoomModel) {
+        val bundle = Bundle()
+        bundle.putParcelable("bundle", addRoomModel)
+        navigators.navigate(R.id.detailFragment, bundle)
     }
 }

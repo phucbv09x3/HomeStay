@@ -8,6 +8,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.kujira.homestay.data.model.response.AddRoomModel
 import com.kujira.homestay.ui.base.BaseViewModel
+import com.kujira.homestay.utils.Constants
 
 class ManagerRoomHostViewModel : BaseViewModel() {
 
@@ -78,6 +79,7 @@ class ManagerRoomHostViewModel : BaseViewModel() {
             })
     }
 
+
     fun cancelRoom(id: String) {
         val dataRef = FirebaseDatabase.getInstance().getReference("Host")
         dataRef.child("ListRoom").child(id).child("idClient").removeValue()
@@ -87,6 +89,25 @@ class ManagerRoomHostViewModel : BaseViewModel() {
                 val hash = HashMap<String, Any>()
                 hash["status"] = "Còn Trống"
                 query.child(id).updateChildren(hash)
+                    .addOnSuccessListener {
+                        listener.value = 100
+                    }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+        })
+    }
+
+    var idClient = MutableLiveData("")
+    fun getIdClient(idRoom: String) {
+
+        val dataRef = FirebaseDatabase.getInstance().getReference(Constants.HOST)
+            .child(Constants.LIST_ROOM).child(idRoom)
+        dataRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                idClient.value = snapshot.child(Constants.ID_CLIENT).value.toString()
             }
 
             override fun onCancelled(error: DatabaseError) {

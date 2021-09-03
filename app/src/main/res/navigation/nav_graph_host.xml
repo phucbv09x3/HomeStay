@@ -16,4 +16,12 @@
         android:id="@+id/myAccHost"
         android:name="com.kujira.homestay.ui.host.myacc.MyAccountHostFragment"
         />
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.kujira.homestay.ui.host.detail.DetailFragment"
+        />
+    <fragment
+        android:id="@+id/reportFragment"
+        android:name="com.kujira.homestay.ui.host.report.ReportFragment"
+        />
 </navigation>

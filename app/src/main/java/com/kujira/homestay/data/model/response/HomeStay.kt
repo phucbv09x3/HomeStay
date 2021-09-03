@@ -100,3 +100,8 @@ data class DistrictFB(
     val code: String,
     val name: String
 )
+data class ReportModel(
+    val idHost: String,
+    val idClient: String,
+    val contentReport: String,
+)

@@ -45,17 +45,21 @@ class HomeViewModel : BaseViewModel() {
     fun onClick(view: View) {
         when (view.id) {
             R.id.linear_homestay -> {
-                navigation.navigate(R.id.listRoom)
+//                navigation.navigate(R.id.listRoom)
+                dataManager.listenerHomeClientCallBack.onNext(1)
             }
             R.id.linear_dulich -> {
-                navigation.navigate(R.id.travelAll_fragment)
+                dataManager.listenerHomeClientCallBack.onNext(2)
+                //navigation.navigate(R.id.travelAll_fragment)
             }
             R.id.tv_search_map -> {
-                listener.value = SEARCH_MAP
+                dataManager.listenerHomeClientCallBack.onNext(3)
+//                listener.value = SEARCH_MAP
             }
             R.id.tv_next_weather -> {
+                dataManager.listenerHomeClientCallBack.onNext(4)
                 //listener.value = WEATHER
-                navigation.navigate(R.id.weather_fragment)
+//                navigation.navigate(R.id.weather_fragment)
             }
         }
     }

@@ -106,7 +106,7 @@
             android:layout_marginBottom="@dimen/_2sdp"
             android:background="@color/rdc"
             android:padding="@dimen/_2sdp"
-            android:text="Xác nhận trả phòng ?"
+            android:text="Trả phòng/Báo cáo"
             android:textColor="@color/black"
             android:textSize="@dimen/_12sdp"
             android:visibility="gone"

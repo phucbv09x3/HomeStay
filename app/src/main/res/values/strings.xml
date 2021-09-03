@@ -4,6 +4,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="key">AIzaSyDFWa-0NcyAk0VaZCRc2v4IcctBcr8g5R4</string>
     <string name="error_isEmpty">Vui lòng điền đầy đủ thông tin !</string>
+    <string name="error_isEmpty_report">Vui lòng điền phản ánh của bạn!</string>
     <string name="error_auth">Vui lòng xác thực email !</string>
     <string name="doC">°C</string>
     <string name="success">Thành Công</string>
@@ -26,5 +27,8 @@
         \n 8.Xuất trình giấy tờ tùy thân khi đến nhận phòng và nhận lại giấy tờ sau khi thanh toán đầy đủ để đảm bảo quyền lợi đầy đủ
         \n 9.Với mong muốn xây dựng hệ sinh thái HomeStay tiêu chuẩn - thông minh, mọi đóng góp ý kiến của bạn đều
         được chúng tối lắng nge \nĐường dây nóng HomeStay hoạt động 24/24 : 1900-884-9053</string>
+    <string name="block_acc">Tài khoản của bạn đã bị block do bị cảnh báo spam quá nhiều. Hệ thống của chúng tôi đã gi nhận tài khoản này bị
+        cảnh báo tới 10 lần, hãy liên hệ tổng đài
+        1900-884-9053 để được sử dụng tiếp tài khoản. Vui lòng dử dụng tài khoản đúng mục đích, cảm ơn bạn đã sử dụng dịch vụ của chúng tôi!</string>
 
 </resources>

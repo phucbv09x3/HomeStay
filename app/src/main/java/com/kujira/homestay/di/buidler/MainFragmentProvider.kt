@@ -11,6 +11,8 @@ import com.kujira.homestay.ui.host.add.AddRoomFragment
 import com.kujira.homestay.ui.host.manager.ManagerRoomHostFragment
 import com.kujira.homestay.ui.host.myacc.MyAccountHostFragment
 import com.kujira.homestay.ui.client.travelAll.TravelAllFragment
+import com.kujira.homestay.ui.host.detail.DetailFragment
+import com.kujira.homestay.ui.host.report.ReportFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -51,4 +53,9 @@ abstract class MainFragmentProvider {
     @ContributesAndroidInjector
     internal abstract fun bindManagerCommentFragment(): CommentRoomFragment
 
+    @ContributesAndroidInjector
+    internal abstract fun bindDetailFragment(): DetailFragment
+
+    @ContributesAndroidInjector
+    internal abstract fun bindReportFragment(): ReportFragment
 }

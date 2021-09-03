@@ -16,6 +16,7 @@ import com.kujira.homestay.ui.base.BaseFragment
 import com.kujira.homestay.ui.host.add.AddRoomFragment
 import com.kujira.homestay.ui.host.myacc.MyAccountHostFragment
 import com.kujira.homestay.ui.client.manager.ManagerRoomFragment
+import com.kujira.homestay.ui.host.manager.ManagerRoomHostFragment
 import com.kujira.homestay.utils.printLog
 
 open class MainHostActivity : BaseActivity<MainHostViewModel, ActivityHostMainBinding>(),
@@ -23,7 +24,7 @@ open class MainHostActivity : BaseActivity<MainHostViewModel, ActivityHostMainBi
     private lateinit var navController: NavController
 
     private lateinit var currentFragment: BaseFragment<*, *>
-    private var currentFragmentId: Int = R.id.home_fragment
+    private var currentFragmentId: Int = R.id.manager_Room_fragment
     private val navHostFragment: NavHostFragment by lazy {
         supportFragmentManager.findFragmentById(R.id.main_host_nav_fragment) as NavHostFragment
     }
@@ -106,7 +107,7 @@ open class MainHostActivity : BaseActivity<MainHostViewModel, ActivityHostMainBi
 //
 //                }
                 MainHostViewModel.BTN_MANAGER_ROOM -> {
-                    if (currentFragment is ManagerRoomFragment) {
+                    if (currentFragment is ManagerRoomHostFragment) {
 
                     } else {
                         navigate(R.id.managerRoomHost)

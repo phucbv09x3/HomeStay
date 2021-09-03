@@ -18,10 +18,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HomeStay">
         <activity
-
+            android:name=".ui.client.BlockActivity"
+            android:exported="true" />
+        <activity
             android:name=".ui.splash.SplashActivity"
-            android:screenOrientation="portrait"
-             >
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -31,22 +32,19 @@
         <activity
             android:name=".ui.all_login.login_new.LoginActivity"
             android:exported="true"
-            android:screenOrientation="portrait">
-
-        </activity>
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".ui.client.map.MapActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.host.main.MainHostActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.all_login.register_new.RegisterActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.client.main.MainActivity"
-            android:screenOrientation="portrait"></activity>
-
+            android:screenOrientation="portrait" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"

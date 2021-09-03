@@ -1,7 +1,12 @@
 package com.kujira.homestay.ui.client.main
 
+import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.ConnectivityManager
+import android.net.Network
 import android.os.Bundle
+import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.navigation.NavController
@@ -11,9 +16,10 @@ import androidx.navigation.fragment.FragmentNavigator
 import androidx.navigation.fragment.NavHostFragment
 import com.kujira.homestay.R
 import com.kujira.homestay.databinding.ActivityMainBinding
-import com.kujira.homestay.ui.client.account.AccountFragment
 import com.kujira.homestay.ui.base.BaseActivity
 import com.kujira.homestay.ui.base.BaseFragment
+import com.kujira.homestay.ui.client.BlockActivity
+import com.kujira.homestay.ui.client.account.AccountFragment
 import com.kujira.homestay.ui.client.home.HomeFragment
 import com.kujira.homestay.ui.client.manager.ManagerRoomFragment
 import com.kujira.homestay.utils.printLog
@@ -45,13 +51,41 @@ open class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(),
     }
 
     override fun initData() {
-        listenerAction()
         window.statusBarColor = ContextCompat.getColor(this, R.color.white)
         navController = navHostFragment.navController
-//        setSupportActionBar(toolbar)
         navController.addOnDestinationChangedListener(this)
-        //NavigationUI.setupActionBarWithNavController(this, navController)
+        listenerAction()
         requestPermission()
+        checkNetWork()
+        listenerReport()
+    }
+
+    private fun listenerReport() {
+        mViewModel.checkReport()
+        mViewModel.listReportLiveData.observe(this, {
+            if (it.size >= 3) {
+                startActivity(Intent(this, BlockActivity::class.java))
+                mViewModel.logOut()
+                finish()
+            }
+        })
+    }
+
+    private fun checkNetWork() {
+        val connectivityManager =
+            this.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        connectivityManager.let {
+            it.registerDefaultNetworkCallback(object : ConnectivityManager.NetworkCallback() {
+                override fun onAvailable(network: Network) {
+
+                }
+
+                override fun onLost(network: Network) {
+                    Toast.makeText(this@MainActivity, "Mất kết nối !", Toast.LENGTH_LONG).show()
+                }
+            })
+
+        }
     }
 
     private fun requestPermission() = if (
@@ -105,14 +139,13 @@ open class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(),
             when (it) {
                 MainViewModel.BTN_HOME -> {
                     if (currentFragment is HomeFragment) {
-
                     } else {
                         navigate(R.id.home_fragment)
                     }
 
                 }
 
-                MainViewModel.BTN_DATCHO -> {
+                MainViewModel.BTN_MANAGER -> {
                     if (currentFragment is ManagerRoomFragment) {
                     } else {
                         navigate(R.id.manager_Room_fragment)
@@ -133,10 +166,11 @@ open class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(),
 
     override fun onBackPressed() {
         super.onBackPressed()
-        if(currentFragment is HomeFragment){
+        if (currentFragment is HomeFragment) {
             finish()
         }
     }
+
     override fun navigateUp() {
         val isFinish = !navController.popBackStack()
         if (isFinish) {

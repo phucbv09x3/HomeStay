@@ -34,6 +34,7 @@ class ManagerRoomAdapter(var listRoom: MutableList<AddRoomModel>, var click: ICl
         holder.click(listRoom[position])
         holder.longClick(listRoom[position])
         holder.clickExitRoom(listRoom[position])
+        holder.clickItemToDetail(listRoom[position])
     }
 
     override fun getItemCount(): Int = listRoom.size
@@ -72,6 +73,11 @@ class ManagerRoomAdapter(var listRoom: MutableList<AddRoomModel>, var click: ICl
                 click.clickExitRoom(addRoomModel)
             }
         }
+        fun clickItemToDetail(addRoomModel: AddRoomModel){
+            itemView.setOnClickListener {
+                click.clickItem(addRoomModel)
+            }
+        }
     }
 }
 
@@ -79,4 +85,5 @@ interface IClick {
     fun clickExitRoom(addRoomModel: AddRoomModel)
     fun click(addRoomModel: AddRoomModel)
     fun longClick(addRoomModel: AddRoomModel)
+    fun clickItem(addRoomModel: AddRoomModel)
 }
