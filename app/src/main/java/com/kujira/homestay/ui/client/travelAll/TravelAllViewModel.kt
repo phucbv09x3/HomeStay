@@ -75,7 +75,7 @@ class TravelAllViewModel : BaseViewModel() {
         }
     }
 
-     fun searchUser(newText: String?) {
+     fun searchTravel(newText: String?) {
         val firebaseRef = FirebaseDatabase.getInstance().getReference("Client")
             .child("TravelList")
         firebaseRef.addValueEventListener(object : ValueEventListener {
@@ -86,7 +86,6 @@ class TravelAllViewModel : BaseViewModel() {
                 listTravel.clear()
                 for (pos in snapshot.children) {
                     val mesData = pos.getValue(TravelModel::class.java)
-
                         if (mesData?.id?.toLowerCase()!!.contains(newText!!.toLowerCase())) {
                             listTravel.add(mesData)
                             listTravels.value =listTravel

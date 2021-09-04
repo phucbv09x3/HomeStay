@@ -64,7 +64,7 @@ class TravelAllFragment : BaseFragment<TravelAllViewModel, FragmentTravelAllBind
             androidx.appcompat.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 if (!TextUtils.isEmpty(query?.trim())) {
-                    viewModel.searchUser(query)
+                    viewModel.searchTravel(query)
                     viewModel.listTravels.observe(this@TravelAllFragment, {
                         Log.d("list", "$it")
                         (dataBinding.rcyListTravelAll.adapter as TravelAdapter).setList(it)
@@ -79,7 +79,7 @@ class TravelAllFragment : BaseFragment<TravelAllViewModel, FragmentTravelAllBind
 
             override fun onQueryTextChange(newText: String?): Boolean {
                 if (!TextUtils.isEmpty(newText?.trim())) {
-                    viewModel.searchUser(newText)
+                    viewModel.searchTravel(newText)
                     viewModel.listTravels.observe(this@TravelAllFragment, {
                         Log.d("list", "$it")
                         (dataBinding.rcyListTravelAll.adapter as TravelAdapter).setList(it)

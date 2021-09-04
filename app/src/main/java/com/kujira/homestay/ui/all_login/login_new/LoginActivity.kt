@@ -52,7 +52,7 @@ class LoginActivity : BaseActivity<LoginAccViewModel, ActivityLoginBinding>() {
                 LoginAccViewModel.REGISTER_ACC -> {
                     val intent = Intent(this, RegisterActivity::class.java)
                     startForResult.launch(intent)
-                }
+                }  
                 LoginAccViewModel.FORGOT_PASSWORD -> {
 
                 }

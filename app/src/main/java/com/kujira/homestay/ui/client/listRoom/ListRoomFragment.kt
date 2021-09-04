@@ -56,7 +56,6 @@ class ListRoomFragment : BaseFragment<ListRoomViewModel, FragmentListRoomBinding
                 if (!TextUtils.isEmpty(query?.trim())) {
                     viewModel.searchHomeStay(query)
                     viewModel.listRoomLiveData.observe(this@ListRoomFragment, {
-                        Log.d("list", "$it")
                         (dataBinding.rcyListRoom.adapter as ListRoomAdapter).setList(it)
                     })
 
@@ -71,7 +70,6 @@ class ListRoomFragment : BaseFragment<ListRoomViewModel, FragmentListRoomBinding
                 if (!TextUtils.isEmpty(newText?.trim())) {
                     viewModel.searchHomeStay(newText)
                     viewModel.listRoomLiveData.observe(this@ListRoomFragment, {
-                        Log.d("list", "$it")
                         (dataBinding.rcyListRoom.adapter as ListRoomAdapter).setList(it)
                     })
                 } else {

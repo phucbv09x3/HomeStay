@@ -74,7 +74,22 @@ class ListRoomViewModel : BaseViewModel() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 listRoom.clear()
                 for (pos in snapshot.children) {
-                    val model = pos.getValue(AddRoomModel::class.java)
+
+                    val id = pos.child("id").value.toString()
+                    val address = pos.child("address").value.toString()
+                    val typeRoom = pos.child("typeRoom").value.toString()
+                    val nameRoom = pos.child("nameRoom").value.toString()
+                    val s_room = pos.child("s_room").value.toString()
+                    val numberSleepRoom = pos.child("numberSleepRoom").value.toString()
+                    val convenient = pos.child("convenient").value.toString()
+                    val introduce = pos.child("introduce").value.toString()
+                    val imageRoom1 = pos.child("imageRoom1").value.toString()
+                    val imageRoom2 = pos.child("imageRoom2").value.toString()
+                    val status = pos.child("status").value.toString()
+                    val price = pos.child("price").value.toString()
+                    val uid = pos.child("uid").value.toString()
+                    val model = AddRoomModel(id,address,typeRoom,nameRoom,s_room,numberSleepRoom,convenient,introduce,imageRoom1,imageRoom2,status,price,uid)
+                    //val model = pos.getValue(AddRoomModel::class.java)
                     if (model?.address?.toLowerCase()!!.contains(newText!!.toLowerCase())) {
                         listRoom.add(model)
                         listRoomLiveData.value =listRoom
