@@ -2,10 +2,9 @@ package com.kujira.homestay.data.local
 
 import android.content.Context
 import androidx.datastore.core.DataStore
-import androidx.datastore.preferences.core.*
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.preferencesDataStore
-import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -25,20 +24,19 @@ class DataStoreManager @Inject constructor(
 
     companion object {
         const val dataStoreName = "dataStore_AppName"
-        val keyUserName = stringPreferencesKey("KEY_USER_NAME")
-        val keyIsLogin = booleanPreferencesKey("isLogin")
-        val a = preferencesOf()
+//        val keyUserName = stringPreferencesKey("KEY_USER_NAME")
+//        val keyIsLogin = booleanPreferencesKey("isLogin")
+//        val a = preferencesOf()
     }
 
     //run on IO thread
-    override suspend fun saveUserName(name: String) {
-        dataStore.put(keyUserName, name)
-    }
-
-    override suspend fun getUserName(): String {
-        return dataStore.get(keyUserName)
-    }
-
+//    override suspend fun saveUserName(name: String) {
+//       // dataStore.put(keyUserName, name)
+//    }
+//
+//    override suspend fun getUserName(): String {
+//        return dataStore.get(keyUserName)
+//    }
 
 
     private suspend fun <T> DataStore<Preferences>.put(key: Preferences.Key<T>, value: T) {
@@ -48,11 +46,11 @@ class DataStoreManager @Inject constructor(
         }
     }
 
-    private suspend inline fun <reified T> DataStore<Preferences>.get(key: Preferences.Key<T>): T {
-        return data.map { preferences ->
-            preferences[key] ?: defaultValue()
-        }.first()
-    }
+//    private suspend inline fun <reified T> DataStore<Preferences>.get(key: Preferences.Key<T>): T {
+//        return data.map { preferences ->
+//            preferences[key] ?: defaultValue()
+//        }.first()
+//    }
 
     /**
      * using Gson to parser Object to String

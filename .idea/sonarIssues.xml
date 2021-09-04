@@ -63,6 +63,16 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/kujira/homestay/data/local/DataStoreHelper.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/kujira/homestay/data/local/DataStoreManager.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/kujira/homestay/data/model/response/HomeStay.kt">
           <value>
             <set />
@@ -623,6 +633,51 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../HomeStayHost/app/src/main/AndroidManifest.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../HomeStayHost/app/src/main/java/com/kujira/hosthomestay/data/model/response/Province.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../HomeStayHost/app/src/main/java/com/kujira/hosthomestay/di/buidler/ActivityBuilder.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../HomeStayHost/app/src/main/java/com/kujira/hosthomestay/ui/add/AddRoomFragment.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../HomeStayHost/app/src/main/java/com/kujira/hosthomestay/ui/all_login/login_new/LoginAccViewModel.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../HomeStayHost/app/src/main/java/com/kujira/hosthomestay/ui/all_login/login_new/LoginActivity.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../HomeStayHost/app/src/main/java/com/kujira/hosthomestay/ui/all_login/register_new/RegisterAccViewModel.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../HomeStayHost/app/src/main/java/com/kujira/hosthomestay/ui/all_login/register_new/RegisterActivity.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../HomeStayHost/app/src/main/java/com/kujira/hosthomestay/ui/base/ViewModelFactory.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../HomeStayHost/app/src/main/java/com/kujira/hosthomestay/ui/login/LoginFragment.kt">
           <value>
             <set />
@@ -643,7 +698,27 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../HomeStayHost/app/src/main/java/com/kujira/hosthomestay/ui/manager/ManagerAccAdapter.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../HomeStayHost/app/src/main/java/com/kujira/hosthomestay/ui/manager/ManagerAccFragment.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../HomeStayHost/app/src/main/java/com/kujira/hosthomestay/ui/manager/ManagerAccViewModel.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../HomeStayHost/app/src/main/java/com/kujira/hosthomestay/ui/manager/ManagerRoomFragment.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../HomeStayHost/app/src/main/java/com/kujira/hosthomestay/ui/mess/MessageFragment.kt">
           <value>
             <set />
           </value>
@@ -673,12 +748,37 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../HomeStayHost/app/src/main/res/drawable/custom_next_white.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../HomeStayHost/app/src/main/res/drawable/ic_baseline_local_phone_24.xml">
           <value>
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../HomeStayHost/app/src/main/res/layout/activity_host_main.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../HomeStayHost/app/src/main/res/layout/activity_login.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../HomeStayHost/app/src/main/res/layout/activity_register.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../HomeStayHost/app/src/main/res/layout/custom_rule.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../HomeStayHost/app/src/main/res/layout/fragment_manager_room.xml">
           <value>
             <set />
           </value>
@@ -693,6 +793,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../HomeStayHost/app/src/main/res/layout/item_manager_acc.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../HomeStayHost/app/src/main/res/layout/login_fragment.xml">
           <value>
             <set />
@@ -703,7 +808,22 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../HomeStayHost/app/src/main/res/navigation/nav_graph.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../HomeStayHost/app/src/main/res/values/colors.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../HomeStayHost/app/src/main/res/values/strings.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../HomeStayHost/settings.gradle">
           <value>
             <set />
           </value>

@@ -9,13 +9,13 @@ import javax.inject.Singleton
 class AppDataManager @Inject constructor(
     private val dataStoreHelper: DataStoreHelper,
 ) : DataManager {
-    override suspend fun saveUserName(name: String) {
-        dataStoreHelper.saveUserName(name)
-    }
+//    override suspend fun saveUserName(name: String) {
+//        dataStoreHelper.saveUserName(name)
+//    }
 
-    override suspend fun getUserName(): String {
-        return dataStoreHelper.getUserName()
-    }
+//    override suspend fun getUserName(): String {
+//        return dataStoreHelper.getUserName()
+//    }
 
     override val listenerHomeClientCallBack: PublishSubject<Int> = PublishSubject.create()
 }

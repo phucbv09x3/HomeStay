@@ -26,10 +26,6 @@ class LoginActivity : BaseActivity<LoginAccViewModel, ActivityLoginBinding>() {
 
     }
 
-    override fun onStart() {
-        super.onStart()
-
-    }
     override fun initData() {
         window.statusBarColor = ContextCompat.getColor(this, R.color.bg_login_new)
         listener()
