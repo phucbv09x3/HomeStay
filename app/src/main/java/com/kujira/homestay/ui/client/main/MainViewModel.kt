@@ -45,7 +45,7 @@ class MainViewModel : BaseViewModel() {
     val listReport = mutableListOf<String>()
     val listReportLiveData = MutableLiveData<MutableList<String>>()
     fun checkReport(){
-        dataRef.orderByChild("idClient").equalTo(auth.currentUser?.uid.toString())
+        dataRef.child(auth.currentUser?.uid.toString()).orderByChild("idClient").equalTo(auth.currentUser?.uid.toString())
             .addValueEventListener(object : ValueEventListener{
                 override fun onDataChange(snapshot: DataSnapshot) {
                     listReport.clear()

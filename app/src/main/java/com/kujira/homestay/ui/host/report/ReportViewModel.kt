@@ -53,14 +53,13 @@ class ReportViewModel : BaseViewModel() {
     }
 
     private fun reportAcc() {
-        val timeCurrent = System.currentTimeMillis()
         val dataRefer =
             FirebaseDatabase.getInstance().getReference(Constants.CLIENT)
         val hashMap = HashMap<String, String>()
         hashMap["idHost"] = auth.currentUser?.uid.toString()
         hashMap["idClient"] = idClient
         hashMap["contentReport"] = edtReport.get().toString()
-        dataRefer.child("Report").child(timeCurrent.toString()).setValue(hashMap)
+        dataRefer.child("Report").child(idClient).child(System.currentTimeMillis().toString()).setValue(hashMap)
             .addOnSuccessListener {
                 edtReport.set("")
                 listener.value = 1
