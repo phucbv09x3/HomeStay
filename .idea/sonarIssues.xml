@@ -283,6 +283,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/kujira/homestay/ui/host/main/MainHostViewModel.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/kujira/homestay/ui/host/manager/ManagerRoomAdapter.kt">
           <value>
             <set />
@@ -798,6 +803,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../HomeStayHost/app/src/main/res/drawable/custom_next_black.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../HomeStayHost/app/src/main/res/drawable/custom_next_white.xml">
           <value>
             <set />
@@ -808,7 +818,17 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../HomeStayHost/app/src/main/res/drawable/ic_baseline_clear_24.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../HomeStayHost/app/src/main/res/drawable/ic_baseline_local_phone_24.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../HomeStayHost/app/src/main/res/drawable/ic_baseline_lock_open_24.xml">
           <value>
             <set />
           </value>

@@ -59,7 +59,10 @@ class ReportViewModel : BaseViewModel() {
         hashMap["idHost"] = auth.currentUser?.uid.toString()
         hashMap["idClient"] = idClient
         hashMap["contentReport"] = edtReport.get().toString()
-        dataRefer.child("Report").child(idClient).child(System.currentTimeMillis().toString()).setValue(hashMap)
+        dataRefer.child("Report").child("ReportClient")
+            .child(idClient)
+            .child(System.currentTimeMillis().toString())
+            .setValue(hashMap)
             .addOnSuccessListener {
                 edtReport.set("")
                 listener.value = 1

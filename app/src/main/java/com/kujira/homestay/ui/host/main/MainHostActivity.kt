@@ -1,5 +1,6 @@
 package com.kujira.homestay.ui.host.main
 
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import androidx.core.app.ActivityCompat
@@ -13,6 +14,7 @@ import com.kujira.homestay.R
 import com.kujira.homestay.databinding.ActivityHostMainBinding
 import com.kujira.homestay.ui.base.BaseActivity
 import com.kujira.homestay.ui.base.BaseFragment
+import com.kujira.homestay.ui.client.BlockActivity
 import com.kujira.homestay.ui.host.add.AddRoomFragment
 import com.kujira.homestay.ui.host.myacc.MyAccountHostFragment
 import com.kujira.homestay.ui.client.manager.ManagerRoomFragment
@@ -54,9 +56,21 @@ open class MainHostActivity : BaseActivity<MainHostViewModel, ActivityHostMainBi
 //        NavigationUI.setupActionBarWithNavController(this, navController)
         listenerAction()
         requestPermissionCamera()
-
+        listenerReport()
     }
-
+    private fun listenerReport() {
+        mViewModel.checkReport()
+        mViewModel.dataReport.observe(this, {
+            printLog("adminBlock: $it")
+            if (it == "AdminBlock") {
+                startActivity(Intent(this, BlockActivity::class.java))
+                mViewModel.logOut()
+                finish()
+            }else{
+                return@observe
+            }
+        })
+    }
     private fun requestPermissionCamera() = if (
         ContextCompat.checkSelfPermission(
             this, android.Manifest.permission.CAMERA
