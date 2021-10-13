@@ -64,7 +64,7 @@ open class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(),
         mViewModel.checkReport()
         mViewModel.listReportLiveData.observe(this, {
             printLog("listReportLiveData: ${it.size}")
-            if (it.size >= 10) {
+            if (it.size >= 5 ) {
                 startActivity(Intent(this, BlockActivity::class.java))
                 mViewModel.logOut()
                 finish()

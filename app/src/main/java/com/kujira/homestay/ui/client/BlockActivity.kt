@@ -11,4 +11,9 @@ class BlockActivity : AppCompatActivity() {
         setContentView(R.layout.activity_block)
         window.statusBarColor = ContextCompat.getColor(this, R.color.white)
     }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finish()
+    }
 }

@@ -38,7 +38,7 @@ class RegisterAccViewModel : BaseViewModel() {
     private var listEmail = mutableListOf<String>()
 
     private fun registerAcc(permission: Int) {
-        showLoading.onNext(true)
+
         val userName = userNameRegister.get()
         val mail = emailRegister.get()
         val passWord = passwordRegister.get()
@@ -46,6 +46,7 @@ class RegisterAccViewModel : BaseViewModel() {
         if (userName?.isEmpty() == false && mail?.isEmpty() == false
             && passWord?.isEmpty() == false && phone?.isEmpty() == false
         ) {
+            showLoading.onNext(true)
             val isCheckMail = listEmail.contains(mail)
             if (isCheckMail) {
                 listenerShowToast.value = R.string.email_exist

@@ -3,12 +3,32 @@
   <component name="issues">
     <option name="index">
       <map>
+        <entry key="/Dummy.txt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.navigation/navigation-fragment/2.3.1/1b8d55b17ab1f3f2f7571e4882b6f90f58232022/navigation-fragment-2.3.1-sources.jar!/androidx/navigation/fragment/NavHostFragment.java">
           <value>
             <set />
           </value>
         </entry>
         <entry key="$USER_HOME$/.gradle/caches/transforms-2/files-2.1/abd36c0813a9d62f736dcf4cd7fc26bc/jetified-play-services-maps-17.0.0/jars/classes.jar!/com/google/android/gms/maps/model/LatLng.class">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../Photoruction/Photoruction_Android/app/src/main/java/com/concore/gs/photoruction_android/plan_detail_item/actions/AddNewSheetRunnable.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../Photoruction/Photoruction_Android/app/src/main/java/com/concore/gs/photoruction_android/view/activity/PlanDecisionActivity.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../Photoruction/Photoruction_Android/app/src/main/java/com/concore/gs/photoruction_android/view/activity/PlanDetailActivity.java">
           <value>
             <set />
           </value>
@@ -774,6 +794,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/../HomeStayHost/app/src/main/java/com/kujira/hosthomestay/ui/myacc/MyAccountFragment.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../HomeStayHost/app/src/main/java/com/kujira/hosthomestay/ui/myacc/MyAccountViewModel.kt">
           <value>
             <set />
           </value>

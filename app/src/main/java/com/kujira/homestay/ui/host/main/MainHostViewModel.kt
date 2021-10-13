@@ -12,7 +12,7 @@ import com.kujira.homestay.ui.base.BaseViewModel
 import com.kujira.homestay.utils.Constants
 
 /**
- * Created by OpenYourEyes on 10/24/2020
+ * Created by Phucbv on 5/2021
  */
 class MainHostViewModel : BaseViewModel() {
     companion object {
