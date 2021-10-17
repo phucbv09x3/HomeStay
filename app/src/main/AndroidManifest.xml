@@ -9,6 +9,8 @@
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
+    <uses-feature android:name="android.hardware.camera.ar" />
+
     <application
         android:name=".App"
         android:allowBackup="true"
@@ -17,6 +19,9 @@
         android:roundIcon="@mipmap/homestaynet"
         android:supportsRtl="true"
         android:theme="@style/Theme.HomeStay">
+        <activity
+            android:name=".ui.client.ar.ARActivity"
+            android:exported="true" />
         <activity
             android:name=".ui.client.BlockActivity"
             android:exported="true" />
@@ -32,7 +37,7 @@
         <activity
             android:name=".ui.all_login.login_new.LoginActivity"
             android:exported="true"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.client.map.MapActivity"
             android:screenOrientation="portrait" />
@@ -53,6 +58,10 @@
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false" />
+
+        <meta-data
+            android:name="com.google.ar.core"
+            android:value="required" />
     </application>
 
 </manifest>

@@ -197,6 +197,21 @@
                 android:layout_marginStart="@dimen/_12sdp"
                 android:drawableRight="@drawable/ic_baseline_navigate_next_24"
                 android:layout_height="@dimen/_40sdp"/>
+<!--            <TextView-->
+<!--                android:background="@drawable/custom_stroke"-->
+<!--                android:id="@+id/ar"-->
+<!--                android:padding="@dimen/_4sdp"-->
+<!--                android:onClick="@{(view)->viewModel.onClick(view)}"-->
+<!--                android:textColor="@color/black"-->
+<!--                android:textStyle="bold"-->
+<!--                android:textSize="@dimen/_18sdp"-->
+<!--                android:layout_marginLeft="@dimen/_30sdp"-->
+<!--                app:layout_constraintBottom_toBottomOf="@id/tv_next_weather"-->
+<!--                app:layout_constraintLeft_toRightOf="@id/tv_next_weather"-->
+<!--                app:layout_constraintTop_toTopOf="@id/tv_next_weather"-->
+<!--                android:text="=> AR"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"/>-->
             <LinearLayout
                 android:id="@+id/linear_login"
                 app:layout_constraintTop_toBottomOf="@id/tv_next_weather"

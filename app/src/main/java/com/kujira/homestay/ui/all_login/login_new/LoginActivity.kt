@@ -1,12 +1,17 @@
 package com.kujira.homestay.ui.all_login.login_new
 
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
+import android.widget.EditText
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.FragmentNavigator
+import com.google.firebase.auth.FirebaseAuth
 import com.kujira.homestay.R
 import com.kujira.homestay.databinding.ActivityLoginBinding
 import com.kujira.homestay.ui.all_login.register_new.RegisterActivity
@@ -52,9 +57,9 @@ class LoginActivity : BaseActivity<LoginAccViewModel, ActivityLoginBinding>() {
                 LoginAccViewModel.REGISTER_ACC -> {
                     val intent = Intent(this, RegisterActivity::class.java)
                     startForResult.launch(intent)
-                }  
+                }
                 LoginAccViewModel.FORGOT_PASSWORD -> {
-
+                    forgot()
                 }
             }
         })
@@ -71,28 +76,62 @@ class LoginActivity : BaseActivity<LoginAccViewModel, ActivityLoginBinding>() {
         })
     }
 
-    override fun onFragmentResumed(fragment: BaseFragment<*, *>) {
+    private fun forgot() {
+        val buider = AlertDialog.Builder(this)
+        buider.setTitle("Đặt lại mật khẩu")
+        val linea = LinearLayout(this)
 
+        val edt_mail = EditText(this)
+        linea.addView(edt_mail)
+        buider.setView(linea)
+        edt_mail.hint = "Nhập email bạn cần khôi phục mật khẩu"
+        buider.setPositiveButton("Gửi") { dialog: DialogInterface?, which: Int ->
+            val mAuth =
+                FirebaseAuth.getInstance().sendPasswordResetEmail(edt_mail.text.toString().trim())
+                    .addOnCompleteListener { p0 ->
+                        if (p0.isSuccessful) {
+                            Toast.makeText(
+                                this,
+                                "Send success....",
+                                Toast.LENGTH_LONG
+                            ).show()
+                        } else {
+                            Toast.makeText(
+                                this,
+                                "Send failed....",
+                                Toast.LENGTH_LONG
+                            ).show()
+                        }
+                    }
+        }
+        buider.setNegativeButton("Không") { dialog: DialogInterface?, which: Int ->
+            dialog!!.dismiss()
+        }
+        buider.show()
     }
 
-    override fun navigate(fragmentId: Int, bundle: Bundle?, addToBackStack: Boolean) {
+override fun onFragmentResumed(fragment: BaseFragment<*, *>) {
 
-    }
+}
 
-    override fun navigateWithSharedElement(
-        fragmentId: Int,
-        bundle: Bundle?,
-        sharedElements: FragmentNavigator.Extras?,
-        addToBackStack: Boolean
-    ) {
+override fun navigate(fragmentId: Int, bundle: Bundle?, addToBackStack: Boolean) {
 
-    }
+}
 
-    override fun navigateUp() {
+override fun navigateWithSharedElement(
+    fragmentId: Int,
+    bundle: Bundle?,
+    sharedElements: FragmentNavigator.Extras?,
+    addToBackStack: Boolean
+) {
 
-    }
+}
 
-    override fun present(fragmentId: Int, bundle: Bundle?) {
+override fun navigateUp() {
 
-    }
+}
+
+override fun present(fragmentId: Int, bundle: Bundle?) {
+
+}
 }

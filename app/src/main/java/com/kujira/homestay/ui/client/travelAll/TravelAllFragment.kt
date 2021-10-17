@@ -38,21 +38,14 @@ class TravelAllFragment : BaseFragment<TravelAllViewModel, FragmentTravelAllBind
                 (dataBinding.rcyListTravelAll.adapter as TravelAdapter).setList(it)
             })
         } else {
-            val data = bundle?.getParcelable<Provinces>(Constants.KEY_ID) as Provinces
-            data?.let { data ->
+            val data = bundle.getParcelable<Provinces>(Constants.KEY_ID) as Provinces
                 dataBinding.tvShowProvinces.text = data.name
                 dataBinding.tvShowProvinces.visibility = View.VISIBLE
                 viewModel.getListTravelId(data.name)
                 viewModel.listTravels.observe(this, {
                     (dataBinding.rcyListTravelAll.adapter as TravelAdapter).setList(it)
                 })
-            }
         }
-//        viewModel.getListTravelAll()
-//        viewModel.listTravels.observe(this, {
-//            Log.d("list", "$it")
-//            (dataBinding.rcyListTravelAll.adapter as TravelAdapter).setList(it)
-//        })
 
         viewModel.listenerBack.observe(this, {
             navigators.navigateUp()
