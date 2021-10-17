@@ -25,7 +25,6 @@ class RegisterAccViewModel : BaseViewModel() {
                 registerAcc(1)
             }
             R.id.btn_register_client_new -> {
-
                 registerAcc(2)
             }
 
@@ -38,7 +37,6 @@ class RegisterAccViewModel : BaseViewModel() {
     private var listEmail = mutableListOf<String>()
 
     private fun registerAcc(permission: Int) {
-
         val userName = userNameRegister.get()
         val mail = emailRegister.get()
         val passWord = passwordRegister.get()

@@ -31,14 +31,12 @@ class SplashViewModel : BaseViewModel() {
                     if(permission == "1"){
                         showLoading.onNext(false)
                         android.os.Handler(Looper.getMainLooper()).postDelayed({
-                            //Do something after 100ms
                             autoLogin.value = 1
                         }, 300)
 
                     }else if (permission == "2"){
                         showLoading.onNext(false)
                         android.os.Handler(Looper.getMainLooper()).postDelayed({
-                            //Do something after 100ms
                             autoLogin.value = 2
                         }, 300)
 
