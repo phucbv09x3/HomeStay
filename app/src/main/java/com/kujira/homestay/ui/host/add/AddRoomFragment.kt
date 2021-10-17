@@ -178,12 +178,9 @@ class AddRoomFragment : BaseFragment<AddRoomViewModel, FragmentAddRoomHostBindin
                         runBlocking {
                             viewModel.startPutRoom(model)
                         }
-//                        CoroutineScope(Dispatchers.Main).launch {
-//                            viewModel.accAll(model)
-//                        }
 
-                        viewModel.notifyPut.observe(this, {
-                            if (it == 1) {
+                        viewModel.notifyPut.observe(this, { listener->
+                            if (listener == 1) {
                                 Toast.makeText(context, "Thành công!", Toast.LENGTH_LONG).show()
                             } else {
                                 Toast.makeText(context, "Thất bại !", Toast.LENGTH_LONG).show()
