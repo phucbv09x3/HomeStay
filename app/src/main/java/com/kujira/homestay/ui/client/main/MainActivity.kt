@@ -22,6 +22,7 @@ import com.kujira.homestay.ui.client.BlockActivity
 import com.kujira.homestay.ui.client.account.AccountFragment
 import com.kujira.homestay.ui.client.home.HomeFragment
 import com.kujira.homestay.ui.client.manager.ManagerRoomFragment
+import com.kujira.homestay.ui.client.service.HomeStayService
 import com.kujira.homestay.utils.printLog
 
 
@@ -58,8 +59,13 @@ open class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(),
         requestPermission()
         checkNetWork()
         listenerReport()
+        startSV()
     }
 
+    private fun startSV(){
+        val intent = Intent(this,HomeStayService::class.java)
+        startService(intent)
+    }
     private fun listenerReport() {
         mViewModel.checkReport()
         mViewModel.listReportLiveData.observe(this, {

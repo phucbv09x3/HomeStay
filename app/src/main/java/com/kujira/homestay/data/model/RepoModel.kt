@@ -43,8 +43,6 @@ data class Provinces(
      var id: String=""
      var address: String=""
      var detail: String=""
-     constructor() {
-     }
 
      constructor(img: String, id: String, address: String, detail: String) {
          this.img = img

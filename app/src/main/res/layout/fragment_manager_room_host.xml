@@ -12,6 +12,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/white"
         tools:context=".ui.host.manager.ManagerRoomHostFragment">
 
         <TextView
@@ -29,6 +30,7 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rcy_manager"
+            android:padding="@dimen/_10sdp"
             android:layout_width="match_parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_title_manager"

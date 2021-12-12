@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#FF6600"
+    android:orientation="horizontal"
+    android:weightSum="9">
+
+
+    <ImageView
+        android:id="@+id/img_notification"
+        android:layout_width="0dp"
+        android:src="@mipmap/homestaynet"
+        android:paddingStart="@dimen/_6sdp"
+        android:paddingEnd="@dimen/_6sdp"
+        android:layout_height="@dimen/_60sdp"
+        android:layout_gravity="center"
+        android:layout_weight="2.5"
+        android:scaleType="fitCenter" />
+
+    <TextView
+        android:layout_width="@dimen/_1sdp"
+        android:layout_height="@dimen/_50sdp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="@dimen/_4sdp"
+        android:background="@color/purple_700" />
+
+    <LinearLayout
+        android:layout_width="@dimen/_1sdp"
+        android:layout_height="wrap_content"
+        android:layout_weight="6.2"
+        android:weightSum="2"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/_10sdp"
+            android:paddingTop="@dimen/_4sdp"
+            android:text="HomeStay VN"
+            android:textSize="@dimen/_14sdp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_notification_user"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_30sdp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textStyle="italic"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/_10sdp"
+            android:text="HomeStay running"
+            android:textSize="@dimen/_13sdp" />
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/btn_closeNoti"
+        android:layout_width="@dimen/_20sdp"
+        android:layout_height="@dimen/_28sdp"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="0.3"
+        android:background="@drawable/ic_baseline_delete_24" />
+</LinearLayout>

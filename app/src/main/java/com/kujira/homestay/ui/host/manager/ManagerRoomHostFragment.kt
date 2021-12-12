@@ -22,6 +22,7 @@ import kotlinx.android.synthetic.main.fragment_manager_room_host.*
 class ManagerRoomHostFragment :
     BaseFragment<ManagerRoomHostViewModel, FragmentManagerRoomHostBinding>(),
     IClick {
+    var countChange = 0
     override fun createViewModel(): Class<ManagerRoomHostViewModel> {
         return ManagerRoomHostViewModel::class.java
     }

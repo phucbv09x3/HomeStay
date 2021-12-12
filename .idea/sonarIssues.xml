@@ -18,6 +18,21 @@
             <set />
           </value>
         </entry>
+        <entry key="$USER_HOME$/AndroidStudioProjects/demo_map/lib/main.dart">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/AndroidStudioProjects/demo_project/lib/main.dart">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/AndroidStudioProjects/demo_project/pubspec.yaml">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../../Photoruction/Photoruction_Android/app/src/main/java/com/concore/gs/photoruction_android/plan_detail_item/actions/AddNewSheetRunnable.java">
           <value>
             <set />
@@ -258,12 +273,22 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/kujira/homestay/ui/client/service/HomeStayService.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/kujira/homestay/ui/client/travelAll/TravelAllFragment.kt">
           <value>
             <set />
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/kujira/homestay/ui/client/travelAll/TravelAllViewModel.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/kujira/homestay/ui/client/weather/WeatherFragment.kt">
           <value>
             <set />
           </value>
@@ -478,12 +503,27 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/drawable-v24/ic_baseline_delete_24.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/drawable-v24/ic_baseline_local_phone_24.xml">
           <value>
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/drawable/custom_bg_add_room.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/drawable/custom_bg_item_manager.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/drawable/custom_bg_logout.xml">
           <value>
             <set />
           </value>
@@ -544,6 +584,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/layout/custom_exit_or_report.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/layout/custom_notification.xml">
           <value>
             <set />
           </value>
@@ -989,6 +1034,16 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/../arcore-android-sdk/samples/hello_ar_kotlin/app/src/main/java/com/google/ar/core/examples/kotlin/helloar/HelloArRenderer.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../interPhone/app/src/main/java/com/miichisoft/interphone/ui/main/MainViewModel.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../interPhone/app/src/main/res/drawable/custom_bg_login.xml">
           <value>
             <set />
           </value>

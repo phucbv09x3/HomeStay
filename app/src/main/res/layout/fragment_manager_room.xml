@@ -13,6 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white"
+        android:layout_marginLeft="@dimen/_6sdp"
+        android:layout_marginRight="@dimen/_6sdp"
         tools:context=".ui.client.manager.ManagerRoomFragment">
 
         <TextView
@@ -29,11 +31,10 @@
             android:layout_height="wrap_content"/>
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rcy_my_room"
-            android:layout_marginLeft="@dimen/_4sdp"
             android:layout_marginBottom="@dimen/_4sdp"
-            android:layout_marginRight="@dimen/_4sdp"
             android:layout_width="match_parent"
-            android:layout_marginTop="@dimen/_4sdp"
+            android:padding="@dimen/_10sdp"
+            android:background="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/title"
             app:layout_constraintLeft_toLeftOf="parent"

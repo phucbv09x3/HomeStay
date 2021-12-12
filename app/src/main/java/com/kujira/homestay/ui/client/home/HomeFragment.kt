@@ -47,7 +47,7 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>(), IClickO
                         navigators.navigate(R.id.listRoom)
                     }
                     2->{
-                        navigators.navigate(R.id.travelAll_fragment)
+                        navigators.navigate(R.id.travelAll_fragment,bundle = null)
                     }
                     3->{
                         activity.startActivity(Intent(context, MapActivity::class.java))

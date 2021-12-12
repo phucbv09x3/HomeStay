@@ -439,13 +439,12 @@
                 android:layout_marginTop="@dimen/_16sdp"
                 android:layout_marginRight="@dimen/_10sdp"
                 android:layout_marginBottom="@dimen/_16sdp"
-                android:background="#FFCC00"
+                android:background="@drawable/custom_bg_add_room"
                 android:onClick="@{(view)->viewModel.onClick(view)}"
                 android:padding="@dimen/_4sdp"
                 android:text="Thêm Chỗ Ngỉ"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
-
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/edt_price_dialog" />
 
@@ -456,10 +455,10 @@
                 android:layout_marginTop="@dimen/_16sdp"
                 android:layout_marginRight="@dimen/_10sdp"
                 android:layout_marginBottom="@dimen/_16sdp"
-                android:background="#FFCC00"
                 android:onClick="@{(view)->viewModel.onClick(view)}"
                 android:padding="@dimen/_4sdp"
                 android:text="Hoàn Thiện"
+                android:background="@drawable/custom_bg_add_room"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:visibility="gone"

@@ -78,12 +78,6 @@ class AccountFragment : BaseFragment<AccountViewModel, FragmentAccountBinding>()
                             getString(R.string.success),
                             Toast.LENGTH_LONG
                         ).show()
-                    } else {
-                        Toast.makeText(
-                            context,
-                            getString(R.string.error),
-                            Toast.LENGTH_LONG
-                        ).show()
                     }
                 })
             }else{

@@ -34,7 +34,7 @@ object Constants {
 
     //dialog
     const val TITLE_CANCEL_ROOM="Hủy Phòng"
-    const val ACCESS_CANCEL_ROOM="BẠn muốn hủy đặt phòng này không"
+    const val ACCESS_CANCEL_ROOM="Ban muốn hủy đặt phòng này không"
     const val OK_DIALOG="OK"
     const val CHOOSE_ROOM="Chọn Phòng"
     const val ACCESS_CHOOSE_ROOM="Bạn muốn đặt phòng này"

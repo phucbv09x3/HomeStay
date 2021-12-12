@@ -9,6 +9,7 @@ import com.kujira.homestay.data.model.Provinces
 import com.kujira.homestay.databinding.FragmentTravelAllBinding
 import com.kujira.homestay.ui.base.BaseFragment
 import com.kujira.homestay.utils.Constants
+import kotlinx.android.synthetic.main.fragment_travel_all.*
 
 class TravelAllFragment : BaseFragment<TravelAllViewModel, FragmentTravelAllBinding>() {
     override fun createViewModel(): Class<TravelAllViewModel> {
@@ -34,18 +35,22 @@ class TravelAllFragment : BaseFragment<TravelAllViewModel, FragmentTravelAllBind
         val bundle = arguments
         if (bundle == null) {
             viewModel.getListTravelAll()
-            viewModel.listTravels.observe(this, {
-                (dataBinding.rcyListTravelAll.adapter as TravelAdapter).setList(it)
-            })
+//            viewModel.listTravels.observe(this, {
+//                (dataBinding.rcyListTravelAll.adapter as TravelAdapter).setList(it)
+//            })
+            println("PhucDebug:  ok1")
         } else {
             val data = bundle.getParcelable<Provinces>(Constants.KEY_ID) as Provinces
                 dataBinding.tvShowProvinces.text = data.name
                 dataBinding.tvShowProvinces.visibility = View.VISIBLE
                 viewModel.getListTravelId(data.name)
-                viewModel.listTravels.observe(this, {
-                    (dataBinding.rcyListTravelAll.adapter as TravelAdapter).setList(it)
-                })
+
+            println("PhucDebug:  ok3")
+
         }
+        viewModel.listTravels.observe(this, {
+            (dataBinding.rcyListTravelAll.adapter as TravelAdapter).setList(it)
+        })
 
         viewModel.listenerBack.observe(this, {
             navigators.navigateUp()
@@ -59,7 +64,6 @@ class TravelAllFragment : BaseFragment<TravelAllViewModel, FragmentTravelAllBind
                 if (!TextUtils.isEmpty(query?.trim())) {
                     viewModel.searchTravel(query)
                     viewModel.listTravels.observe(this@TravelAllFragment, {
-                        Log.d("list", "$it")
                         (dataBinding.rcyListTravelAll.adapter as TravelAdapter).setList(it)
                     })
 
@@ -74,7 +78,6 @@ class TravelAllFragment : BaseFragment<TravelAllViewModel, FragmentTravelAllBind
                 if (!TextUtils.isEmpty(newText?.trim())) {
                     viewModel.searchTravel(newText)
                     viewModel.listTravels.observe(this@TravelAllFragment, {
-                        Log.d("list", "$it")
                         (dataBinding.rcyListTravelAll.adapter as TravelAdapter).setList(it)
                     })
                 } else {

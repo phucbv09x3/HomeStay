@@ -10,10 +10,13 @@
         <entry key="..\:/development/HomeStay/app/src/main/res/drawable-v24/custom_edt_login.xml" value="0.35520833333333335" />
         <entry key="..\:/development/HomeStay/app/src/main/res/drawable-v24/ic_baseline_add_24.xml" value="0.32592592592592595" />
         <entry key="..\:/development/HomeStay/app/src/main/res/drawable-v24/ic_baseline_calendar_today_24.xml" value="0.3466666666666667" />
+        <entry key="..\:/development/HomeStay/app/src/main/res/drawable-v24/ic_baseline_delete_24.xml" value="0.34375" />
         <entry key="..\:/development/HomeStay/app/src/main/res/drawable-v24/ic_baseline_home_24.xml" value="0.3466666666666667" />
         <entry key="..\:/development/HomeStay/app/src/main/res/drawable-v24/ic_baseline_local_phone_24.xml" value="0.21458333333333332" />
         <entry key="..\:/development/HomeStay/app/src/main/res/drawable-v24/my_person.xml" value="0.3466666666666667" />
+        <entry key="..\:/development/HomeStay/app/src/main/res/drawable/custom_bg_add_room.xml" value="0.35520833333333335" />
         <entry key="..\:/development/HomeStay/app/src/main/res/drawable/custom_bg_item_manager.xml" value="0.35520833333333335" />
+        <entry key="..\:/development/HomeStay/app/src/main/res/drawable/custom_bg_logout.xml" value="0.35520833333333335" />
         <entry key="..\:/development/HomeStay/app/src/main/res/drawable/custom_edt_comment.xml" value="0.34974358974358977" />
         <entry key="..\:/development/HomeStay/app/src/main/res/drawable/custom_next_white.xml" value="0.2833333333333333" />
         <entry key="..\:/development/HomeStay/app/src/main/res/drawable/ic_baseline_navigate_next_24.xml" value="0.2833333333333333" />
@@ -27,6 +30,7 @@
         <entry key="..\:/development/HomeStay/app/src/main/res/layout/custom_change_acc.xml" value="0.3390625" />
         <entry key="..\:/development/HomeStay/app/src/main/res/layout/custom_dilog_edit.xml" value="0.3359375" />
         <entry key="..\:/development/HomeStay/app/src/main/res/layout/custom_exit_or_report.xml" value="0.2734375" />
+        <entry key="..\:/development/HomeStay/app/src/main/res/layout/custom_notification.xml" value="0.32760416666666664" />
         <entry key="..\:/development/HomeStay/app/src/main/res/layout/custom_rule.xml" value="0.3390625" />
         <entry key="..\:/development/HomeStay/app/src/main/res/layout/fragment_account.xml" value="0.3260416666666667" />
         <entry key="..\:/development/HomeStay/app/src/main/res/layout/fragment_account_host.xml" value="0.2833333333333333" />

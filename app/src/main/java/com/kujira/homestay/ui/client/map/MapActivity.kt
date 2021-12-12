@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.FragmentNavigator
@@ -29,13 +30,10 @@ import kotlinx.android.synthetic.main.fragment_map.*
 class MapActivity : BaseActivity<MapViewModel, ActivityMapBinding>(), OnMapReadyCallback {
     private lateinit var mMap: GoogleMap
     private var mListLocation: MutableList<String>? = null
-    private var checkMapType = false
     private var mGeoDataClient: GeoDataClient? = null
     private var mPlaceDetectionClient: PlaceDetectionClient? = null
     private var mFusedLocationProvider: FusedLocationProviderClient? = null
-    private var locationPermissionGranted = false
     private var mMapViewModel: MapViewModel? = null
-    private var lastKnownLocation: String? = null
     private var mMarker: Marker? = null
     private var mMarker2: Marker? = null
     private var polyline: Polyline? = null
@@ -61,7 +59,11 @@ class MapActivity : BaseActivity<MapViewModel, ActivityMapBinding>(), OnMapReady
         btn_goLine.setOnClickListener {
             val origin = edt_go.text.toString().trim()
             val destination = edt_to.text.toString().trim()
-            mMapViewModel?.getDirection(origin, destination)
+            if(origin.isEmpty() || destination.isEmpty()) {
+                Toast.makeText(this,"Vui lòng nhập đầy đủ !", Toast.LENGTH_LONG).show()
+            }else {
+                mMapViewModel?.getDirection(origin, destination)
+            }
         }
         mListLocation = mutableListOf()
         mMapViewModel?.direction?.observe(this, {
