@@ -11,6 +11,9 @@ import com.google.firebase.database.ValueEventListener
 import com.kujira.homestay.R
 import com.kujira.homestay.ui.base.BaseViewModel
 import com.kujira.homestay.utils.Constants
+import java.util.*
+import javax.crypto.Cipher
+import javax.crypto.spec.SecretKeySpec
 
 class LoginAccViewModel : BaseViewModel() {
     val emailLogin = ObservableField<String>()
@@ -74,7 +77,7 @@ class LoginAccViewModel : BaseViewModel() {
             }
             if (acc != null) {
                 showLoading.onNext(true)
-                auth.signInWithEmailAndPassword(email, password)
+                auth.signInWithEmailAndPassword(email, enCryptAES(password,Constants.secretKey))
                     .addOnCompleteListener {
                         if (it.isSuccessful) {
                             val user = auth.currentUser
@@ -105,6 +108,13 @@ class LoginAccViewModel : BaseViewModel() {
         } else {
             listener.value = R.string.error_isEmpty
         }
+    }
+    private fun enCryptAES(textEncrypt: String, secret: String): String {
+        val secretKeySpec = SecretKeySpec(secret.toByteArray().copyOf(16), "AES")
+        val cipher = Cipher.getInstance("AES/ECB/PKCS5PADDING")
+        cipher.init(Cipher.ENCRYPT_MODE, secretKeySpec)
+        val byteArray = cipher.doFinal(textEncrypt.toByteArray())
+        return (Base64.getEncoder().encodeToString(byteArray))
     }
 
 

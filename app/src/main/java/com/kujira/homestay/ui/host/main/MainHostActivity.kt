@@ -1,5 +1,7 @@
 package com.kujira.homestay.ui.host.main
 
+import FirebaseService
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
@@ -10,16 +12,26 @@ import androidx.navigation.NavDestination
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.FragmentNavigator
 import androidx.navigation.fragment.NavHostFragment
+import com.google.firebase.iid.internal.FirebaseInstanceIdInternal
+import com.google.firebase.messaging.FirebaseMessaging
 import com.kujira.homestay.R
 import com.kujira.homestay.databinding.ActivityHostMainBinding
 import com.kujira.homestay.ui.base.BaseActivity
 import com.kujira.homestay.ui.base.BaseFragment
 import com.kujira.homestay.ui.client.BlockActivity
 import com.kujira.homestay.ui.host.add.AddRoomFragment
-import com.kujira.homestay.ui.host.myacc.MyAccountHostFragment
-import com.kujira.homestay.ui.client.manager.ManagerRoomFragment
 import com.kujira.homestay.ui.host.manager.ManagerRoomHostFragment
+import com.kujira.homestay.ui.host.myacc.MyAccountHostFragment
 import com.kujira.homestay.utils.printLog
+import kotlinx.android.synthetic.main.activity_main.*
+
+
+
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.database.FirebaseDatabase
+
+
+const val TOPIC = "/topics/myTopic2"
 
 open class MainHostActivity : BaseActivity<MainHostViewModel, ActivityHostMainBinding>(),
     NavController.OnDestinationChangedListener {
@@ -41,7 +53,7 @@ open class MainHostActivity : BaseActivity<MainHostViewModel, ActivityHostMainBi
     }
 
     override fun getContentView(): Int {
-        return R.layout.activity_host_main
+        return com.kujira.homestay.R.layout.activity_host_main
     }
 
     override fun initAction() {
@@ -51,13 +63,35 @@ open class MainHostActivity : BaseActivity<MainHostViewModel, ActivityHostMainBi
     override fun initData() {
         navController = navHostFragment.navController
         //setSupportActionBar(toolbar)
-        window.statusBarColor = ContextCompat.getColor(this, R.color.white)
+        window.statusBarColor = ContextCompat.getColor(this, com.kujira.homestay.R.color.white)
         navController.addOnDestinationChangedListener(this)
 //        NavigationUI.setupActionBarWithNavController(this, navController)
         listenerAction()
         requestPermissionCamera()
         listenerReport()
+        mViewModel.getToken()
+        //setupFCM()
     }
+
+//    private fun setupFCM() {
+//        FirebaseService.sharedPref = getSharedPreferences("sharedPref", Context.MODE_PRIVATE)
+////        FirebaseInstanceId.getInstance().instanceId.addOnSuccessListener {
+////            FirebaseService.token = it.token
+////            etToken.setText(it.token)
+////        }
+//        FirebaseMessaging.getInstance().token
+//            .addOnCompleteListener(OnCompleteListener { task ->
+//                if (!task.isSuccessful) {
+//                    return@OnCompleteListener
+//                }
+//                val token: String? = task.result
+//                FirebaseDatabase.getInstance().getReference("Client")
+//                    .child("Account").child()
+//
+//            })
+//        FirebaseMessaging.getInstance().subscribeToTopic(TOPIC)
+//    }
+
     private fun listenerReport() {
         mViewModel.checkReport()
         mViewModel.dataReport.observe(this, {
@@ -66,11 +100,12 @@ open class MainHostActivity : BaseActivity<MainHostViewModel, ActivityHostMainBi
                 startActivity(Intent(this, BlockActivity::class.java))
                 mViewModel.logOut()
                 finish()
-            }else{
+            } else {
                 return@observe
             }
         })
     }
+
     private fun requestPermissionCamera() = if (
         ContextCompat.checkSelfPermission(
             this, android.Manifest.permission.CAMERA

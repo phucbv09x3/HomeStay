@@ -98,6 +98,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/kujira/homestay/data/api/ApiCoroutines.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/kujira/homestay/data/local/DataStoreHelper.kt">
           <value>
             <set />
@@ -114,6 +119,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/kujira/homestay/data/model/response/HomeStay.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/kujira/homestay/data/model/response/Weather.kt">
           <value>
             <set />
           </value>
@@ -273,7 +283,27 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/kujira/homestay/ui/client/service/FCMService.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/kujira/homestay/ui/client/service/FirebaseService.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/kujira/homestay/ui/client/service/HomeStayService.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/kujira/homestay/ui/client/service/NotificationAPI.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/kujira/homestay/ui/client/service/RetrofitInstance.kt">
           <value>
             <set />
           </value>
@@ -289,6 +319,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/kujira/homestay/ui/client/weather/WeatherFragment.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/kujira/homestay/ui/client/weather/WeatherViewModel.kt">
           <value>
             <set />
           </value>
@@ -1044,6 +1079,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/../interPhone/app/src/main/res/drawable/custom_bg_login.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../encrypt/app/src/main/java/com/example/mdvapp/MainActivity.kt">
           <value>
             <set />
           </value>

@@ -56,3 +56,7 @@ data class Root (
     var name: String? ,
     var cod :Int,
 )
+data class NotificationData(
+    val title: String,
+    val message: String
+)

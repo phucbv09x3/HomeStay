@@ -41,5 +41,11 @@ object Constants {
 
     const val LOG_OUT = "Đăng xuất"
     const val ACCESS_LOGOUT = "Bạn vẫn muốn đăng xuất !"
+
+    const val secretKey = "HomeStay-HVKTMM-VN"
+    const val BASE_URL = "https://fcm.googleapis.com"
+    const val SERVER_KEY = "AAAAD77SRcA:APA91bGRhS2WS0xWhqmQL4j957-Xe5mJ4j34T8nfZsGpapa9LeZcWVtS" +
+            "_RDOnpPW5TWWi6KVCHG_5btYDMRBgRRgBH8dA7RfDeAlMtRtzuKT0H1XuSaGhoBE-kKgXEkpqMWAhXu0_fTN"
+    const val CONTENT_TYPE = "application/json"
 }
 

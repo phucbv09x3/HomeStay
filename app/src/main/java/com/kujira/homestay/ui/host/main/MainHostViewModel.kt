@@ -2,11 +2,13 @@ package com.kujira.homestay.ui.host.main
 
 import android.view.View
 import androidx.lifecycle.MutableLiveData
+import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.google.firebase.messaging.FirebaseMessaging
 import com.kujira.homestay.R
 import com.kujira.homestay.ui.base.BaseViewModel
 import com.kujira.homestay.utils.Constants
@@ -52,6 +54,27 @@ class MainHostViewModel : BaseViewModel() {
             })
     }
 
+    fun getToken() {
+        FirebaseMessaging.getInstance().token
+            .addOnCompleteListener(OnCompleteListener { task ->
+                if (!task.isSuccessful) {
+                    return@OnCompleteListener
+                }
+                val token: String? = task.result
+                dataRef.child("Account").child(auth.currentUser?.uid.toString()).addValueEventListener(object :ValueEventListener{
+                        override fun onDataChange(snapshot: DataSnapshot) {
+                            val hashMap = HashMap<String, String>()
+                            hashMap["token"] = token.toString()
+                            dataRef.setValue(hashMap);
+                        }
+
+                        override fun onCancelled(error: DatabaseError) {
+                            TODO("Not yet implemented")
+                        }
+                    })
+
+            })
+    }
     fun logOut() {
         auth.signOut()
     }

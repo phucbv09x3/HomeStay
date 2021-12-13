@@ -59,13 +59,13 @@ open class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(),
         requestPermission()
         checkNetWork()
         listenerReport()
-        startSV()
+        mViewModel.getToken()
     }
 
-    private fun startSV(){
-        val intent = Intent(this,HomeStayService::class.java)
-        startService(intent)
-    }
+//    private fun startSV(){
+//        val intent = Intent(this,HomeStayService::class.java)
+//        startService(intent)
+//    }
     private fun listenerReport() {
         mViewModel.checkReport()
         mViewModel.listReportLiveData.observe(this, {
