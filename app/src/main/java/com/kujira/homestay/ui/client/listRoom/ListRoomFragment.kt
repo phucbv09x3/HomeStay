@@ -3,14 +3,21 @@ package com.kujira.homestay.ui.client.listRoom
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.kujira.homestay.R
 import com.kujira.homestay.data.model.response.AddRoomModel
+import com.kujira.homestay.data.model.response.NotificationData
 import com.kujira.homestay.databinding.FragmentListRoomBinding
 import com.kujira.homestay.ui.base.BaseFragment
+import com.kujira.homestay.ui.client.service.PushNotification
+import com.kujira.homestay.ui.client.service.RetrofitInstance
 import com.kujira.homestay.utils.Constants
 import kotlinx.android.synthetic.main.fragment_list_room.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 
 class ListRoomFragment : BaseFragment<ListRoomViewModel, FragmentListRoomBinding>(), IChooseRoom {
@@ -35,7 +42,25 @@ class ListRoomFragment : BaseFragment<ListRoomViewModel, FragmentListRoomBinding
         viewModel.listRoomLiveData.observe(this, {
             (dataBinding.rcyListRoom.adapter as ListRoomAdapter).setList(it)
         })
+        viewModel.listenerScc.observe(this,{
+            if(it == 1) {
+                Toast.makeText(context,"Thành công",Toast.LENGTH_LONG).show()
+            }
+        })
+
     }
+//    private fun sendNotification(notification: PushNotification) = CoroutineScope(Dispatchers.IO).launch {
+//        try {
+//            val response = RetrofitInstance.api.postNotification(notification)
+//            if(response.isSuccessful) {
+//
+//            } else {
+//
+//            }
+//        } catch(e: Exception) {
+//
+//        }
+//    }
 
     override fun onChoose(id: String) {
         val alertDialog = android.app.AlertDialog.Builder(context).create()

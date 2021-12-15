@@ -19,27 +19,27 @@ class HomeViewModel : BaseViewModel() {
         const val SEARCH_MAP = 2
         const val WEATHER = 3
     }
-    fun getListProvince() {
-        lisProvincesVMD.clear()
-        val firebaseRef =
-            FirebaseDatabase.getInstance().getReference(Constants.CLIENT).child(Constants.PROVINCE)
-        firebaseRef.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                for (pos in snapshot.children) {
-                    val objectsPr = Provinces(
-                        id = pos.child(Constants.ID).value.toString(),
-                        imageUrl = pos.child(Constants.IMG_URL).value.toString(),
-                        name = pos.child(Constants.NAME).value.toString()
-                    )
-                    lisProvincesVMD.add(objectsPr)
-                }
-                listProvince.value = lisProvincesVMD
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-            }
-        })
-    }
+//    fun getListProvince() {
+//        lisProvincesVMD.clear()
+//        val firebaseRef =
+//            FirebaseDatabase.getInstance().getReference(Constants.CLIENT).child(Constants.PROVINCE)
+//        firebaseRef.addValueEventListener(object : ValueEventListener {
+//            override fun onDataChange(snapshot: DataSnapshot) {
+//                for (pos in snapshot.children) {
+//                    val objectsPr = Provinces(
+//                        id = pos.child(Constants.ID).value.toString(),
+//                        imageUrl = pos.child(Constants.IMG_URL).value.toString(),
+//                        name = pos.child(Constants.NAME).value.toString()
+//                    )
+//                    lisProvincesVMD.add(objectsPr)
+//                }
+//                listProvince.value = lisProvincesVMD
+//            }
+//
+//            override fun onCancelled(error: DatabaseError) {
+//            }
+//        })
+//    }
 
     var listener = MutableLiveData<Int>()
     fun onClick(view: View) {

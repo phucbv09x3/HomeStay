@@ -60,10 +60,18 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>(), IClickO
     }
     override fun bindViewModel() {
 
-        viewModel.getListProvince()
-        viewModel.listProvince.observe(this, {
-            (rcy_list_province.adapter as HomeAdapter).setList(it)
-        })
+       // viewModel.getListProvince()
+        val listShowProvinces = mutableListOf<Provinces>()
+        listShowProvinces.add(Provinces(1,R.drawable.ho_hoan_kiem,"Hà Nội"))
+        listShowProvinces.add(Provinces(2,R.drawable.que_bac_ho,"Nghệ An"))
+        listShowProvinces.add(Provinces(3,R.drawable.saigon,"TP.Hồ Chí Minh"))
+        listShowProvinces.add(Provinces(4,R.drawable.phu_quoc,"Phú Quốc"))
+        listShowProvinces.add(Provinces(5,R.drawable.da_nang,"Đà Nẵng"))
+        listShowProvinces.add(Provinces(6,R.drawable.hue,"TT Huế"))
+        (rcy_list_province.adapter as HomeAdapter).setList(listShowProvinces)
+//        viewModel.listProvince.observe(this, {
+//            (rcy_list_province.adapter as HomeAdapter).setList(it)
+//        })
 
     }
 

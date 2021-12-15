@@ -33,8 +33,8 @@ class ProvinceModel {
 }
 @Parcelize
 data class Provinces(
-    var id: String,
-    var imageUrl: String,
+    var id: Int,
+    var imageUrl: Int,
     var name: String
 ) : Parcelable
 

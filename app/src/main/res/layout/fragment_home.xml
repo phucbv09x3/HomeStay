@@ -187,7 +187,7 @@
                 android:onClick="@{(view)->viewModel.onClick(view)}"
                 app:layout_constraintTop_toBottomOf="@id/linear_home"
                 app:layout_constraintLeft_toLeftOf="parent"
-                android:gravity="start|center"
+                android:gravity="center"
                 android:background="@drawable/custom_stroke"
                 android:layout_marginTop="@dimen/_16sdp"
                 android:layout_width="@dimen/_120sdp"

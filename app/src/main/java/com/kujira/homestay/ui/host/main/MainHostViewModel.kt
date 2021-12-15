@@ -54,24 +54,14 @@ class MainHostViewModel : BaseViewModel() {
             })
     }
 
-    fun getToken() {
+    fun getTokenHost() {
         FirebaseMessaging.getInstance().token
             .addOnCompleteListener(OnCompleteListener { task ->
                 if (!task.isSuccessful) {
                     return@OnCompleteListener
                 }
                 val token: String? = task.result
-                dataRef.child("Account").child(auth.currentUser?.uid.toString()).addValueEventListener(object :ValueEventListener{
-                        override fun onDataChange(snapshot: DataSnapshot) {
-                            val hashMap = HashMap<String, String>()
-                            hashMap["token"] = token.toString()
-                            dataRef.setValue(hashMap);
-                        }
-
-                        override fun onCancelled(error: DatabaseError) {
-                            TODO("Not yet implemented")
-                        }
-                    })
+                dataRef.child("Account").child(auth.currentUser?.uid.toString()).child("token").setValue(token.toString());
 
             })
     }

@@ -42,6 +42,7 @@ class HomeAdapter(var listProvince: MutableList<Provinces>, var iClick: IClickOn
             dataBiding.setVariable(BR.model, itemData)
             val pathOf = itemView.findViewById<CircleImageView>(R.id.circle_image_province)
             Glide.with(pathOf).load(itemData.imageUrl).error(R.drawable.dulich).into(pathOf)
+            itemView.circle_image_province.setImageResource(itemData.imageUrl)
             itemView.tv_name_province.text = itemData.name
         }
     }

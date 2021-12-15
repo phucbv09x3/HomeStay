@@ -14,7 +14,9 @@ import androidx.navigation.NavDestination
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.FragmentNavigator
 import androidx.navigation.fragment.NavHostFragment
+import com.google.firebase.messaging.FirebaseMessaging
 import com.kujira.homestay.R
+import com.kujira.homestay.data.model.response.NotificationData
 import com.kujira.homestay.databinding.ActivityMainBinding
 import com.kujira.homestay.ui.base.BaseActivity
 import com.kujira.homestay.ui.base.BaseFragment
@@ -22,15 +24,20 @@ import com.kujira.homestay.ui.client.BlockActivity
 import com.kujira.homestay.ui.client.account.AccountFragment
 import com.kujira.homestay.ui.client.home.HomeFragment
 import com.kujira.homestay.ui.client.manager.ManagerRoomFragment
-import com.kujira.homestay.ui.client.service.HomeStayService
+import com.kujira.homestay.ui.client.service.PushNotification
+import com.kujira.homestay.ui.client.service.RetrofitInstance
 import com.kujira.homestay.utils.printLog
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
-
+const val TOPIC = "/topics/myTopic2"
 open class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(),
     NavController.OnDestinationChangedListener {
     private lateinit var navController: NavController
     private lateinit var currentFragment: BaseFragment<*, *>
     private var currentFragmentId: Int = R.id.home_fragment
+
     private val navHostFragment: NavHostFragment by lazy {
         supportFragmentManager.findFragmentById(R.id.main_nav_fragment) as NavHostFragment
     }
@@ -60,8 +67,27 @@ open class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(),
         checkNetWork()
         listenerReport()
         mViewModel.getToken()
+        FirebaseMessaging.getInstance().subscribeToTopic(TOPIC)
+//        PushNotification(
+//            NotificationData("hello", "test"),
+//            "cckqxjMZQeuQg5w-LasHua:APA91bEWaFFM_elON8O9R0-yqfZjaDXnRvsL-mQTSZf3cAWPzerYGqZd6" +
+//                    "DsFuXkJ4qaHaGBynQDii7hhhz1BQ1mGGEzvtG0tVDQIJnRbAT0UzYfwJ_R_mPkYx-b7glPnSoZI_9FCv0H2")
+//            .also {
+//            sendNotification(it)
+//        }
     }
-
+//    private fun sendNotification(notification: PushNotification) = CoroutineScope(Dispatchers.IO).launch {
+//        try {
+//            val response = RetrofitInstance.api.postNotification(notification)
+//            if(response.isSuccessful) {
+//
+//            } else {
+//
+//            }
+//        } catch(e: Exception) {
+//
+//        }
+//    }
 //    private fun startSV(){
 //        val intent = Intent(this,HomeStayService::class.java)
 //        startService(intent)

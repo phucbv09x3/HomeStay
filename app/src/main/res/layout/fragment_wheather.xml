@@ -17,6 +17,7 @@
         <TextView
             android:id="@+id/title_weather"
             android:text="Cập nhật thời tiết "
+            android:textStyle="bold"
             android:textColor="@color/black"
             android:layout_marginTop="@dimen/_4sdp"
             android:textSize="@dimen/_20sdp"
@@ -55,7 +56,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-
+            android:textStyle="italic"
             android:layout_marginTop="@dimen/_4sdp"
             app:layout_constraintTop_toBottomOf="@id/edt_city"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -66,8 +67,8 @@
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
-                android:layout_width="@dimen/_100sdp"
-                android:layout_height="@dimen/_100sdp"/>
+                android:layout_width="@dimen/_70sdp"
+                android:layout_height="@dimen/_70sdp"/>
             <TextView
                 android:id="@+id/tv_C"
                 android:layout_marginTop="@dimen/_11sdp"
@@ -96,9 +97,10 @@
                 android:layout_marginTop="@dimen/_11sdp"
                 app:layout_constraintTop_toBottomOf="@id/tv_cloud"
                 app:layout_constraintLeft_toLeftOf="parent"
-                android:textSize="@dimen/_22sdp"
+                android:textSize="@dimen/_20sdp"
+                android:textStyle="italic"
                 android:textColor="@color/black"
-                android:text="Độ ẩm"
+                android:text="Độ ẩm :"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <TextView
@@ -115,6 +117,7 @@
             <TextView
                 android:layout_marginLeft="@dimen/_11sdp"
                 android:id="@+id/tv_wind"
+                android:textStyle="italic"
                 android:layout_marginTop="@dimen/_11sdp"
                 app:layout_constraintTop_toBottomOf="@id/tv_humidity"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -125,6 +128,7 @@
                 android:layout_height="wrap_content"/>
             <TextView
                 android:id="@+id/tv_show_wind"
+                android:textStyle="italic"
                 android:layout_marginTop="@dimen/_11sdp"
                 app:layout_constraintTop_toBottomOf="@id/tv_humidity"
                 android:layout_marginLeft="@dimen/_11sdp"
@@ -143,6 +147,7 @@
                 android:textSize="@dimen/_22sdp"
                 android:textColor="@color/black"
                 android:text="Ngày Cập Nhật"
+                android:textStyle="italic"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <TextView
@@ -154,6 +159,7 @@
                 android:textSize="@dimen/_22sdp"
                 android:textColor="@color/black"
                 android:text="Thành Phố / Tỉnh"
+                android:textStyle="italic"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
         </androidx.constraintlayout.widget.ConstraintLayout>

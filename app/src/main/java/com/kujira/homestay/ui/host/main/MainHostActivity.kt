@@ -1,7 +1,5 @@
 package com.kujira.homestay.ui.host.main
 
-import FirebaseService
-import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
@@ -12,7 +10,6 @@ import androidx.navigation.NavDestination
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.FragmentNavigator
 import androidx.navigation.fragment.NavHostFragment
-import com.google.firebase.iid.internal.FirebaseInstanceIdInternal
 import com.google.firebase.messaging.FirebaseMessaging
 import com.kujira.homestay.R
 import com.kujira.homestay.databinding.ActivityHostMainBinding
@@ -24,11 +21,6 @@ import com.kujira.homestay.ui.host.manager.ManagerRoomHostFragment
 import com.kujira.homestay.ui.host.myacc.MyAccountHostFragment
 import com.kujira.homestay.utils.printLog
 import kotlinx.android.synthetic.main.activity_main.*
-
-
-
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.firebase.database.FirebaseDatabase
 
 
 const val TOPIC = "/topics/myTopic2"
@@ -69,7 +61,8 @@ open class MainHostActivity : BaseActivity<MainHostViewModel, ActivityHostMainBi
         listenerAction()
         requestPermissionCamera()
         listenerReport()
-        mViewModel.getToken()
+        mViewModel.getTokenHost()
+        FirebaseMessaging.getInstance().subscribeToTopic(com.kujira.homestay.ui.client.main.TOPIC)
         //setupFCM()
     }
 

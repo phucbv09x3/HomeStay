@@ -1,3 +1,4 @@
+package com.kujira.homestay.ui.client.service
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -14,13 +15,12 @@ import androidx.core.app.NotificationCompat
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import com.kujira.homestay.R
-import com.kujira.homestay.ui.client.main.MainActivity
 import com.kujira.homestay.ui.host.main.MainHostActivity
 import kotlin.random.Random
 
 private const val CHANNEL_ID = "my_channel"
 
-class FirebaseService : FirebaseMessagingService() {
+class FirebaseFCMService : FirebaseMessagingService() {
 
     companion object {
         var sharedPref: SharedPreferences? = null

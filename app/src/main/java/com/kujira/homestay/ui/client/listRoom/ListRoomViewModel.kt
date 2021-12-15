@@ -1,19 +1,27 @@
 package com.kujira.homestay.ui.client.listRoom
 
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.kujira.homestay.data.model.response.AddRoomModel
+import com.kujira.homestay.data.model.response.NotificationData
 import com.kujira.homestay.ui.base.BaseViewModel
+import com.kujira.homestay.ui.client.service.PushNotification
+import com.kujira.homestay.ui.client.service.RetrofitInstance
 import com.kujira.homestay.utils.Constants
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class ListRoomViewModel : BaseViewModel() {
     private var dataReferences = FirebaseDatabase.getInstance().getReference(Constants.HOST).child(Constants.LIST_ROOM)
     private var listRoom = mutableListOf<AddRoomModel>()
     var listRoomLiveData = MutableLiveData<MutableList<AddRoomModel>>()
+    var listenerScc = MutableLiveData(0)
     fun getListRoom() {
         dataReferences.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -46,19 +54,63 @@ class ListRoomViewModel : BaseViewModel() {
         })
     }
     fun chooseRoom(id:String){
+        var getIdHost = ""
+        var token = ""
+        dataReferences.child(id).addValueEventListener(object : ValueEventListener{
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    getIdHost = snapshot.child("uid").value.toString()
+                    println("getIdHost : $getIdHost");
+                    val dbR = FirebaseDatabase.getInstance().getReference("Client").child("Account")
+                    dbR.child(getIdHost).addValueEventListener(object  : ValueEventListener{
+                        override fun onDataChange(snapshot: DataSnapshot) {
+                            token = snapshot.child("token").toString()
+                            println("getIdHost2 : $token");
+                            PushNotification(
+                                NotificationData("hello", "test"),
+                                token)
+                                .also {
+                                    sendNotification(it)
+                                }
+                        }
+
+                        override fun onCancelled(error: DatabaseError) {
+                        }
+                    })
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                }
+            })
+
        dataReferences.orderByChild("id").equalTo(id).limitToFirst(1)
            .addListenerForSingleValueEvent(object : ValueEventListener{
                override fun onDataChange(snapshot: DataSnapshot) {
                    val hash = HashMap<String,Any>()
                    hash["status"] = "Đã Đặt"
                    hash["idClient"]= FirebaseAuth.getInstance().currentUser!!.uid
-                   dataReferences.child(id).updateChildren(hash)
+                   println("getIdHost3 : $token");
+                   dataReferences.child(id).updateChildren(hash).addOnSuccessListener {
+
+                   }
                }
 
                override fun onCancelled(error: DatabaseError) {
 
                }
            })
+
+    }
+    private fun sendNotification(notification: PushNotification) = CoroutineScope(Dispatchers.Main).launch {
+        try {
+            val response = RetrofitInstance.api.postNotification(notification)
+            if(response.isSuccessful) {
+
+            } else {
+
+            }
+        } catch(e: Exception) {
+
+        }
     }
     fun click(){
         navigation.navigateUp()

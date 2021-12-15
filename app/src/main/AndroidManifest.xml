@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.kujira.homestay">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -20,7 +21,13 @@
         android:roundIcon="@mipmap/homestaynet"
         android:supportsRtl="true"
         android:theme="@style/Theme.HomeStay">
-
+        <service android:name=".ui.client.service.FirebaseFCMService"
+            android:permission="com.google.android.c2dm.permission.SEND">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+            </intent-filter>
+        </service>
         <activity
             android:name=".ui.client.BlockActivity"
             android:exported="true" />
@@ -58,14 +65,6 @@
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false" />
-        <service android:name=".FirebaseService"
-            android:permission="com.google.android.c2dm.permission.SEND">
-            <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
-            </intent-filter>
-
-        </service>
         <meta-data
             android:name="com.google.ar.core"
             android:value="required" />
