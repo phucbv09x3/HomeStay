@@ -68,30 +68,7 @@ open class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(),
         listenerReport()
         mViewModel.getToken()
         FirebaseMessaging.getInstance().subscribeToTopic(TOPIC)
-//        PushNotification(
-//            NotificationData("hello", "test"),
-//            "cckqxjMZQeuQg5w-LasHua:APA91bEWaFFM_elON8O9R0-yqfZjaDXnRvsL-mQTSZf3cAWPzerYGqZd6" +
-//                    "DsFuXkJ4qaHaGBynQDii7hhhz1BQ1mGGEzvtG0tVDQIJnRbAT0UzYfwJ_R_mPkYx-b7glPnSoZI_9FCv0H2")
-//            .also {
-//            sendNotification(it)
-//        }
     }
-//    private fun sendNotification(notification: PushNotification) = CoroutineScope(Dispatchers.IO).launch {
-//        try {
-//            val response = RetrofitInstance.api.postNotification(notification)
-//            if(response.isSuccessful) {
-//
-//            } else {
-//
-//            }
-//        } catch(e: Exception) {
-//
-//        }
-//    }
-//    private fun startSV(){
-//        val intent = Intent(this,HomeStayService::class.java)
-//        startService(intent)
-//    }
     private fun listenerReport() {
         mViewModel.checkReport()
         mViewModel.listReportLiveData.observe(this, {

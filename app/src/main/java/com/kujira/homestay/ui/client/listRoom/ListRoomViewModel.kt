@@ -21,7 +21,8 @@ class ListRoomViewModel : BaseViewModel() {
     private var dataReferences = FirebaseDatabase.getInstance().getReference(Constants.HOST).child(Constants.LIST_ROOM)
     private var listRoom = mutableListOf<AddRoomModel>()
     var listRoomLiveData = MutableLiveData<MutableList<AddRoomModel>>()
-    var listenerScc = MutableLiveData(0)
+    val listenerScc = MutableLiveData<Int>(0)
+    val listenerToken = MutableLiveData<String>("")
     fun getListRoom() {
         dataReferences.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -54,23 +55,34 @@ class ListRoomViewModel : BaseViewModel() {
         })
     }
     fun chooseRoom(id:String){
+       dataReferences.orderByChild("id").equalTo(id).limitToFirst(1)
+           .addListenerForSingleValueEvent(object : ValueEventListener{
+               override fun onDataChange(snapshot: DataSnapshot) {
+                   val hash = HashMap<String,Any>()
+                   hash["status"] = "Đã Đặt"
+                   hash["idClient"]= FirebaseAuth.getInstance().currentUser!!.uid
+                   val name = snapshot.child("name").value.toString()
+                   dataReferences.child(id).updateChildren(hash)
+                   //listenerScc.value = 1
+               }
+
+               override fun onCancelled(error: DatabaseError) {
+               }
+           })
+
+    }
+    fun getTokenFromId(id : String){
         var getIdHost = ""
         var token = ""
-        dataReferences.child(id).addValueEventListener(object : ValueEventListener{
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    getIdHost = snapshot.child("uid").value.toString()
-                    println("getIdHost : $getIdHost");
+        dataReferences.child(id).addListenerForSingleValueEvent(object : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                getIdHost = snapshot.child("uid").value.toString()
+                if (getIdHost.isNotEmpty()){
                     val dbR = FirebaseDatabase.getInstance().getReference("Client").child("Account")
-                    dbR.child(getIdHost).addValueEventListener(object  : ValueEventListener{
+                    dbR.child(getIdHost).addListenerForSingleValueEvent(object  : ValueEventListener{
                         override fun onDataChange(snapshot: DataSnapshot) {
-                            token = snapshot.child("token").toString()
-                            println("getIdHost2 : $token");
-                            PushNotification(
-                                NotificationData("hello", "test"),
-                                token)
-                                .also {
-                                    sendNotification(it)
-                                }
+                            token = snapshot.child("token").value.toString()
+                            listenerToken.value = token
                         }
 
                         override fun onCancelled(error: DatabaseError) {
@@ -78,40 +90,13 @@ class ListRoomViewModel : BaseViewModel() {
                     })
                 }
 
-                override fun onCancelled(error: DatabaseError) {
-                }
-            })
-
-       dataReferences.orderByChild("id").equalTo(id).limitToFirst(1)
-           .addListenerForSingleValueEvent(object : ValueEventListener{
-               override fun onDataChange(snapshot: DataSnapshot) {
-                   val hash = HashMap<String,Any>()
-                   hash["status"] = "Đã Đặt"
-                   hash["idClient"]= FirebaseAuth.getInstance().currentUser!!.uid
-                   println("getIdHost3 : $token");
-                   dataReferences.child(id).updateChildren(hash).addOnSuccessListener {
-
-                   }
-               }
-
-               override fun onCancelled(error: DatabaseError) {
-
-               }
-           })
-
-    }
-    private fun sendNotification(notification: PushNotification) = CoroutineScope(Dispatchers.Main).launch {
-        try {
-            val response = RetrofitInstance.api.postNotification(notification)
-            if(response.isSuccessful) {
-
-            } else {
-
             }
-        } catch(e: Exception) {
 
-        }
+            override fun onCancelled(error: DatabaseError) {
+            }
+        })
     }
+
     fun click(){
         navigation.navigateUp()
     }

@@ -2,6 +2,7 @@ package com.kujira.homestay.ui.client.weather
 
 import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
+import com.kujira.homestay.R
 import com.kujira.homestay.data.api.ApiCoroutines
 import com.kujira.homestay.data.api.api_key_encrypted
 import com.kujira.homestay.data.model.response.Root
@@ -19,8 +20,7 @@ import javax.crypto.spec.SecretKeySpec
 class WeatherViewModel : BaseViewModel() {
     val textSearchWeather = ObservableField<String>()
     var rootResponseWeather = MutableLiveData<Root>()
-
-
+    val listenerEmpty = MutableLiveData(0)
     private val baseUrlWeather = "https://api.openweathermap.org/data/2.5/"
     private val retrofit = Retrofit.Builder()
         .baseUrl(baseUrlWeather)
@@ -58,6 +58,7 @@ class WeatherViewModel : BaseViewModel() {
     fun showWeather() {
         val city = textSearchWeather.get().toString()
         if (city.isEmpty()) {
+            listenerEmpty.value = 1
         } else {
             getResponseWeather(city)
         }

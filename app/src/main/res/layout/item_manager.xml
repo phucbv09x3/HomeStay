@@ -109,6 +109,8 @@
             android:text="Tình Trạng Đặt Phòng"
             android:textColor="@color/black"
             android:textSize="@dimen/_14sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="@dimen/_6sdp"
             android:textStyle="bold"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_title_price" />

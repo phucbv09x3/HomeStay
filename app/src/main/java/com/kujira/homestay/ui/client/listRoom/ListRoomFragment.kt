@@ -11,6 +11,7 @@ import com.kujira.homestay.data.model.response.AddRoomModel
 import com.kujira.homestay.data.model.response.NotificationData
 import com.kujira.homestay.databinding.FragmentListRoomBinding
 import com.kujira.homestay.ui.base.BaseFragment
+import com.kujira.homestay.ui.client.service.FirebaseFCMService
 import com.kujira.homestay.ui.client.service.PushNotification
 import com.kujira.homestay.ui.client.service.RetrofitInstance
 import com.kujira.homestay.utils.Constants
@@ -21,6 +22,7 @@ import kotlinx.coroutines.launch
 
 
 class ListRoomFragment : BaseFragment<ListRoomViewModel, FragmentListRoomBinding>(), IChooseRoom {
+    private var token = "";
     override fun createViewModel(): Class<ListRoomViewModel> {
         return ListRoomViewModel::class.java
     }
@@ -47,6 +49,43 @@ class ListRoomFragment : BaseFragment<ListRoomViewModel, FragmentListRoomBinding
                 Toast.makeText(context,"Thành công",Toast.LENGTH_LONG).show()
             }
         })
+        viewModel.listenerToken.observe(this,{
+            if(it.isNotEmpty()) {
+                PushNotification(
+                    NotificationData("Thông báo book phòng", "Bạn có 1 phòng có khách book !"),
+                    it )
+                    .also { pushNoti->
+                        sendNotification(pushNoti)
+                    }
+                return@observe
+            }
+        })
+
+    }
+
+    private fun sendNotification(notification: PushNotification) = CoroutineScope(Dispatchers.IO).launch {
+        try {
+            val response = RetrofitInstance.api.postNotification(notification)
+            if(response.isSuccessful) {
+
+            } else {
+
+            }
+        } catch(e: Exception) {
+
+        }
+    }
+    override fun onChoose(id: String) {
+        viewModel.getTokenFromId(id)
+        val alertDialog = android.app.AlertDialog.Builder(context).create()
+        alertDialog.setTitle(Constants.CHOOSE_ROOM)
+        alertDialog.setMessage(Constants.ACCESS_CHOOSE_ROOM)
+        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, Constants.OK_DIALOG
+        ) { dialog, _ ->
+            viewModel.chooseRoom(id)
+            dialog.dismiss()
+        }
+        alertDialog.show()
 
     }
 //    private fun sendNotification(notification: PushNotification) = CoroutineScope(Dispatchers.IO).launch {
@@ -61,19 +100,6 @@ class ListRoomFragment : BaseFragment<ListRoomViewModel, FragmentListRoomBinding
 //
 //        }
 //    }
-
-    override fun onChoose(id: String) {
-        val alertDialog = android.app.AlertDialog.Builder(context).create()
-        alertDialog.setTitle(Constants.CHOOSE_ROOM)
-        alertDialog.setMessage(Constants.ACCESS_CHOOSE_ROOM)
-        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, Constants.OK_DIALOG
-        ) { dialog, _ ->
-            viewModel.chooseRoom(id)
-            dialog.dismiss()
-        }
-        alertDialog.show()
-
-    }
     private fun search() {
         dataBinding.svNameProvinceListRoom.setOnQueryTextListener(object :
             androidx.appcompat.widget.SearchView.OnQueryTextListener {
