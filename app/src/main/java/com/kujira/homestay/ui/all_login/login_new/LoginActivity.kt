@@ -33,9 +33,8 @@ class LoginActivity : BaseActivity<LoginAccViewModel, ActivityLoginBinding>() {
 
     override fun initData() {
         window.statusBarColor = ContextCompat.getColor(this, R.color.bg_login_new)
-        listener()
         mViewModel.getListAcc()
-
+        listener()
     }
 
     private val startForResult = registerForActivityResult(

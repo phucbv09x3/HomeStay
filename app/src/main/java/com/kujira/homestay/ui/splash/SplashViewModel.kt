@@ -39,7 +39,6 @@ class SplashViewModel : BaseViewModel() {
                         android.os.Handler(Looper.getMainLooper()).postDelayed({
                             autoLogin.value = 2
                         }, 300)
-
                     }
                 }
 

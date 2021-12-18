@@ -61,15 +61,12 @@ class ListRoomViewModel : BaseViewModel() {
                    val hash = HashMap<String,Any>()
                    hash["status"] = "Đã Đặt"
                    hash["idClient"]= FirebaseAuth.getInstance().currentUser!!.uid
-                   val name = snapshot.child("name").value.toString()
                    dataReferences.child(id).updateChildren(hash)
-                   //listenerScc.value = 1
                }
 
                override fun onCancelled(error: DatabaseError) {
                }
            })
-
     }
     fun getTokenFromId(id : String){
         var getIdHost = ""

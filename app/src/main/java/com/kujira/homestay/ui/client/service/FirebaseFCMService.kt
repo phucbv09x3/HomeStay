@@ -55,7 +55,7 @@ class FirebaseFCMService : FirebaseMessagingService() {
         val notification = NotificationCompat.Builder(this, CHANNEL_ID)
             .setContentTitle(message.data["title"])
             .setContentText(message.data["message"])
-            .setSmallIcon(R.drawable.ic_baseline_account_circle_24)
+            .setSmallIcon(R.drawable.ic_baseline_notifications_24)
             .setAutoCancel(true)
             .setContentIntent(pendingIntent)
             .build()

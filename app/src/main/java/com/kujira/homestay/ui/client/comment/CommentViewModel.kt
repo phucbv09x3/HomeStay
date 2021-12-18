@@ -43,6 +43,7 @@ class CommentViewModel : BaseViewModel() {
     }
 
     private fun commentRoom() {
+        showLoading.onNext(true)
         val hashMap = HashMap<String, String>()
         hashMap["idRoom"] = idRoom
         hashMap["nameClient"] = auth.currentUser?.uid.toString()
@@ -50,6 +51,8 @@ class CommentViewModel : BaseViewModel() {
         dataRef.child("Comment").child(System.currentTimeMillis().toString()).setValue(hashMap)
             .addOnSuccessListener {
                 edtComment.set("")
+                showLoading.onNext(false)
+            }.addOnFailureListener {
                 showLoading.onNext(false)
             }
     }

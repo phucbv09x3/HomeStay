@@ -753,6 +753,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/layout/item_travel.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/layout/list_fragment.xml">
           <value>
             <set />
@@ -993,12 +998,22 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../HomeStayHost/app/src/main/res/drawable/ic_baseline_edit_24.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../HomeStayHost/app/src/main/res/drawable/ic_baseline_local_phone_24.xml">
           <value>
             <set />
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/../HomeStayHost/app/src/main/res/drawable/ic_baseline_lock_open_24.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../HomeStayHost/app/src/main/res/drawable/ic_baseline_remove_red_eye_24.xml">
           <value>
             <set />
           </value>
@@ -1019,6 +1034,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/../HomeStayHost/app/src/main/res/layout/activity_splash.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../HomeStayHost/app/src/main/res/layout/custom_change_acc.xml">
           <value>
             <set />
           </value>

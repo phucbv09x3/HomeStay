@@ -7,6 +7,7 @@
     <string name="error_isEmpty_report">Vui lòng điền phản ánh của bạn!</string>
     <string name="report_after_10">Bạn chỉ được report lần tới trong vòng 10 tiếng nữa !</string>
     <string name="error_auth">Vui lòng xác thực email !</string>
+    <string name="repair">Vui lòng thử lại!</string>
     <string name="doC">°C</string>
     <string name="success">Thành Công</string>
     <string name="error">Thất Bại !</string>
@@ -14,7 +15,7 @@
     <string name="error_mail_or_pass">Vui lòng kiểm tra lại thông tin !</string>
     <string name="not_exit_account">Tài khoản không tồn tại !</string>
     <string name="email_exist">Email đã được đăng kí!</string>
-    <string name="length_pass">Mật khẩu phải lớn hơn 8 kí tự!</string>
+    <string name="length_pass">Mật khẩu phải lớn hơn 6 kí tự!</string>
     <string name="email_pattern">Email không hợp lệ</string>
     <string name="length_name">Tên phải lớn hơn 3 kí tự</string>
     <string name="email_verify">Vui lòng vào email để xác thực !</string>

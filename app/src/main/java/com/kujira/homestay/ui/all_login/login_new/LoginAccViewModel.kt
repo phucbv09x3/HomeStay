@@ -11,6 +11,8 @@ import com.google.firebase.database.ValueEventListener
 import com.kujira.homestay.R
 import com.kujira.homestay.ui.base.BaseViewModel
 import com.kujira.homestay.utils.Constants
+import java.nio.charset.StandardCharsets
+import java.security.MessageDigest
 import java.util.*
 import javax.crypto.Cipher
 import javax.crypto.spec.SecretKeySpec
@@ -72,12 +74,15 @@ class LoginAccViewModel : BaseViewModel() {
         // val isCheck = listAcc.contains(email)
 
         if (email.isNotEmpty() && password.isNotEmpty()) {
+            if(listAcc.isEmpty()) {
+                listener.value = R.string.repair
+            }
             val acc = listAcc.firstOrNull {
-                it.email == email
+                it.email.lowercase(Locale.getDefault()) == email.lowercase(Locale.getDefault())
             }
             if (acc != null) {
                 showLoading.onNext(true)
-                auth.signInWithEmailAndPassword(email, enCryptAES(password,Constants.secretKey))
+                auth.signInWithEmailAndPassword(email, hashFunc(password))
                     .addOnCompleteListener {
                         if (it.isSuccessful) {
                             val user = auth.currentUser
@@ -109,18 +114,26 @@ class LoginAccViewModel : BaseViewModel() {
             listener.value = R.string.error_isEmpty
         }
     }
-    private fun enCryptAES(textEncrypt: String, secret: String): String {
+    private fun enCrypt(textEncrypt: String, secret: String): String {
         val secretKeySpec = SecretKeySpec(secret.toByteArray().copyOf(16), "AES")
         val cipher = Cipher.getInstance("AES/ECB/PKCS5PADDING")
         cipher.init(Cipher.ENCRYPT_MODE, secretKeySpec)
         val byteArray = cipher.doFinal(textEncrypt.toByteArray())
         return (Base64.getEncoder().encodeToString(byteArray))
     }
-
+    private fun hashFunc(textEncrypt: String): String {
+        val md5 = MessageDigest.getInstance("MD5")//SHA-256
+        var sbb = ""
+        val byteArray: ByteArray = md5.digest(textEncrypt.toByteArray(StandardCharsets.UTF_8))
+        for (item in byteArray) {
+            sbb += String.format("%02x", item)
+        }
+        return sbb
+    }
 
 }
 
 data class Acc(
-    val email: String,
-    val permission: String
+    var email: String,
+    var permission: String
 )

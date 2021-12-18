@@ -11,6 +11,8 @@ import com.google.firebase.database.ValueEventListener
 import com.kujira.homestay.R
 import com.kujira.homestay.ui.base.BaseViewModel
 import com.kujira.homestay.utils.Constants
+import java.nio.charset.StandardCharsets
+import java.security.MessageDigest
 import java.util.*
 import javax.crypto.Cipher
 import javax.crypto.spec.SecretKeySpec
@@ -60,7 +62,7 @@ class RegisterAccViewModel : BaseViewModel() {
                     listenerShowToast.value = R.string.length_name
                 } else{
                     showLoading.onNext(true)
-                    fireBaseAuth.createUserWithEmailAndPassword(mail, enCryptAES(passWord,Constants.secretKey))
+                    fireBaseAuth.createUserWithEmailAndPassword(mail, hashFunc(passWord))
                         .addOnCompleteListener { task ->
                             if (task.isSuccessful) {
                                 showLoading.onNext(false)
@@ -71,7 +73,6 @@ class RegisterAccViewModel : BaseViewModel() {
                                 hashMap[Constants.USER_NAME] = userName
                                 hashMap[Constants.MAIL] = mail!!
                                 hashMap[Constants.UID] = userUID!!
-                               // hashMap[Constants.PASSWORD] = passWord
                                 hashMap[Constants.PHONE] = phone
                                 hashMap[Constants.PERMISSION] = permission.toString()
                                 dataReference.child(userUID).setValue(hashMap)
@@ -91,14 +92,23 @@ class RegisterAccViewModel : BaseViewModel() {
             listenerShowToast.value = R.string.error_isEmpty
         }
     }
-
-     private fun enCryptAES(textEncrypt: String, secret: String): String {
-        val secretKeySpec = SecretKeySpec(secret.toByteArray().copyOf(16), "AES")
-        val cipher = Cipher.getInstance("AES/ECB/PKCS5PADDING")
-        cipher.init(Cipher.ENCRYPT_MODE, secretKeySpec)
-        val byteArray = cipher.doFinal(textEncrypt.toByteArray())
-        return (Base64.getEncoder().encodeToString(byteArray))
+    private fun hashFunc(textEncrypt: String): String {
+        val md5 = MessageDigest.getInstance("MD5")//SHA-256
+        var sbb = ""
+        val byteArray: ByteArray = md5.digest(textEncrypt.toByteArray(StandardCharsets.UTF_8))
+        for (item in byteArray) {
+            sbb += String.format("%02x", item)
+        }
+        return sbb
     }
+
+//     private fun enCrypt(textEncrypt: String, secret: String): String {
+//        val secretKeySpec = SecretKeySpec(secret.toByteArray().copyOf(16), "AES")
+//        val cipher = Cipher.getInstance("AES/ECB/PKCS5PADDING")
+//        cipher.init(Cipher.ENCRYPT_MODE, secretKeySpec)
+//        val byteArray = cipher.doFinal(textEncrypt.toByteArray())
+//        return (Base64.getEncoder().encodeToString(byteArray))
+//    }
     fun getListAcc(): MutableList<String> {
 
         val dataRef =
