@@ -1,7 +1,7 @@
 package com.kujira.homestay.ui.client.travelAll
 
+import android.opengl.Visibility
 import android.text.TextUtils
-import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.kujira.homestay.R
@@ -35,17 +35,11 @@ class TravelAllFragment : BaseFragment<TravelAllViewModel, FragmentTravelAllBind
         val bundle = arguments
         if (bundle == null) {
             viewModel.getListTravelAll()
-//            viewModel.listTravels.observe(this, {
-//                (dataBinding.rcyListTravelAll.adapter as TravelAdapter).setList(it)
-//            })
-            println("PhucDebug:  ok1")
         } else {
             val data = bundle.getParcelable<Provinces>(Constants.KEY_ID) as Provinces
-                dataBinding.tvShowProvinces.text = data.name
-                dataBinding.tvShowProvinces.visibility = View.VISIBLE
-                viewModel.getListTravelId(data.name)
-
-            println("PhucDebug:  ok3")
+            dataBinding.tvShowProvinces.text = data.name
+            dataBinding.tvShowProvinces.visibility = View.VISIBLE
+            viewModel.getListTravelName(data.name)
 
         }
         viewModel.listTravels.observe(this, {
@@ -69,7 +63,7 @@ class TravelAllFragment : BaseFragment<TravelAllViewModel, FragmentTravelAllBind
 
 
                 } else {
-                   viewModel.getListTravelAll()
+                    viewModel.getListTravelAll()
                 }
                 return false
             }

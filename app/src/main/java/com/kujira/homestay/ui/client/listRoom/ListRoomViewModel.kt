@@ -22,7 +22,7 @@ class ListRoomViewModel : BaseViewModel() {
     private var listRoom = mutableListOf<AddRoomModel>()
     var listRoomLiveData = MutableLiveData<MutableList<AddRoomModel>>()
     val listenerScc = MutableLiveData<Int>(0)
-    val listenerToken = MutableLiveData<String>("")
+    val listenerToken = MutableLiveData<TokenModel>()
     fun getListRoom() {
         dataReferences.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -61,7 +61,9 @@ class ListRoomViewModel : BaseViewModel() {
                    val hash = HashMap<String,Any>()
                    hash["status"] = "Đã Đặt"
                    hash["idClient"]= FirebaseAuth.getInstance().currentUser!!.uid
-                   dataReferences.child(id).updateChildren(hash)
+                   dataReferences.child(id).updateChildren(hash).addOnSuccessListener {
+                       listenerScc.postValue(1)
+                   }
                }
 
                override fun onCancelled(error: DatabaseError) {
@@ -71,15 +73,17 @@ class ListRoomViewModel : BaseViewModel() {
     fun getTokenFromId(id : String){
         var getIdHost = ""
         var token = ""
+        var nameRoom = ""
         dataReferences.child(id).addListenerForSingleValueEvent(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 getIdHost = snapshot.child("uid").value.toString()
+                nameRoom = snapshot.child("nameRoom").value.toString()
                 if (getIdHost.isNotEmpty()){
                     val dbR = FirebaseDatabase.getInstance().getReference("Client").child("Account")
                     dbR.child(getIdHost).addListenerForSingleValueEvent(object  : ValueEventListener{
                         override fun onDataChange(snapshot: DataSnapshot) {
                             token = snapshot.child("token").value.toString()
-                            listenerToken.value = token
+                            listenerToken.value = TokenModel(token,nameRoom)
                         }
 
                         override fun onCancelled(error: DatabaseError) {
@@ -124,7 +128,7 @@ class ListRoomViewModel : BaseViewModel() {
                     val uid = pos.child("uid").value.toString()
                     val model = AddRoomModel(id,address,typeRoom,nameRoom,s_room,numberSleepRoom,convenient,introduce,imageRoom1,imageRoom2,status,price,uid)
                     //val model = pos.getValue(AddRoomModel::class.java)
-                    if (model?.address?.toLowerCase()!!.contains(newText!!.toLowerCase())) {
+                    if (model.address.toLowerCase().contains(newText!!.toLowerCase())) {
                         listRoom.add(model)
                         listRoomLiveData.value =listRoom
 
@@ -136,3 +140,8 @@ class ListRoomViewModel : BaseViewModel() {
         })
     }
 }
+
+data class TokenModel(
+    val token : String,
+    val nameRoom:String,
+)

@@ -114,16 +114,6 @@ class ManagerRoomHostFragment :
     }
 
     override fun clickExitRoom(addRoomModel: AddRoomModel) {
-//        val alertDialog = android.app.AlertDialog.Builder(context).create()
-//        alertDialog.setTitle("Khách hàng trả phòng")
-//        alertDialog.setMessage("Đã trả !")
-//        alertDialog.setButton(
-//            AlertDialog.BUTTON_NEUTRAL, "OK"
-//        ) { dialog, _ ->
-//            viewModel.cancelRoom(addRoomModel.id)
-//            dialog.dismiss()
-//        }
-//        alertDialog.show()
         exitRoomOrReport(addRoomModel)
     }
 
@@ -133,9 +123,6 @@ class ManagerRoomHostFragment :
         val dialogView = layoutInflater.inflate(R.layout.custom_exit_or_report, null)
         alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         alertDialog.setView(dialogView)
-
-//        val exitRoom = dialogView.findViewById<Button>(R.id.btn_exit_Room)
-//        val report = dialogView.findViewById<Button>(R.id.btn_report)
         dialogView.findViewById<Button>(R.id.btn_exit_Room).setOnClickListener {
             viewModel.cancelRoom(addRoomModel.id)
             viewModel.listener.observe(this, {

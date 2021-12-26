@@ -82,6 +82,7 @@ class RegisterAccViewModel : BaseViewModel() {
                                         listenerShowToast.value = R.string.email_verify
                                     }
                             } else {
+                                showLoading.onNext(false)
                                 listenerShowToast.value = R.string.register_fail
                             }
                         }

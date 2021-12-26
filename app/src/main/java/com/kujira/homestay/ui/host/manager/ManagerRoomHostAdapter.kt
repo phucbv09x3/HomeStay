@@ -46,7 +46,7 @@ class ManagerRoomAdapter(var listRoom: MutableList<AddRoomModel>, var click: ICl
             binding.setVariable(BR.model, itemData)
             itemView.name_room.text = itemData.nameRoom
             itemView.status.text = itemData.status
-            itemView.show_price_host.text = itemData.price
+            itemView.show_price_host.text = itemData.price + "/1ngày"
             if (itemData.status == "Đã Đặt") {
                 itemView.tv_tra.visibility = View.VISIBLE
             } else {

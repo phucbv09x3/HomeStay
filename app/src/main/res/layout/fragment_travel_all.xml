@@ -20,11 +20,12 @@
             android:layout_width="@dimen/_20sdp"
             android:layout_height="@dimen/_20sdp"
             android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            app:layout_constraintTop_toTopOf="parent"
             android:background="@drawable/ic_baseline_arrow_back_24"
             android:onClick="@{(view)->viewModel.onClick(view)}"
-            app:layout_constraintBottom_toBottomOf="@id/sv_name_province_list"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="@id/sv_name_province_list" />
+            />
 
         <TextView
             android:id="@+id/tv_show_provinces"
@@ -36,7 +37,7 @@
             android:textColor="@color/black"
             android:textSize="@dimen/_16sdp"
             app:layout_constraintLeft_toRightOf="@id/tv_previus_travel_all"
-            app:layout_constraintTop_toTopOf="@id/tv_previus_travel_all" />
+            app:layout_constraintTop_toTopOf="@+id/tv_previus_travel_all" />
 
         <androidx.appcompat.widget.SearchView
             android:id="@+id/sv_name_province_list"

@@ -22,7 +22,7 @@ import kotlinx.coroutines.launch
 
 
 class ListRoomFragment : BaseFragment<ListRoomViewModel, FragmentListRoomBinding>(), IChooseRoom {
-    private var token = "";
+    private lateinit var tokenModel : TokenModel
     override fun createViewModel(): Class<ListRoomViewModel> {
         return ListRoomViewModel::class.java
     }
@@ -44,22 +44,6 @@ class ListRoomFragment : BaseFragment<ListRoomViewModel, FragmentListRoomBinding
         viewModel.listRoomLiveData.observe(this, {
             (dataBinding.rcyListRoom.adapter as ListRoomAdapter).setList(it)
         })
-        viewModel.listenerScc.observe(this,{
-            if(it == 1) {
-                Toast.makeText(context,"Thành công",Toast.LENGTH_LONG).show()
-            }
-        })
-        viewModel.listenerToken.observe(this,{
-            if(it.isNotEmpty()) {
-                PushNotification(
-                    NotificationData("Thông báo book phòng", "Bạn có 1 phòng có khách book !"),
-                    it )
-                    .also { pushNoti->
-                        sendNotification(pushNoti)
-                    }
-                return@observe
-            }
-        })
 
     }
 
@@ -77,29 +61,35 @@ class ListRoomFragment : BaseFragment<ListRoomViewModel, FragmentListRoomBinding
     }
     override fun onChoose(id: String) {
         viewModel.getTokenFromId(id)
+        viewModel.listenerToken.observe(this,{
+            tokenModel = it
+            return@observe
+        })
         val alertDialog = android.app.AlertDialog.Builder(context).create()
         alertDialog.setTitle(Constants.CHOOSE_ROOM)
         alertDialog.setMessage(Constants.ACCESS_CHOOSE_ROOM)
         alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, Constants.OK_DIALOG
         ) { dialog, _ ->
             viewModel.chooseRoom(id)
+            viewModel.listenerScc.observe(this,{
+                if(it == 1) {
+                    Toast.makeText(context,"Thành công",Toast.LENGTH_LONG).show()
+                    tokenModel?.let { tkModel->
+                        PushNotification(
+                            NotificationData("Thông báo đặt phòng", "Phòng ${tkModel.nameRoom} đã được đặt"),
+                            tkModel.token )
+                            .also { pushNoti->
+                                sendNotification(pushNoti)
+                            }
+                        return@observe
+                    }
+                }
+            })
             dialog.dismiss()
         }
         alertDialog.show()
 
     }
-//    private fun sendNotification(notification: PushNotification) = CoroutineScope(Dispatchers.IO).launch {
-//        try {
-//            val response = RetrofitInstance.api.postNotification(notification)
-//            if(response.isSuccessful) {
-//
-//            } else {
-//
-//            }
-//        } catch(e: Exception) {
-//
-//        }
-//    }
     private fun search() {
         dataBinding.svNameProvinceListRoom.setOnQueryTextListener(object :
             androidx.appcompat.widget.SearchView.OnQueryTextListener {

@@ -1,6 +1,5 @@
 package com.kujira.homestay.ui.client.travelAll
 
-import android.util.Log
 import android.view.View
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.database.DataSnapshot
@@ -32,7 +31,6 @@ class TravelAllViewModel : BaseViewModel() {
                     listTravel.add(objectsTravel)
 
                 }
-                Log.d("list1", "$listTravel")
                 listTravels.value = listTravel
             }
 
@@ -40,12 +38,10 @@ class TravelAllViewModel : BaseViewModel() {
             }
         })
     }
-    fun getListTravelId(id: String) {
+    fun getListTravelName(name: String) {
         val firebaseRef = FirebaseDatabase.getInstance().getReference(Constants.CLIENT)
             .child("TravelList")
-            .orderByChild("id")
-            .equalTo(id)
-        firebaseRef.addListenerForSingleValueEvent(object : ValueEventListener {
+        firebaseRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 listTravel.clear()
                 for (pos in snapshot.children) {
@@ -55,10 +51,12 @@ class TravelAllViewModel : BaseViewModel() {
                         detail = pos.child("detail").value.toString(),
                         img = pos.child("img").value.toString()
                     )
-                    listTravel.add(objectsTravel)
-
+                    if(objectsTravel.address.toLowerCase().contains(name.toLowerCase())){
+                        listTravel.add(objectsTravel)
+                        listTravels.value = listTravel
+                    }
                 }
-                listTravels.value = listTravel
+
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -85,13 +83,16 @@ class TravelAllViewModel : BaseViewModel() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 listTravel.clear()
                 for (pos in snapshot.children) {
-                    val mesData = pos.getValue(TravelModel::class.java)
-                        if (mesData?.id?.toLowerCase()!!.contains(newText!!.toLowerCase())) {
-                            listTravel.add(mesData)
-                            listTravels.value =listTravel
-
-                        }
-
+                    val objectsTravel = TravelModel(
+                        id = pos.child("id").value.toString(),
+                        address = pos.child("address").value.toString(),
+                        detail = pos.child("detail").value.toString(),
+                        img = pos.child("img").value.toString()
+                    )
+                    if(objectsTravel.address.toLowerCase().contains(newText!!.toLowerCase())){
+                        listTravel.add(objectsTravel)
+                        listTravels.value = listTravel
+                    }
                 }
             }
 
