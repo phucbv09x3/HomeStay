@@ -17,7 +17,7 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.*
 
 /**
- * Created by OpenYourEyes on 11/26/2019
+ * Created by Created by Phucbv on 5/2021
  */
 open abstract class BaseViewModel : ViewModel() {
     lateinit var navigation: Navigators

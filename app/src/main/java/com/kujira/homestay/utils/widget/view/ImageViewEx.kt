@@ -6,7 +6,7 @@ import com.bumptech.glide.Glide
 
 
 /**
- * Created by OpenYourEyes on 11/20/20
+ * Created by Created by Phucbv on 5/2021
  */
 @BindingAdapter("url")
 fun setImageViewResource(imageView: ImageView, url: String) {

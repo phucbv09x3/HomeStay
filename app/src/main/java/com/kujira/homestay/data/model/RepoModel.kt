@@ -5,7 +5,7 @@ import com.google.firebase.database.PropertyName
 import kotlinx.android.parcel.Parcelize
 
 /**
- * Created by OpenYourEyes on 11/2/20
+ * Created by Created by Phucbv on 5/2021
  */
 @Parcelize
 data class RepoModel(

@@ -3,7 +3,7 @@ package com.kujira.homestay.utils.widget.baseadapter
 import io.reactivex.subjects.BehaviorSubject
 
 /**
- * Created by OpenYourEyes on 12/29/20
+ * Created by Created by Phucbv on 5/2021
  */
 interface ITriggerPaging {
     val paging: BehaviorSubject<PagingType>

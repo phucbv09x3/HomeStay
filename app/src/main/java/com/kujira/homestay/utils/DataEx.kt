@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onStart
 
 /**
- * Created by OpenYourEyes on 4/4/21
+ * Created by Created by Phucbv on 5/2021
  */
 class ListLiveData<T> : MutableLiveData<MutableList<T>>()
 
